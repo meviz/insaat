@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Anamakine: 127.0.0.1
--- Üretim Zamanı: 28 Kas 2016, 16:10:06
--- Sunucu sürümü: 5.6.21
--- PHP Sürümü: 5.6.3
+-- Host: 127.0.0.1
+-- Generation Time: Nov 29, 2016 at 07:48 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,54 +14,75 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Veritabanı: `insaat_proje`
+-- Database: `insaat_proje`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `analiz`
+-- Table structure for table `analiz`
 --
 
-CREATE TABLE IF NOT EXISTS `analiz` (
-`AnalizID` bigint(20) NOT NULL,
+CREATE TABLE `analiz` (
+  `AnalizID` bigint(20) NOT NULL,
   `MainPozID` bigint(20) DEFAULT NULL,
   `SubPozID` bigint(20) DEFAULT NULL,
   `SubPozSiraNo` int(11) DEFAULT NULL,
   `SubPozMiktar` double DEFAULT NULL,
   `Aciklama` text COLLATE utf8_unicode_ci
-) ENGINE=InnoDB AUTO_INCREMENT=149432 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Tablo döküm verisi `analiz`
---
-
-INSERT INTO `analiz` (`AnalizID`, `MainPozID`, `SubPozID`, `SubPozSiraNo`, `SubPozMiktar`, `Aciklama`) VALUES
-(149430, 119453, 119453, NULL, NULL, NULL),
-(149431, 119453, 119453, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `bfiyatkitap`
---
-
-CREATE TABLE IF NOT EXISTS `bfiyatkitap` (
-`KitapID` bigint(20) NOT NULL,
-  `KitapAdi` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `kullanici`
+-- Table structure for table `bfiyatkitap`
 --
 
-CREATE TABLE IF NOT EXISTS `kullanici` (
-`ID` smallint(6) NOT NULL,
+CREATE TABLE `bfiyatkitap` (
+  `KitapID` bigint(20) NOT NULL,
+  `KitapAdi` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `bfiyatkitap`
+--
+
+INSERT INTO `bfiyatkitap` (`KitapID`, `KitapAdi`) VALUES
+(45, 'Bayındırlık Bakanlığı'),
+(1, 'Birim Fiyat Kitapları Ortak Pozlar'),
+(35, 'Çevre ve Şehircilik Bakanlığı Hizmet Binası'),
+(53, 'Demiryolları,Limanlar ve Hava Meydanları'),
+(47, 'Devlet Su İşleri'),
+(7, 'Dia Birim Fiyatları'),
+(32, 'DIA-Suudi Arabistan'),
+(58, 'İller Bankası 2006 ve Sonrası İşler'),
+(49, 'İstanbul Büyük Şehir Belediyesi'),
+(52, 'İstanbul Su Kanalizasyon İdaresi'),
+(63, 'Kara Yolları Genel Müdürlüğü (2012 ve Sonrası)'),
+(54, 'Karayollari Genel Müdürlügü'),
+(50, 'Köy Hizmetleri'),
+(55, 'Kültür Bakanlığı'),
+(51, 'Milli Savunma Bakanlığı'),
+(64, 'Orman Yolu Özel Birim Fiyatlar'),
+(34, 'Sözleşme Pozlari'),
+(33, 'Sözleşmeler'),
+(59, 'Türk Telekom A.Ş'),
+(60, 'Türkiye Elektrik Dağıtım A.Ş. (1.Bölge)'),
+(61, 'Türkiye Elektrik Dağıtım A.Ş. (2.Bölge)'),
+(62, 'Türkiye Elektrik Dağıtım A.Ş. (3.Bölge)'),
+(48, 'Vakıflar Genel Müdürlüğü');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kullanici`
+--
+
+CREATE TABLE `kullanici` (
+  `ID` smallint(6) NOT NULL,
   `name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `surname` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `mail` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -73,21 +94,33 @@ CREATE TABLE IF NOT EXISTS `kullanici` (
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `maliyetgrup`
+-- Table structure for table `maliyetgrup`
 --
 
-CREATE TABLE IF NOT EXISTS `maliyetgrup` (
-`ID` bigint(20) NOT NULL,
+CREATE TABLE `maliyetgrup` (
+  `ID` bigint(20) NOT NULL,
   `MaliyetAdi` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `maliyetgrup`
+--
+
+INSERT INTO `maliyetgrup` (`ID`, `MaliyetAdi`) VALUES
+(5, 'Adam Saat'),
+(4, 'Ekipman'),
+(3, 'İşçilik'),
+(1, 'Malzeme'),
+(2, 'Malzeme + İşçilik'),
+(6, 'Nakliye');
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `maliyettemp`
+-- Table structure for table `maliyettemp`
 --
 
-CREATE TABLE IF NOT EXISTS `maliyettemp` (
+CREATE TABLE `maliyettemp` (
   `ID` bigint(20) NOT NULL,
   `MaliyetAdi` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PozID` bigint(20) DEFAULT NULL,
@@ -110,49 +143,687 @@ CREATE TABLE IF NOT EXISTS `maliyettemp` (
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `mkk`
+-- Table structure for table `mkk`
 --
 
-CREATE TABLE IF NOT EXISTS `mkk` (
+CREATE TABLE `mkk` (
   `ID` bigint(20) NOT NULL,
   `MKKCode` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `MKKParentCode` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `MKKTanim` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `mkk`
+--
+
+INSERT INTO `mkk` (`ID`, `MKKCode`, `MKKParentCode`, `MKKTanim`) VALUES
+(1, 'P08000001', 'P01101001', 'BU TEST ICIN.'),
+(2, 'P01000000', 'MKK', 'İNŞAAT İŞLERİ'),
+(3, 'P01100000', 'P01000000', 'Kırım, Yıkım ve demontaj işleri'),
+(4, 'P01101000', 'P01100000', 'Kırım işleri'),
+(5, 'P01101001', 'P01101000', 'Delme kesme ve imalat kırımları'),
+(6, 'P01101002', 'P01101000', 'Rezerve'),
+(7, 'P01102000', 'P01100000', 'Yıkım ve demontaj işleri (Saha hazırlık işleri)'),
+(8, 'P01102001', 'P01102000', 'Yıkım işleri (saha dışına taşımalar dahil)'),
+(9, 'P01102002', 'P01102000', 'Demontaj işleri (saha dışına taşımalar dahil)'),
+(10, 'P01200000', 'P01000000', 'Toprak ve Zemin Güçlendirme İşleri'),
+(11, 'P01201000', 'P01200000', 'Kazı yapılması'),
+(12, 'P01201001', 'P01201000', 'Makinalı Kazılar (Yumuşak Toprak, Kaya vs her türlü kazı işi)'),
+(13, 'P01201002', 'P01201000', 'Elle Kazılar'),
+(14, 'P01202000', 'P01200000', 'Dolgu işleri'),
+(15, 'P01202001', 'P01202000', 'Dolgu İşleri'),
+(16, 'P01203000', 'P01200000', 'Zemin güçlendirme'),
+(17, 'P01203001', 'P01203000', 'Jetgrout'),
+(18, 'P01203002', 'P01203000', 'Çakma Kazık'),
+(19, 'P01203003', 'P01203000', 'Fore Kazık'),
+(20, 'P01209900', 'P01200000', 'Diğer'),
+(21, 'P01209999', 'P01209900', 'Diğer Toprak İşleri'),
+(22, 'P01300000', 'P01000000', 'Betonarme İşleri'),
+(23, 'P01301000', 'P01300000', 'Taşıyıcı B/A Sistem (Karkas)'),
+(24, 'P01301001', 'P01301000', 'Grobeton/harçlar'),
+(25, 'P01301002', 'P01301000', 'Kalıp yapılması (Düz/eğri yüzeyli her tür kalıp, iskelesi dahil)'),
+(26, 'P01301003', 'P01301000', 'Betonarme Demiri (Nervürlü/Düz ve değişik çaplarla)'),
+(27, 'P01301004', 'P01301000', 'Yapısal Beton (Her tür ve sınıf ; katkıları, koruma önlemleri dahil)'),
+(28, 'P01301005', 'P01301000', 'Prekast Elemanlar'),
+(29, 'P01301099', 'P01301000', 'Diğer'),
+(30, 'P01400000', 'P01000000', 'Çelik ve Metal Konstrüksiyonlar'),
+(31, 'P01401000', 'P01400000', 'Yapısal çelik'),
+(32, 'P01401001', 'P01401000', 'Uzay kafes sistemler'),
+(33, 'P01401002', 'P01401000', 'Yapıda taşıyıcı çelik konstrüksiyon imalatlar'),
+(34, 'P01401003', 'P01401000', 'Cephede taşıyıcı çelik konstrüksiyon imalatlar'),
+(35, 'P01401099', 'P01401000', 'Diğer yapısal çelik işleri'),
+(36, 'P01402000', 'P01400000', 'Taşıyıcı olmayan metal konstrüksiyonlar'),
+(37, 'P01402001', 'P01402000', 'Taşıyıcı olmayan çelik işleri (kutu profil benzeri tüm elemanlardan imalatlar)'),
+(38, 'P01402099', 'P01402000', 'Diğer ikincil çelik işleri'),
+(39, 'P01500000', 'P01000000', 'Dış Cephe İşleri'),
+(40, 'P01501000', 'P01500000', 'Dış cephe işleri'),
+(41, 'P01501001', 'P01501000', 'Cephe macun vb şekilde alt hazırlıklar yapılması'),
+(42, 'P01501002', 'P01501000', 'Cephe giydirme sistemleri ( kompozit panel vs mamül sistemler )'),
+(43, 'P01501003', 'P01501000', 'Cephe Doğal Taş, Fibrobeton vb sistemler'),
+(44, 'P01501004', 'P01501000', 'Cephe Bakü Taşı kaplamaları'),
+(45, 'P01501005', 'P01501000', 'Cephe sıva/boya sistemleri (mantolama sistemleri dahil)'),
+(46, 'P01501006', 'P01501000', 'Cephe sandviç panel benzeri panel imalatlar'),
+(47, 'P01501007', 'P01501000', 'Cam giydirmeler (alüminyum profiller dahil)'),
+(48, 'P01501008', 'P01501000', 'Cephe seramik, tuğla kaplamalar'),
+(49, 'P01501099', 'P01501000', 'Diğerleri'),
+(50, 'P01600000', 'P01000000', 'Çatı İşleri'),
+(51, 'P01601000', 'P01600000', 'Çatı işleri'),
+(52, 'P01601001', 'P01601000', 'Eğik çatı konstrüksiyonları (ahşaptan ya da çelikten mamul, OSB vb dahil, izolasyonlar hariç)'),
+(53, 'P01601002', 'P01601000', 'Düz çatı örtüsü kaplamaları (izolasyon hariç,şap dahil)'),
+(54, 'P01601003', 'P01601000', 'Çatı kaplamaları (metal kiremit, kiremit, dekoratif diğer elemanlar vs)'),
+(55, 'P01601004', 'P01601000', 'Çatı oluk,dere vs imalatlar'),
+(56, 'P01601099', 'P01601000', 'Diğer Çatı ve Kaplama Giderleri'),
+(57, 'P01700000', 'P01000000', 'İnce İşler'),
+(58, 'P01701000', 'P01700000', 'Kaba/ince işler (duvarlar ve kaplama hazırlık işleri)'),
+(59, 'P01701001', 'P01701000', 'Örme Duvarlar (her tür malzemeyle ve kalınlıkta ; harçlar dahil)'),
+(60, 'P01701002', 'P01701000', 'Bölme Duvarlar (tüm alçıpan vb malzemeyle üretilen ; metal konstrüksiyonlar dahil)'),
+(61, 'P01701003', 'P01701000', 'Kaba sıva yapılması (setka vs dahil)'),
+(62, 'P01701004', 'P01701000', 'Duvar giydirmeleri (alçıpan benzeri malzemelerle ; konstrüksiyonları dahil)'),
+(63, 'P01701005', 'P01701000', 'Perlitli alçı sıva/saten alçı vb yüzey hazırlık işleri (profiller dahil)'),
+(64, 'P01701006', 'P01701000', 'Şap ve harçlar vb döşeme alt hazırlıkları yapılması'),
+(65, 'P01701007', 'P01701000', 'Yükseltilmiş döşeme sistemleri yapılması'),
+(66, 'P01701099', 'P01701000', 'Diğerleri'),
+(67, 'P01702000', 'P01700000', 'Kaplamalar'),
+(68, 'P01702001', 'P01702000', 'Parke (süpürgelikler ilgili kalemde dahil olacaktır)'),
+(69, 'P01702002', 'P01702000', 'Seramik-Granit Seramik (yapıştırıcılar , derz dolguları, profiller dahil)'),
+(70, 'P01702003', 'P01702000', 'Granit-Mermer-Doğal Taş kaplamalar'),
+(71, 'P01702004', 'P01702000', 'PVC/Taraflex/Linolyum benzeri kaplamalar'),
+(72, 'P01702005', 'P01702000', 'Özel zemin kaplamaları'),
+(73, 'P01702006', 'P01702000', 'Halı'),
+(74, 'P01702007', 'P01702000', 'Epoxy kaplamalar'),
+(75, 'P01702008', 'P01702000', 'Cam Parke'),
+(76, 'P01702009', 'P01702000', 'Mozaik kaplamalar'),
+(77, 'P01702039', 'P01702000', 'Süpürgelikler (parke, mermer,seramik vb toplam olarak)'),
+(78, 'P01702040', 'P01702000', 'Diğer zemin kaplamaları'),
+(79, 'P01702041', 'P01702000', 'Boya'),
+(80, 'P01702042', 'P01702000', 'Duvar Kağıdı'),
+(81, 'P01702043', 'P01702000', 'Ahşap, lambri vb kaplamalar'),
+(82, 'P01702044', 'P01702000', 'Kumaş kaplamalar'),
+(83, 'P01702045', 'P01702000', 'Süs kolonları vb özel imalatlar'),
+(84, 'P01702046', 'P01702000', 'Cam tuğla'),
+(85, 'P01702047', 'P01702000', 'Rezerve'),
+(86, 'P01702048', 'P01702000', 'Rezerve'),
+(87, 'P01702049', 'P01702000', 'Rezerve'),
+(88, 'P01702070', 'P01702000', 'Diğer duvar kaplamaları'),
+(89, 'P01702081', 'P01702000', 'Rezerve'),
+(90, 'P01702082', 'P01702000', 'Asma Tavanlar (alçıpan)'),
+(91, 'P01702083', 'P01702000', 'Asma Tavanlar (.........)'),
+(92, 'P01702084', 'P01702000', 'Rezerve'),
+(93, 'P01702085', 'P01702000', 'Kartonpiyer vs süslemeler'),
+(94, 'P01702086', 'P01702000', 'Diğer tavan kaplamaları'),
+(95, 'P01702087', 'P01702000', 'Eşik profilleri, dilatasyon profil ve kapakları, şaft kapakları vb elemanlar'),
+(96, 'P01702088', 'P01702000', 'Silikon,mastik vb dolgular'),
+(97, 'P01702089', 'P01702000', 'Rezerve'),
+(98, 'P01702099', 'P01702000', 'Diğerleri'),
+(99, 'P01703000', 'P01700000', 'Kapılar/Pencereler/Doğramalar'),
+(100, 'P01703001', 'P01703000', 'Kapı kasaları ile ilgili imalatlar (ayarlı sac kapı kasaları, profilden imalatlar vb)'),
+(101, 'P01703002', 'P01703000', 'Kapılar (alüminyum, metal, kaplama, masif vs ; aksesuarları ile beraber )'),
+(102, 'P01703003', 'P01703000', 'Pencere doğramaları (alüminyum,ahşap, PVC)'),
+(103, 'P01703004', 'P01703000', 'Kapı ve pencere camları'),
+(104, 'P01703099', 'P01703000', 'Diğerleri'),
+(105, 'P01709900', 'P01700000', 'Diğer'),
+(106, 'P01709901', 'P01709900', 'Korkuluk ve küpeşteler (ferforje, ahşap vs)'),
+(107, 'P01709902', 'P01709900', 'Sanatçı İşi Çalışmalar (gravür,bezeme, süsleme vb dekoratif elemanlar)'),
+(108, 'P01709903', 'P01709900', 'Polikor tezgahlar vb elemanlar'),
+(109, 'P01709904', 'P01709900', 'Bariyerler, yönlendirme çizgileri vb elemanlar'),
+(110, 'P01709905', 'P01709900', 'Kepenk, jaluzi vs imalatlar'),
+(111, 'P01709906', 'P01709900', 'Tuvalet kabinleri (Cubicle)'),
+(112, 'P01709999', 'P01709900', 'Diğer İnce İşler'),
+(113, 'P01800000', 'P01000000', 'İzolasyon İşleri'),
+(114, 'P01801000', 'P01800000', 'Su izolasyonları'),
+(115, 'P01801001', 'P01801000', 'Bitümen izolasyonları (keçe, bitümlü karton, membranlar vs dahil)'),
+(116, 'P01801002', 'P01801000', 'Sürme (sıvı izolasyonlar)'),
+(117, 'P01801099', 'P01801000', 'Diğer imalatlar'),
+(118, 'P01802000', 'P01800000', 'Isı izolasyonları'),
+(119, 'P01802001', 'P01802000', 'Isı İzolasyonları'),
+(120, 'P01802099', 'P01802000', 'Diğer imalatlar'),
+(121, 'P02000000', 'MKK', 'MEKANİK İŞLER'),
+(122, 'P02100000', 'P02000000', 'Tesisat ve Sistemler'),
+(123, 'P02101000', 'P02100000', 'Sıhhi tesisat'),
+(124, 'P02101001', 'P02101000', 'Temiz Soğuk Su, Sıcak Su Borulamalar (borular, fittingler)'),
+(125, 'P02101002', 'P02101000', 'Atık Su.Yağmur Suyu borulamalar (borular,fittingler)'),
+(126, 'P02101004', 'P02101000', 'Ekipmanlar (pompalar, hidroforlar,tanklar,filtrasyon sistemleri vs)'),
+(127, 'P02101005', 'P02101000', 'Vitrifiye , batarya (finiş elemanları)'),
+(128, 'P02101099', 'P02101000', 'Diğerleri'),
+(129, 'P02102000', 'P02100000', 'Isıtma-Soğutma'),
+(130, 'P02102001', 'P02102000', 'Isıtma ve Soğutma Sistemleri borulamalar (borular, izolasyonlar dahil-yerden ısıtma sistemleri dahil)'),
+(131, 'P02102002', 'P02102000', 'Rezerve'),
+(132, 'P02102003', 'P02102000', 'Vanalar ve sair elemanlar'),
+(133, 'P02102004', 'P02102000', 'Ekipmanlar (Chiller, pompalar, kazanlar, brülörler,fancoil vs)'),
+(134, 'P02102005', 'P02102000', 'Radyatör vb fikstürler'),
+(135, 'P02102099', 'P02102000', 'Diğerleri'),
+(136, 'P02103000', 'P02100000', 'HVAC'),
+(137, 'P02103001', 'P02103000', 'HVAC borulamalar (borular, izolasyonlar dahil)'),
+(138, 'P02103002', 'P02103000', 'Havalandırma sistemleri (kanallar, izolasyonlar dahil)'),
+(139, 'P02103003', 'P02103000', 'Egzost sistemleri (fanlar, merdiven basınçlandırmalar,damperler)'),
+(140, 'P02103004', 'P02103000', 'Ekipmanlar (klima santralleri, chillerler,split klima,VRF vs)'),
+(141, 'P02103005', 'P02103000', 'Menfez,anemostad vs'),
+(142, 'P02103099', 'P02103000', 'Diğerleri'),
+(143, 'P02104000', 'P02100000', 'Yangın söndürme'),
+(144, 'P02104001', 'P02104000', 'Yağmurlama Sistemleri (borulama, fittingler,vanalar vs)'),
+(145, 'P02104002', 'P02104000', 'Yangın Dolapları, sprinklerler,söndürücüler vb finiş elemanları'),
+(146, 'P02104003', 'P02104000', 'Ekipmanlar (pompalar, hidroforlar,tanklar vs)'),
+(147, 'P02104004', 'P02104000', 'Gazlı söndürme sistemleri'),
+(148, 'P02104099', 'P02104000', 'Diğerleri'),
+(149, 'P02105000', 'P02100000', 'Doğalgaz'),
+(150, 'P02105001', 'P02105000', 'Doğalgaz dağıtım sistemi imalatları'),
+(151, 'P02200000', 'P02000000', 'Özel İmalatlar'),
+(152, 'P02201000', 'P02200000', 'Mekanik otomasyon'),
+(153, 'P02201001', 'P02201000', 'Otomasyon Sistemleri tüm imalatlar'),
+(154, 'P02201002', 'P02201000', 'Akıllı ev benzeri özel sistemler mekanik işleri'),
+(155, 'P02209900', 'P02200000', 'Diğer mekanik işler'),
+(156, 'P02209901', 'P02209900', 'Sismik koruma sistemleri'),
+(157, 'P02209902', 'P02209900', 'Havuz, jakuzi vs sistemler'),
+(158, 'P02209903', 'P02209900', 'Titreşim yutucular, absorberler'),
+(159, 'P02209904', 'P02209900', 'Rezerve'),
+(160, 'P02209905', 'P02209900', 'Rezerve'),
+(161, 'P02209999', 'P02209900', 'Diğer Mekanik İşler'),
+(162, 'P02402002', 'P02209900', 'Metal boya ve koruma işleri'),
+(163, 'P03000000', 'MKK', 'ELEKTRİK İŞLERİ'),
+(164, 'P03100000', 'P03000000', 'Tesisat ve Sistemler'),
+(165, 'P03101000', 'P03100000', 'Enerji Temini, Alçak Gerilim ve Orta Gerilim'),
+(166, 'P03101001', 'P03101000', 'Enerji Nakli (alçak gerilim ve orta gerilim kablolamalar)'),
+(167, 'P03101002', 'P03101000', 'Trafo, switchgear vs'),
+(168, 'P03101003', 'P03101000', 'Vanalar ve sair elemanlar'),
+(169, 'P03101099', 'P03101000', 'Diğerleri'),
+(170, 'P03102000', 'P03100000', 'Kuvvetli akım ve sistemleri'),
+(171, 'P03102001', 'P03102000', 'UPS, Jeneratörler'),
+(172, 'P03102002', 'P03102000', 'Elektrik Panoları'),
+(173, 'P03102003', 'P03102000', 'Anahtar, priz ve buatlar'),
+(174, 'P03102004', 'P03102000', 'Topraklama ve Yıldırımdan Korunma sistemleri'),
+(175, 'P03102005', 'P03102000', 'Kablo taşıyıcı sistemler (tavalar, borular)'),
+(176, 'P03102006', 'P03102000', 'Tüm kablolamalar (kablolar,kablo pabuçları, bağları dahil)'),
+(177, 'P03102007', 'P03102000', 'Aydınlatma armatürleri (lambalar dahil)'),
+(178, 'P03102008', 'P03102000', 'Şalt malzemeler (kontaktör, röle, otomat, sigorta,şalterler)'),
+(179, 'P03102099', 'P03102000', 'Diğerleri (ör.kapı zilleri, klemensler,sayaçlar)'),
+(180, 'P03200000', 'P03000000', 'Özel İmalatlar'),
+(181, 'P03201000', 'P03200000', 'Zayıf akım sistemleri'),
+(182, 'P03201001', 'P03201000', 'Yangın'),
+(183, 'P03201002', 'P03201000', 'Telefon'),
+(184, 'P03201003', 'P03201000', 'TV/CCTV'),
+(185, 'P03201004', 'P03201000', 'Ses, ışık,anons ve müzik Sistemi'),
+(186, 'P03201005', 'P03201000', 'Data'),
+(187, 'P03201006', 'P03201000', 'Güvenlik'),
+(188, 'P03201007', 'P03201000', 'Otomasyon Sistemi'),
+(189, 'P03201008', 'P03201000', 'Intercom Sistemi'),
+(190, 'P03201009', 'P03201000', 'Hırsız Alarm Sistemi'),
+(191, 'P03201010', 'P03201000', 'Kartlı Giriş Sistemleri'),
+(192, 'P03201011', 'P03201000', 'Akıllı ev benzeri özel sistemler elektrik işleri'),
+(193, 'P03201012', 'P03201000', 'Otopark kontrol sistemleri'),
+(194, 'P03201013', 'P03201000', 'Turnike sistemleri'),
+(195, 'P03201060', 'P03201000', 'ICT Sistemleri'),
+(196, 'P03201099', 'P03201000', 'Diğer zayıf akım sistemleri'),
+(197, 'P03209900', 'P03200000', 'Diğer'),
+(198, 'P03209901', 'P03209900', 'Çevre Aydınlatma (aydınlatma direkleri ve sistemleri)'),
+(199, 'P03209999', 'P03209900', 'Diğer Elektrik İşleri'),
+(200, 'P03703005', 'P03209900', 'Kapı ve pencere aksesuarları'),
+(201, 'P04000000', 'MKK', 'ALTYAPI İŞLERİ'),
+(202, 'P04100000', 'P04000000', 'Toprak ve Kazı İşleri'),
+(203, 'P04101000', 'P04100000', 'Toprak ve kazı işleri'),
+(204, 'P04101001', 'P04101000', 'Elle Altyapı Kazısı ve yataklamalar benzeri toprak işleri'),
+(205, 'P04101002', 'P04101000', 'Altyapı iksa işleri (palplanş vb imalatlar)'),
+(206, 'P04200000', 'P04000000', 'Borulama İşleri'),
+(207, 'P04201000', 'P04200000', 'Borulama işleri'),
+(208, 'P04201001', 'P04201000', 'Drenaj işleri'),
+(209, 'P04201002', 'P04201000', 'Altyapı ekipmanları (tank, hidrant vs)'),
+(210, 'P04201003', 'P04201000', 'Altyapı boruları (korrüge, pvc vs ; sulama sistemleri dahil ; vana, fitting her türlü aksesuar dahil)'),
+(211, 'P04201004', 'P04201000', 'Altyapı Bağlantıları'),
+(212, 'P04201050', 'P04201000', 'Ortak Zayıf Akım sinyal kabloları'),
+(213, 'P04300000', 'P04000000', 'Menhol, galeri vb işler'),
+(214, 'P04301000', 'P04300000', 'Menhol, galeri vb işler'),
+(215, 'P04301001', 'P04301000', 'Menholler (yerinde döküm ya da prekast elemanlarla )'),
+(216, 'P04301099', 'P04301000', 'Diğer Altyapı İşleri'),
+(217, 'P05000000', 'MKK', 'PEYZAJ ve ÇEVRE DÜZENLEME'),
+(218, 'P05100000', 'P05000000', 'Peyzaj ve Çevre Düzenleme'),
+(219, 'P05101000', 'P05100000', 'Çevre düzenleme toprak işleri'),
+(220, 'P05101001', 'P05101000', 'Tesviye ve reglaj işleri'),
+(221, 'P05102000', 'P05100000', 'Sert zemin imalatları (Hardscape)'),
+(222, 'P05102001', 'P05102000', 'Kazı, dolgu ve benzeri toprak işleri'),
+(223, 'P05102002', 'P05102000', 'Yürüme yolları gibi yayalar için sert zemin imalatları'),
+(224, 'P05102003', 'P05102000', 'Araçlar için sert zemin imalatları (asfalt, stabilize dolgu, kazı, toprak işleri birlikte olmak üzere)'),
+(225, 'P05102099', 'P05102000', 'Diğer Sert Zemin imalatları'),
+(226, 'P05103000', 'P05100000', 'Yeşillendirme (Softscape)'),
+(227, 'P05103001', 'P05103000', 'Ağaçlar, bitki, çim, bitkisel toprak vs'),
+(228, 'P05103099', 'P05103000', 'Diğer softscape imalatları'),
+(229, 'P05109900', 'P05100000', 'Diğer'),
+(230, 'P05109901', 'P05109900', 'Heykel, bahçe mobilyası vs elemanlar'),
+(231, 'P05109902', 'P05109900', 'Peyzaj strüktürel işler (göletler, köprüler vs)'),
+(232, 'P05109903', 'P05109900', 'Ağaç ev vb hazır peyzaj elemanları'),
+(233, 'P05109904', 'P05109900', 'Çevre çiti, çevre duvarı vs'),
+(234, 'P05109905', 'P05109900', 'Bekçi klübesi, nizamiye vb prefabrik imalatlar'),
+(235, 'P05109999', 'P05109900', 'Diğer Peyzaj İşleri'),
+(236, 'P06000000', 'MKK', 'TAŞIMA SİSTEMLERİ'),
+(237, 'P06100000', 'P06000000', 'Taşıma Sistemleri'),
+(238, 'P06101000', 'P06100000', 'Yürüyen merdiven ve eskalatörler'),
+(239, 'P06101001', 'P06101000', 'Yürüyen Merdiven ve eskalatörler'),
+(240, 'P06101002', 'P06101000', 'Asansörler (İnsan ve yük dahil)'),
+(241, 'P06101099', 'P06101000', 'Diğer Taşıma Sistemleri'),
+(242, 'P06102000', 'P06100000', 'Özel Ekipmalnar'),
+(243, 'P06102001', 'P06102000', 'Diğer Özel Ekipmanlar (Bagaj taşıma vb. Sistemler)'),
+(244, 'P07000000', 'MKK', 'MOBİLYA, TEFRİŞ & TEDARİK İŞLERİ'),
+(245, 'P07100000', 'P07000000', 'Mobilya/Tefriş ve temin/tedarik işleri'),
+(246, 'P07101000', 'P07100000', 'Mobilya/tefriş ve tedarik'),
+(247, 'P07101001', 'P07101000', 'Sabit mobilyalar (dolaplar,radyatör kapamalar)'),
+(248, 'P07101002', 'P07101000', 'Tefriş ve tedarik (hareketli mobilyalar, yemek takımları, banyo takımları, perdeler vs dahil)'),
+(249, 'P07101003', 'P07101000', 'Beyaz eşya vb elektronik/mekanik ev tefriş malzemeleri (mutfak ekipmanları, tv vs)'),
+(250, 'P07101004', 'P07101000', 'Özel tefriş malzemeleri (aydınlatma ve avizeler benzeri )'),
+(251, 'P07101005', 'P07101000', 'Sauna vb ahşap imalatlar'),
+(252, 'P07101006', 'P07101000', 'Şömine vb elemanlar'),
+(253, 'P07101099', 'P07101000', 'Diğerleri'),
+(254, 'P08000000', 'MKK', 'ÖZEL İMALATLAR'),
+(255, 'P08100000', 'P08000000', 'Özel İmalatlar'),
+(256, 'P08101000', 'P08100000', 'Tüm özel imalatlar'),
+(257, 'P08101001', 'P08101000', 'Yüzme havuzu inşaası'),
+(258, 'P08101002', 'P08101000', 'Akvaryum inşaası'),
+(259, 'P08101003', 'P08101000', 'Buz pateni pisti, halı saha , tenis kortu vb spor sahaları inşaası'),
+(260, 'P08101004', 'P08101000', 'Prefabrik elemanlar'),
+(261, 'P08101005', 'P08101000', 'Kule inşaası'),
+(262, 'P08101006', 'P08101000', 'Radyasyon koruma vb özel amaçlı inşaalar'),
+(263, 'P09000000', 'MKK', 'MOBİLİZASYON'),
+(264, 'P09100000', 'P09000000', 'Mobilizasyon'),
+(265, 'P09101000', 'P09100000', 'Mobilizasyon'),
+(266, 'P09101001', 'P09101000', 'Prefabrik Binalar'),
+(267, 'P09101002', 'P09101000', 'Ofis ve Kamp Tefriş'),
+(268, 'P09101003', 'P09101000', 'Ofis ve Kamp Sahası tüm İnşaat,Elektik ve Mekanik İşleri'),
+(269, 'P09101004', 'P09101000', 'Ofis ve Kamp Sahası - Utilities'),
+(270, 'P09101005', 'P09101000', 'Saha İşleri (Altyapı ve Düzeltme)'),
+(271, 'P09101007', 'P09101000', 'Panik Odası'),
+(272, 'P09101099', 'P09101000', 'Diğerleri'),
+(273, 'P99000000', 'MKK', 'DİĞERLERİ'),
+(274, 'P99100000', 'P99000000', 'Direkt İmalat Giderlerine Paylaştırılacak Ortak Giderler'),
+(275, 'P99101000', 'P99100000', 'Sarf malzemeler ve sair malzemeler'),
+(276, 'P99101001', 'P99101000', 'Sarf Malzemeler ve Sair Malzemeler'),
+(277, 'P99101002', 'P99101000', 'Amortismana tabi olmayan el aletleri'),
+(278, 'P99101003', 'P99101000', 'Tüpler, elektrodlar,kırıcı-delici-kesici uçlar gibi sarf malzemeleri'),
+(279, 'P99101099', 'P99101000', 'Diğerleri (iş güvenliği malzemeleri)'),
+(280, 'P99102000', 'P99100000', 'Maket, Mock-up vb giderler'),
+(281, 'P99102001', 'P99102000', 'Maket ve Mockup yaptırılması'),
+(282, 'MA', 'Root', 'MALZEME KIRILIMI'),
+(283, 'MA10010000', 'MA', 'Harçlı Malzemeler'),
+(284, 'MA10010100', 'MA10010000', 'Yapısal Beton Harçları'),
+(285, 'MA10010200', 'MA10010000', 'Asfalt Karışımları'),
+(286, 'MA10010300', 'MA10010000', 'Sıva ve Diğer Harçlar'),
+(287, 'MA10010400', 'MA10010000', 'Onarım Harçları'),
+(288, 'MA10010500', 'MA10010000', 'Yapıştırıcı Harçlar'),
+(289, 'MA10020000', 'MA', 'Metaller'),
+(290, 'MA10020100', 'MA10020000', 'Yapısal Demir Donatılar ve Profiller'),
+(291, 'MA10020200', 'MA10020000', 'Demir ve Çelik Profiller'),
+(292, 'MA10020300', 'MA10020000', 'Aluminium Profiller'),
+(293, 'MA10020400', 'MA10020000', 'Saclar'),
+(294, 'MA10020500', 'MA10020000', 'Dübel, conta, askı çubukları, vb.'),
+(295, 'MA10020600', 'MA10020000', 'Ferforje ve Balasturadeler'),
+(296, 'MA10020700', 'MA10020000', 'Metal Asma Tavan Profilleri'),
+(297, 'MA10020800', 'MA10020000', 'Derz ve Baskı Profilleri'),
+(298, 'MA10020900', 'MA10020000', 'Kenar Profilleri'),
+(299, 'MA10021000', 'MA10020000', 'Kalıp ve İskele Ekipmanları'),
+(300, 'MA10030000', 'MA', 'Yapı Blokları (Briket, Tuğla, Fibrobeton, vs.)'),
+(301, 'MA10030100', 'MA10030000', 'Tuğlalar'),
+(302, 'MA10030200', 'MA10030000', 'Kiremitler'),
+(303, 'MA10030300', 'MA10030000', 'Gazbeton Bloklar'),
+(304, 'MA10030400', 'MA10030000', 'Kesme Taş Bloklar'),
+(305, 'MA10030500', 'MA10030000', 'Briket ve Bims Bloklar'),
+(306, 'MA10030600', 'MA10030000', 'Asmolen Bloklar'),
+(307, 'MA10030700', 'MA10030000', 'Kilit Taşları'),
+(308, 'MA10030800', 'MA10030000', 'Bordürler'),
+(309, 'MA10030900', 'MA10030000', 'Alçıpan Paneller'),
+(310, 'MA10031000', 'MA10030000', 'Doğal Taş Bloklar'),
+(311, 'MA10040000', 'MA', 'Ahşap Malzemeler'),
+(312, 'MA10040100', 'MA10040000', 'Plywood, OSB ve Sunta'),
+(313, 'MA10040200', 'MA10040000', 'Ahşap kirişler ve kalaslar'),
+(314, 'MA10040300', 'MA10040000', 'Lamine Parkeler'),
+(315, 'MA10040400', 'MA10040000', 'Ahşap Çıtalar ve Profiller'),
+(316, 'MA10040500', 'MA10040000', 'Masif ahşaplar'),
+(317, 'MA10050000', 'MA', 'Plastik, Cam ve Kompozitler'),
+(318, 'MA10050100', 'MA10050000', 'PVC Profiller'),
+(319, 'MA10050200', 'MA10050000', 'Su Tutucu Bantlar'),
+(320, 'MA10050300', 'MA10050000', 'Membran ve Şilteler'),
+(321, 'MA10050400', 'MA10050000', 'EPS Levhalar'),
+(322, 'MA10050500', 'MA10050000', 'XPS Levhalar'),
+(323, 'MA10050600', 'MA10050000', 'Derz Profilleri'),
+(324, 'MA10050700', 'MA10050000', 'Sandviç Paneller'),
+(325, 'MA10050800', 'MA10050000', 'Fiberglass'),
+(326, 'MA10050900', 'MA10050000', 'Cam ve Aynalar'),
+(327, 'MA10051000', 'MA10050000', 'Lamineted Parkeler (Plastik)'),
+(328, 'MA10060000', 'MA', 'Kimyasallar'),
+(329, 'MA10060100', 'MA10060000', 'Beton Katkıları'),
+(330, 'MA10060200', 'MA10060000', 'Sürme izolasyon malzemeleri'),
+(331, 'MA10060300', 'MA10060000', 'Boyalar'),
+(332, 'MA10060400', 'MA10060000', 'Yüzey Sertleştiriciler'),
+(333, 'MA10060500', 'MA10060000', 'Derz Dolguları'),
+(334, 'MA10070000', 'MA', 'Kaplama Malzemeleri'),
+(335, 'MA10070100', 'MA10070000', 'Mermer ve Granitler'),
+(336, 'MA10070200', 'MA10070000', 'Seramik'),
+(337, 'MA10070201', 'MA10070200', 'Islak Hacim Seramikleri'),
+(338, 'MA10070202', 'MA10070200', 'Havuz Seramikleri'),
+(339, 'MA10070203', 'MA10070200', 'Diğer Seramikler'),
+(340, 'MA10070300', 'MA10070000', 'Karo Mozaik'),
+(341, 'MA10080000', 'MA', 'Mobilyalar ve Aksesuarlar'),
+(342, 'MA10080100', 'MA10080000', 'Hareketli Mobilyalar'),
+(343, 'MA10080200', 'MA10080000', 'Sabit Mobilyalar'),
+(344, 'MA10080300', 'MA10080000', 'Doğrama Aksesuarları (Kapı kolları vb.)'),
+(345, 'MA10080400', 'MA10080000', 'Aydınlatma armatürleri (lambalar dahil)'),
+(346, 'MA10080500', 'MA10080000', 'Elektrik Priz ve Anahtarları'),
+(347, 'MA10090000', 'MA', 'Elektrik Malzemeleri'),
+(348, 'MA10090100', 'MA10090000', 'Elektrik Boruları ve Kasa-Buatlar'),
+(349, 'MA10090200', 'MA10090000', 'Elektrik Tavaları ve Aksesuarları'),
+(350, 'MA10090300', 'MA10090000', 'Orta Gerilim Kabloları'),
+(351, 'MA10090400', 'MA10090000', 'Alçak Gerilim Kabloları'),
+(352, 'MA10090500', 'MA10090000', 'Zayıf Aklım ve Kontrol Kabloları'),
+(353, 'MA10090600', 'MA10090000', 'Junction Malzemeleri'),
+(354, 'MA10090700', 'MA10090000', 'Şalt malzemeler (kontaktör, röle, otomat, sigorta,şalterler)'),
+(355, 'MA10090800', 'MA10090000', 'Elektronik kontrol sistemleri'),
+(356, 'MA10100000', 'MA', 'Mekanik Malzemeler'),
+(357, 'MA10100100', 'MA10100000', 'Vitrifiyeler'),
+(358, 'MA10100200', 'MA10100000', 'Armatürler'),
+(359, 'MA10100300', 'MA10100000', 'Vanalar ve sair elemanlar'),
+(360, 'MA10100400', 'MA10100000', 'Yangın söndürme sistemi aksesuarları'),
+(361, 'MA10100500', 'MA10100000', 'Islak Hacim Aksesuarları'),
+(362, 'MA10110000', 'MA', 'Elektro-Mekenaik Malzemeler'),
+(363, 'MA10110100', 'MA10110000', 'Havalandırma Sistemi Malzemeleri (VRV, HVAC)'),
+(364, 'MA10110200', 'MA10110000', 'Taşıma Sistemleri'),
+(365, 'MA10110300', 'MA10110000', 'Pompalar, Hidroforlar'),
+(366, 'MA10110400', 'MA10110000', 'Kalorifer Sistemi Malzemeleri'),
+(367, 'MA10120000', 'MA', 'Tesisat Mazlemeleri (Altyapı ve Üstyapı)'),
+(368, 'MA10120100', 'MA10120000', 'Demir Borular ve Fittingleri'),
+(369, 'MA10120200', 'MA10120000', 'PVC Borular ve Fittingleri'),
+(370, 'MA10120300', 'MA10120000', 'PE Borular ve Fittingleri'),
+(371, 'MA10120400', 'MA10120000', 'Beton Borular ve Fittingleri'),
+(372, 'MA10120500', 'MA10120000', 'GRP Borular ve Fittingleri'),
+(373, 'MA10120600', 'MA10120000', 'Bakır Borular ve Fittingleri'),
+(374, 'MA10120700', 'MA10120000', 'Manholer'),
+(375, 'MA10120800', 'MA10120000', 'Diğer Aksesuarlar'),
+(376, 'MA10130000', 'MA', 'Bitkiler ve Bitki bakım ürünleri'),
+(377, 'MA10140000', 'MA', 'Makine ve Ekipmanlar (Kira ve satınalma bedelleri)'),
+(378, 'MA10140100', 'MA10140000', 'Ağır İnşaat Makineleri (Hareketli araçlar)'),
+(379, 'MA10140200', 'MA10140000', 'İnşaat Makine ve Ekipmanları'),
+(380, 'MA10140300', 'MA10140000', 'Ufak El Aletleri'),
+(381, 'MA10140400', 'MA10140000', 'Tesisler (Beton santrali vb.)'),
+(382, 'MA10150000', 'MA', 'İşçilikler ve Nakliyeler'),
+(383, 'MA10150100', 'MA10150000', 'Dummy İşçilikler ve Nakliyeler'),
+(384, 'MA10150200', 'MA10150000', 'Adam Saat Maliyetleri'),
+(385, 'MA10150300', 'MA10150000', 'Navlun ücretleri'),
+(386, 'MA10160000', 'MA', 'Sarf Malzemeler'),
+(387, 'MA10160100', 'MA10160000', 'Kaynak çubukları ve Kesici Taçlar'),
+(388, 'MA10160200', 'MA10160000', 'Kalıp, Demir ve Beton İşleri Sarf Malzemeleri'),
+(389, 'MA10160300', 'MA10160000', 'Diğer Sarf Malzemeler'),
+(390, 'MA10031100', 'MA10030000', 'Fibrebeton, Betopan, vb.'),
+(391, 'MA10051100', 'MA10050000', 'Cam Yünü ve Taş Yünü'),
+(392, 'MA10051200', 'MA10050000', 'Geotextiller'),
+(393, 'MA10070400', 'MA10070000', 'Cam Mozaik'),
+(394, 'MA10051300', 'MA10050000', 'Duvar Kağıtları'),
+(395, 'MA10120900', 'MA10120000', 'Corrugated Borular ve Fittingleri'),
+(396, 'MA10121000', 'MA10120000', 'Drenaj Boruları ve Fittingleri'),
+(397, 'MA10010600', 'MA10010000', 'Temel Harç Hammaddeleri'),
+(398, 'MA10121100', 'MA10120000', 'PPRC Borular ve Fittingleri'),
+(399, 'MA10140500', 'MA10140000', 'Taşıtlar'),
+(400, 'MA10051400', 'MA10050000', 'Sentetik Kaplamalar'),
+(401, 'P20000000', 'MKK', 'MKK Kodu Atanmamış Pozlar'),
+(402, 'HK', 'MKK', 'Hizmet Kırılımı'),
+(403, 'H1000000', 'HK', 'Kırım Yıkım Demontaj İşleri'),
+(404, 'H2000000', 'HK', 'Toprak ve Zemin Güçlendirme İşleri'),
+(405, 'H2010000', 'H2000000', 'Kazı İşleri'),
+(406, 'H2020000', 'H2000000', 'Dolgu ve Sıkıştırma İşleri'),
+(407, 'H2020100', 'H2020000', 'Toprak Dolgu Yapılması'),
+(408, 'H2020200', 'H2020000', 'Granüler Dolgu Yapılması ve Granüler Malzeme Serilmesi İşleri'),
+(409, 'H2020300', 'H2020000', 'Harçlı Dolgu Yapılması'),
+(410, 'H2020400', 'H2020000', 'Diğer Dolgu İşleri'),
+(411, 'H2030000', 'H2000000', 'Zemin Güçlendirme İşleri'),
+(412, 'H2030100', 'H2030000', 'Jetgrout Yapılması'),
+(413, 'H2030200', 'H2030000', 'Fore Kazık Yapılması'),
+(414, 'H2030300', 'H2030000', 'Çakma Kazık Yapılması'),
+(415, 'H2040000', 'H2000000', 'Diğer Toprak ve Zemin Güçlendirme İşleri'),
+(416, 'H3000000', 'HK', 'Kaba inşaat İşleri'),
+(417, 'H3010000', 'H3000000', 'Grobeton İşleri'),
+(418, 'H3020000', 'H3000000', 'Taşıyıcı Betonarme İşleri'),
+(419, 'H3020100', 'H3020000', 'Kalıp Yapılması'),
+(420, 'H3020200', 'H3020000', 'Betonarme Demiri İşlenmesi'),
+(421, 'H3020300', 'H3020000', 'Betonarme Betonu Dökülmesi'),
+(422, 'H3020400', 'H3020000', 'Prekast Elemanların Montajı'),
+(423, 'H3030000', 'H3000000', 'Çelik ve Metal Konstriksüyonlar'),
+(424, 'H3030100', 'H3030000', 'Uzaykafes Sistemi İşleri'),
+(425, 'H3030200', 'H3030000', 'Yapıda Taşıyıcı Çelik Konstrüksiyon İşleri'),
+(426, 'H3030300', 'H3030000', 'Çatıda Taşıyıcı Çelik İşleri'),
+(427, 'H3030400', 'H3030000', 'Cephede Taşıyıcı Çelik İşleri'),
+(428, 'H3040000', 'H3000000', 'Prefabrik Bina İmalatları'),
+(429, 'H3050000', 'H3000000', 'Deprem İzolatörü, Kayar Mesnet, Elastomer Mesnet vb Yardımcı Taşıcı Elemanların Montajı'),
+(430, 'H4000000', 'HK', 'İnce İnşaat İşleri'),
+(431, 'H4010000', 'H4000000', 'Duvar İşleri'),
+(432, 'H4010100', 'H4010000', 'Tuğla Duvar Yapılması'),
+(433, 'H4010200', 'H4010000', 'Briket Duvar Yapılması'),
+(434, 'H4010300', 'H4010000', 'Bims Duvar Yapılması'),
+(435, 'H4010400', 'H4010000', 'Gazbeton Duvar Yapılması'),
+(436, 'H4010500', 'H4010000', 'Cam Tuğla Duvar Yapılması'),
+(437, 'H4010600', 'H4010000', 'Alçıpan Bölme Duvar Yapılması'),
+(438, 'H4010700', 'H4010000', 'Demontable Bölme Duvar Yapılması'),
+(439, 'H4010800', 'H4010000', 'Cubicle Yapılması'),
+(440, 'H4020000', 'H4000000', 'Zemin Kaplama İşleri'),
+(441, 'H4020100', 'H4020000', 'Alt Kat Zemin Kaplama İşleri'),
+(442, 'H4020101', 'H4020100', 'Harçlı Zemin Kaplaması İşleri (Şap, Eğim Betonu, Koruma Betonu, vb)'),
+(443, 'H4020102', 'H4020100', 'Zemin Su izolasyonu Yapılması İşleri'),
+(444, 'H4020103', 'H4020100', 'Zemin Isı ve Ses İzolasyon Malzemesi Serilmesi İşleri'),
+(445, 'H4020104', 'H4020100', 'Keçe, Şilte vb Malzemelerin Serilmesi'),
+(446, 'H4020200', 'H4020000', 'Bitiş Katı Zemin Kaplama İşleri'),
+(447, 'H4020201', 'H4020200', 'Doğaltaş Kaplama İşleri'),
+(448, 'H4020202', 'H4020200', 'Seramik Kaplama İşleri'),
+(449, 'H4020203', 'H4020200', 'Ahşap Zemin Kaplama İşleri'),
+(450, 'H4020204', 'H4020200', 'Laminant Plastik Zemin Kaplama İşleri'),
+(451, 'H4020205', 'H4020200', 'PVC, Taraflex, Linolyum, Vinil vb Sentetik Zemin Kaplama İşleri'),
+(452, 'H4020206', 'H4020200', 'Epoxy Kaplama Yapılması'),
+(453, 'H4020207', 'H4020200', 'Cam Parke Kaplama Yapılması'),
+(454, 'H4020208', 'H4020200', 'Halı Kaplama Yapılması'),
+(455, 'H4020209', 'H4020200', 'Zemin Boya İşleri'),
+(456, 'H4020300', 'H4020000', 'Diğer Zemin Kaplama İşleri'),
+(457, 'H4020301', 'H4020300', 'Süpürgelik Yapılması İşleri'),
+(458, 'H4020302', 'H4020300', 'Yükseltilmiş Döşeme Yapılması'),
+(459, 'H4020303', 'H4020300', 'Zeminde Derz Profili ve Derz Dolgusu İşleri'),
+(460, 'H4020304', 'H4020300', 'Eğik Çatı Kaplama İşleri (Taşıyıcı iskelet hariç)'),
+(461, 'H4030000', 'H4000000', 'Duvar Kaplama İşleri'),
+(462, 'H4030100', 'H4030000', 'Alt Kat Duvar Kaplama İşleri'),
+(463, 'H4030101', 'H4030100', 'Harçlı Duvar Kaplaması İşleri (Sıva, Alçı Sıva, Saten Alçı vb)'),
+(464, 'H4030102', 'H4030100', 'Duvar Su izolasyonu Yapılması İşleri'),
+(465, 'H4030103', 'H4030100', 'Duvar Isı ve Ses İzolasyon Malzemesi Serilmesi İşleri'),
+(466, 'H4030104', 'H4030100', 'Duvarda keçe , Şilte, vb Malzemelerin Serilmesi'),
+(467, 'H4030105', 'H4030100', 'Duvarda Alçıpan Kaplama Yapılması (Mekanik Taşımalı)'),
+(468, 'H4030200', 'H4030000', 'Bitiş Katı Duvar Kaplama İşleri'),
+(469, 'H4030201', 'H4030200', 'Doğaltaş Kaplama İşleri (Mekanik Taşımalı ve Yapıştırma)'),
+(470, 'H4030202', 'H4030200', 'Seramik Kaplama İşleri'),
+(471, 'H4030203', 'H4030200', 'Duvarda Mozaik Kaplama Yapılması'),
+(472, 'H4030204', 'H4030200', 'Ahşap Duvar Kaplama İşleri (Mekanik Taşımalı ve Yapıştırma)'),
+(473, 'H4030205', 'H4030200', 'Duvar Kağıdı Yapılması'),
+(474, 'H4030206', 'H4030200', 'Kumaş Kaplama Yapılmadı'),
+(475, 'H4030207', 'H4030200', 'Boya Yapılması'),
+(476, 'H4030300', 'H4030000', 'Diğer Duvar Kaplama İşleri'),
+(477, 'H4030301', 'H4030300', 'Duvarda Derz Profili ve Derz Dolgusu İşleri'),
+(478, 'H4030302', 'H4030300', 'Süs Kolonu vb Özel Kaplama İşleri'),
+(479, 'H4040000', 'H4000000', 'Tavan Kaplama İşleri'),
+(480, 'H4040100', 'H4040000', 'Harçlı Tavan Kaplaması İşleri (Sıva, Alçı Sıva, Saten Alçı vb)'),
+(481, 'H4040200', 'H4040000', 'Boya Yapılması'),
+(482, 'H4040300', 'H4040000', 'Alçıpan Asma Tavan Yapılması'),
+(483, 'H4040400', 'H4040000', 'Metal Asma Tavan Yapılması'),
+(484, 'H4040500', 'H4040000', 'Ahşap Asma Tavan Yapılması'),
+(485, 'H4040600', 'H4040000', 'Tavanda Kartonpiyer vb Süslemelerin Yapılması'),
+(486, 'H4040700', 'H4040000', 'Tavanda Derz Profili ve Derz Dolgusu İşleri'),
+(487, 'H4040800', 'H4040000', 'Diğer Tavan Kaplama İşleri'),
+(488, 'H4050000', 'H4000000', 'Dış Cephe Kaplama İşleri'),
+(489, 'H4050100', 'H4050000', 'Dış Cephe İskelesi Kurulması'),
+(490, 'H4050200', 'H4050000', 'Dış Cephe Harçlı İmalatlar (Sıva vb)'),
+(491, 'H4050300', 'H4050000', 'Dış Cephe Su izolasyonu Yapılması'),
+(492, 'H4050400', 'H4050000', 'Dış Cephe Isı izolasyonu Yapılması'),
+(493, 'H4050500', 'H4050000', 'Kompozit Panel Giydirme Cephe Yapılması'),
+(494, 'H4050600', 'H4050000', 'Aluminium Giydirme Cephe Yapılması (Pencere ve Kapılar Dahil)'),
+(495, 'H4050700', 'H4050000', 'Fibrebeton Giydirme Cephe Yapılması (Pencere ve Kapılar Dahil)'),
+(496, 'H4050800', 'H4050000', 'Ahşap Giydirme Cephe Yapılması'),
+(497, 'H4060000', 'H4000000', 'Doğramalar'),
+(498, 'H4060100', 'H4060000', 'Kapı ve Pencere Körkasası Yapılması'),
+(499, 'H4060200', 'H4060000', 'Ahşap Kapı ve Pencerelerin Montajı'),
+(500, 'H4060300', 'H4060000', 'Aluminium Kapı ve Pencerelerin Montajı'),
+(501, 'H4060400', 'H4060000', 'PVC Kapı ve Pencerelerin Montajı'),
+(502, 'H4060500', 'H4060000', 'Kompozit Kapı ve Pencerelerin Montajı'),
+(503, 'H4060600', 'H4060000', 'Çelik Kapı ve Pencerelerin Montajı'),
+(504, 'H4060700', 'H4060000', 'Yangın Kapıları Montajı'),
+(505, 'H4060800', 'H4060000', 'Pencere Camı Montajı'),
+(506, 'H4060900', 'H4060000', 'Kepenk Yapılması'),
+(507, 'H4061000', 'H4060000', 'Kapı ve Pencere Aksesurları Montajı'),
+(508, 'H4070000', 'H4000000', 'Aksesuarlar ve Diğer İnce İşler'),
+(509, 'H4070100', 'H4070000', 'Korkuluk ve Küpeşte Yapılması'),
+(510, 'H4070200', 'H4070000', 'Otopark Bariyerleri Montajı'),
+(511, 'H4070300', 'H4070000', 'Sanatçı İşi Çalışmalar'),
+(512, 'H4070400', 'H4070000', 'Mutfak Tezgahı Yapılması'),
+(513, 'H4070500', 'H4070000', 'Yönlendirme tabelaları Montajı'),
+(514, 'H4070600', 'H4070000', 'Ferforje İşleri'),
+(515, 'H5000000', 'HK', 'Mekanik İşler'),
+(516, 'H5010000', 'H5000000', 'Borulama İşleri'),
+(517, 'H5010100', 'H5010000', 'HDPE Basınçlı Boru Döşenmesi'),
+(518, 'H5010200', 'H5010000', 'HDPE Korruge Boru Döşenmesi'),
+(519, 'H5010300', 'H5010000', 'PPRC Boru Döşenmesi'),
+(520, 'H5010400', 'H5010000', 'PVC Boru Döşenmesi'),
+(521, 'H5010500', 'H5010000', 'Beton Boru Döşenmesi'),
+(522, 'H5010600', 'H5010000', 'GRP Boru Döşenmesi'),
+(523, 'H5010700', 'H5010000', 'Çelik Boru Döşenmesi'),
+(524, 'H5010800', 'H5010000', 'Bakır Boru Döşenmesi'),
+(525, 'H5010900', 'H5010000', 'Dökme Demir Boru Döşenmesi'),
+(526, 'H5011000', 'H5010000', 'Menfez ve Havalandırma Kanalı Döşenmesi'),
+(527, 'H5011100', 'H5010000', 'Vana Montajı İşleri'),
+(528, 'H5011200', 'H5010000', 'Diğer Boru Montajı İşleri'),
+(529, 'H5020000', 'H5000000', 'Yangın Tesisatı Özel İşleri'),
+(530, 'H5020100', 'H5020000', 'Sprinkler Montajı Yapılması'),
+(531, 'H5020200', 'H5020000', 'Yangın Hidrantı Montajı Yapılması'),
+(532, 'H5020300', 'H5020000', 'Yangın Dolabı Montajı Yapılması'),
+(533, 'H5020400', 'H5020000', 'Yangın Otomasyonu'),
+(534, 'H5020500', 'H5020000', 'Yangın Söndürücü Yerleştirilmesi'),
+(535, 'H5020600', 'H5020000', 'Diğer Yangın Tesisatı İşleri'),
+(536, 'H5030000', 'H5000000', 'İçme Suyu Tesisatı Özel İşleri'),
+(537, 'H5030100', 'H5030000', 'Su Arıtma Cihazı Montajı'),
+(538, 'H5030200', 'H5030000', 'Armatür Montajı Yapılması'),
+(539, 'H5030300', 'H5030000', 'Su Isıtıcı Montajı Yapılması'),
+(540, 'H5030400', 'H5030000', 'Basınç Tankı Montajı Yapılması'),
+(541, 'H5030500', 'H5030000', 'Su Sayacı Montajı Yapılması'),
+(542, 'H5030600', 'H5030000', 'Diğer İçme Suyu Tesisatı İşleri'),
+(543, 'H5040000', 'H5000000', 'Atıksu ve Yağmur Suyu Tesisatı Özel İşleri'),
+(544, 'H5040100', 'H5040000', 'Yağ Ayracı Montajı'),
+(545, 'H5040200', 'H5040000', 'Vitrifiye Montajı'),
+(546, 'H5040300', 'H5040000', 'Yer süzgeçleri Montajı'),
+(547, 'H5050000', 'H5000000', 'Doğalgaz Tesisatı Özel İşleri'),
+(548, 'H5050100', 'H5050000', 'Doğalgaz Sayacı Montajı'),
+(549, 'H5050200', 'H5050000', 'Diğer Doğalgaz Tesisatı İşleri'),
+(550, 'H5060000', 'H5000000', 'Kalorifer Tesisatı Özel İşleri'),
+(551, 'H5060100', 'H5060000', 'Kalorifer Peteği Montajı'),
+(552, 'H5060200', 'H5060000', 'Kalorifer Kazanı Montajı'),
+(553, 'H5060300', 'H5060000', 'Yakıt Tankı Montajı'),
+(554, 'H5070000', 'H5000000', 'Sulama Tesisatı Özel İşleri'),
+(555, 'H5070100', 'H5070000', 'Sulama sprinkler montajı'),
+(556, 'H5070200', 'H5070000', 'Selonoid vana montajı'),
+(557, 'H5070300', 'H5070000', 'Sulama sistemi otomasyonu yapılması'),
+(558, 'H6000000', 'HK', 'Elektrik İşleri'),
+(559, 'H6010000', 'H6000000', 'Elektrik Borulama İşleri'),
+(560, 'H6020000', 'H6000000', 'Elektrik Kablolama İşleri'),
+(561, 'H6020100', 'H6020000', 'Orta ve Yüksek Gerilim Kablolama İşleri'),
+(562, 'H6020200', 'H6020000', 'Alçak Gerilim Kablolama İşleri'),
+(563, 'H6020300', 'H6020000', 'Zayıf Akım Kablolama İşleri'),
+(564, 'H6030000', 'H6000000', 'Trafo Montajı İşleri'),
+(565, 'H6040000', 'H6000000', 'Pano ve Şalt Malzemelerinin Montajı'),
+(566, 'H6050000', 'H6000000', 'Anahtar Priz Montajı İşleri'),
+(567, 'H6060000', 'H6000000', 'Armatür-Aplik Montajı İşleri'),
+(568, 'H6070000', 'H6000000', 'Otomasyon Sistemi Montajı'),
+(569, 'H6070100', 'H6070000', 'Telefon Santrali Sistemi Montajı'),
+(570, 'H6070200', 'H6070000', 'Güvenlik - Alarm Sistemi Montajı (Kameralar dahil)'),
+(571, 'H6070300', 'H6070000', 'Seslendirme ve Anons Sistemi Montajı'),
+(572, 'H6070400', 'H6070000', 'Bina Otomasyon Sistemi Montajı'),
+(573, 'H6070500', 'H6070000', 'Diğer Otomasyon Sistemleri Montajı'),
+(574, 'H6080000', 'H6000000', 'Otomasyon Harici Ekipmanların Montajı'),
+(575, 'H6080100', 'H6080000', 'Beyaz Eşyaların Montajı'),
+(576, 'H6080200', 'H6080000', 'Ses ve Görüntüleme Sistemleri Montajı (Hoporlör, TV, Projeksiyon vb)'),
+(577, 'H7000000', 'HK', 'Elektro-Mekanik İşler'),
+(578, 'H7010000', 'H7000000', 'Yatay ve Dikey Taşıma Sistemi İşleri'),
+(579, 'H7020000', 'H7000000', 'Havalandırma ve İklimlendirme Sitemi İşleri'),
+(580, 'H7020100', 'H7020000', 'Chiller ve Kazan Dairesi Montajı İşleri'),
+(581, 'H7020200', 'H7020000', 'VRV Dış ve İç Ünite Montajı İşleri'),
+(582, 'H7020300', 'H7020000', 'Klima Montajı İşleri'),
+(583, 'H7030000', 'H7000000', 'Pompa Montajı İşleri'),
+(584, 'H7040000', 'H7000000', 'Giriş Güvenlik Sistemleri Montajı'),
+(585, 'H8000000', 'HK', 'Peyzaj İşleri'),
+(586, 'H8010000', 'H8000000', 'Hard Landscaping İşleri'),
+(587, 'H8010100', 'H8010000', 'Çocuk Oyun Alanları Ekipmanları Montajı'),
+(588, 'H8010200', 'H8010000', 'Bayrak Direği Montajı'),
+(589, 'H8010300', 'H8010000', 'Çöp Tenekesi Yerleştirilmesi ve Montajı'),
+(590, 'H8010400', 'H8010000', 'Bilgilendirme Tabelaları Montajı'),
+(591, 'H8010500', 'H8010000', 'Piknik masası ve Bankların Montajı'),
+(592, 'H8010600', 'H8010000', 'Hazır Süs Havuzu Montajı'),
+(593, 'H8010700', 'H8010000', 'Çevre Aydınlatma Direkleri Montajı'),
+(594, 'H8010800', 'H8010000', 'Büst, Heykel vb Montajı'),
+(595, 'H8020000', 'H8000000', 'Soft Landscaping İşleri'),
+(596, 'H8020100', 'H8020000', 'Bitkiler İçin Toprak Hazırlığı, Gübrelemesi ve Bakımı İşleri'),
+(597, 'H8020200', 'H8020000', 'Bitkilendirme İşleri'),
+(598, 'H9000000', 'HK', 'Mobilya Tefriş Dedarik İşleri'),
+(599, 'H9010000', 'H9000000', 'Sabit Mobilya Montajı İşleri'),
+(600, 'H9020000', 'H9000000', 'Hareketli Mobilya Montajı İşleri');
+
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `olcubirim`
+-- Table structure for table `olcubirim`
 --
 
-CREATE TABLE IF NOT EXISTS `olcubirim` (
-`ID` bigint(20) NOT NULL,
+CREATE TABLE `olcubirim` (
+  `ID` bigint(20) NOT NULL,
   `BirimKisaAd` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `BirimUzunAd` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `olcubirim`
+--
+
+INSERT INTO `olcubirim` (`ID`, `BirimKisaAd`, `BirimUzunAd`) VALUES
+(1, 'm', 'Metre'),
+(2, 'm2', 'Metre Kare'),
+(3, 'm3', 'Metre Küp'),
+(4, 'Kg', 'Kilogram'),
+(5, 'Ton', 'Ton'),
+(6, 'Sa', 'Saat'),
+(7, 'Adet', 'Adet'),
+(8, 'Lt', 'Litre'),
+(9, 'Kutu', 'Kutu'),
+(10, 'Pkt', 'Paket'),
+(11, 'Rulo', 'Rulo'),
+(12, 'Torba', 'Torba');
+
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `parabirim`
+-- Table structure for table `parabirim`
 --
 
-CREATE TABLE IF NOT EXISTS `parabirim` (
-`ID` bigint(20) NOT NULL,
+CREATE TABLE `parabirim` (
+  `ID` bigint(20) NOT NULL,
   `PBirimKisaAd` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PBirimUzunAd` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PBirimFiyat` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `parabirim`
+--
+
+INSERT INTO `parabirim` (`ID`, `PBirimKisaAd`, `PBirimUzunAd`, `PBirimFiyat`) VALUES
+(1, '$', 'Amerikan Doları', 1.8259),
+(2, '€', 'Euro', 2.21),
+(3, 'TL', 'Türk Lirası', 1),
+(4, 'AZN', 'Azerbaycan Manatı', 2.228),
+(9, '£', 'Sterlin', 2.8),
+(10, 'KWD', 'Kuveyt Dinarı', 6.3),
+(11, 'SR', 'Suudi Arabistan Riyali', 0.467),
+(12, 'AED', 'Dubai Dinarı', 0.47);
+
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `pozlar`
+-- Table structure for table `pozlar`
 --
 
-CREATE TABLE IF NOT EXISTS `pozlar` (
-`PozID` bigint(20) NOT NULL,
+CREATE TABLE `pozlar` (
+  `PozID` bigint(20) NOT NULL,
   `BFKitapNo` bigint(20) DEFAULT NULL,
   `PozNo` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PozSNo` bigint(20) DEFAULT NULL,
@@ -168,35 +839,1084 @@ CREATE TABLE IF NOT EXISTS `pozlar` (
   `PozFirma` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PozModel` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sorumluluk` tinyint(4) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=119454 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Tablo döküm verisi `pozlar`
+-- Dumping data for table `pozlar`
 --
 
 INSERT INTO `pozlar` (`PozID`, `BFKitapNo`, `PozNo`, `PozSNo`, `MkkCode`, `PozTanim`, `MaliyetGrup`, `PozTipi`, `ParaBirim`, `OlcuBirim`, `BirimFiyat`, `BfTarih`, `PozAciklama`, `PozFirma`, `PozModel`, `sorumluluk`) VALUES
-(119453, 7, NULL, NULL, NULL, 'betonerme yapı', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
+(119453, 7, 'P01102001.R01.01', NULL, 'P01102001', 'Betonarme yapıların kırım, yıkım ve uzaklaştırılması (Taşınan hacme göre)', 'İşçilik', 'R', '$', 'm3', 8.5, '2016-11-22 00:00:00', NULL, NULL, NULL, 0),
+(119456, 7, 'P01201001.R01.02', NULL, 'P01201001', 'Kaya Kazısı yapılması ve yüklenmesi', 'İşçilik', 'R', '$', 'm3', 12.04, '2016-11-23 00:00:00', '(3,00 m3 ten Büyük Kayalar baz alınacaktır.)', 'Makimsan', NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `poztipi`
+-- Table structure for table `pozlar_try`
 --
 
-CREATE TABLE IF NOT EXISTS `poztipi` (
-`ID` bigint(20) NOT NULL,
+CREATE TABLE `pozlar_try` (
+  `PozID` int(6) DEFAULT NULL,
+  `BFKitapNo` int(1) DEFAULT NULL,
+  `PozNo` varchar(16) CHARACTER SET utf8 DEFAULT NULL,
+  `PozSNo` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
+  `MkkCode` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
+  `PozTanim` varchar(102) CHARACTER SET utf8 DEFAULT NULL,
+  `MaliyetGrup` varchar(17) CHARACTER SET utf8 DEFAULT NULL,
+  `PozTipi` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `ParaBirim` varchar(3) CHARACTER SET utf8 DEFAULT NULL,
+  `OlcuBirim` varchar(4) CHARACTER SET utf8 DEFAULT NULL,
+  `BirimFiyat` decimal(13,8) DEFAULT NULL,
+  `BfTarih` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
+  `PozAciklama` varchar(699) CHARACTER SET utf8 DEFAULT NULL,
+  `PozFirma` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `PozModel` varchar(83) CHARACTER SET utf8 DEFAULT NULL,
+  `PozRef` varchar(68) CHARACTER SET utf8 DEFAULT NULL,
+  `sorumluluk` int(3) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `pozlar_try`
+--
+
+INSERT INTO `pozlar_try` (`PozID`, `BFKitapNo`, `PozNo`, `PozSNo`, `MkkCode`, `PozTanim`, `MaliyetGrup`, `PozTipi`, `ParaBirim`, `OlcuBirim`, `BirimFiyat`, `BfTarih`, `PozAciklama`, `PozFirma`, `PozModel`, `PozRef`, `sorumluluk`) VALUES
+(119453, 7, 'P01102001.R01.01', NULL, 'P01102001', 'Betonarme yapıların kırım, yıkım ve uzaklaştırılması (Taşınan hacme göre)', 'İşçilik', 'R', '$', 'm3', '8.50000000', NULL, NULL, NULL, NULL, 'BHGE.15400 / 0.1.1900.İ', 0),
+(119454, 7, 'P01102001.R01.02', NULL, 'P01102001', 'Betonarme yapıların kırım, yıkım ve uzaklaştırılması (Yıkılan yapının hacmine göre)', 'İşçilik', 'R', '$', 'm3', '2.83000000', NULL, NULL, NULL, NULL, 'BADP.15401 / 1.10.2007.İ', 0),
+(119455, 7, 'P01201001.R01.01', NULL, 'P01201001', 'Nebati Toprağın Sıyrılması ve Yüklenmesi (0-30cm)', 'İşçilik', 'R', '$', 'm3', '1.85000000', NULL, 'Yüzeyde bulunan Tüm Nebati Toprak sıyrılacaktır. (0-30 cm) Ve Yüklenmesi', 'Makimsan', NULL, 'STKP-4033 Nolu protokol', 0),
+(119456, 7, 'P01201001.R01.02', NULL, 'P01201001', 'Kaya Kazısı yapılması ve yüklenmesi', 'İşçilik', 'R', '$', 'm3', '12.04000000', NULL, '(3,00 m3 ten Büyük Kayalar baz alınacaktır.)', 'Makimsan', NULL, 'STKP-4033 Nolu protokol', 0),
+(119457, 7, 'P01201001.R01.03', NULL, 'P01201001', 'Toprak Kazısının Yapılması ve Yüklenmesi', 'İşçilik', 'R', '$', 'm3', '3.25000000', NULL, 'Kazıdan çıkan ya da Dolgu sahasına Götürülecek Malzemenin Nakledilmesi', 'Makimsan', NULL, 'STKP-4033 Nolu protokol', 0),
+(119458, 7, 'P01201001.R01.04', NULL, 'P01201001', 'Dolguya Uygun Malzemenin Kazılarak Yüklenmesi', 'İşçilik', 'R', '$', 'm3', '1.58000000', NULL, 'Kazıdan çıkan ya da Dolgu sahasına Götürülecek Malzemenin Nakledilmesi', 'Makimsan', NULL, 'STKP-4033 Nolu protokol', 0),
+(119459, 7, 'P01201001.R01.05', NULL, 'P01201001', 'Yüklenmiş olan malzemenin 0-2 Km Nakledilmesi', 'İşçilik', 'R', '$', 'm3', '0.75000000', NULL, 'Kazıdan çıkan ya da Dolgu sahasına Götürülecek Malzemenin Nakledilmesi', 'Makimsan', NULL, 'STKP-4033 Nolu protokol', 0),
+(119460, 7, 'P01201001.R01.06', NULL, 'P01201001', 'Yüklenmiş olan malzemenin 2-4 Km Nakledilmesi', 'İşçilik', 'R', '$', 'm3', '0.95000000', NULL, 'Kazıdan çıkan ya da Dolgu sahasına Götürülecek Malzemenin Nakledilmesi', 'Makimsan', NULL, 'STKP-4033 Nolu protokol', 0),
+(119461, 7, 'P01201001.R01.07', NULL, 'P01201001', 'Yüklenmiş olan malzemenin 4-7 Km Nakledilmesi', 'İşçilik', 'R', '$', 'm3', '1.30000000', NULL, 'Kazıdan çıkan ya da Dolgu sahasına Götürülecek Malzemenin Nakledilmesi', 'Makimsan', NULL, 'STKP-4033 Nolu protokol', 0),
+(119462, 7, 'P01201001.R01.08', NULL, 'P01201001', 'Yüklenmiş olan malzemenin 7-15 Km Nakledilmesi', 'İşçilik', 'R', '$', 'm3', '2.20000000', NULL, 'Kazıdan çıkan ya da Dolgu sahasına Götürülecek Malzemenin Nakledilmesi', 'Makimsan', NULL, 'STKP-4033 Nolu protokol', 0),
+(119463, 7, 'P01201001.R01.09', NULL, 'P01201001', 'Yüklenmiş olan malzemenin 15-25 Km Nakledilmesi', 'İşçilik', 'R', '$', 'm3', '3.30000000', NULL, 'Kazıdan çıkan ya da Dolgu sahasına Götürülecek Malzemenin Nakledilmesi', 'Makimsan', NULL, 'STKP-4033 Nolu protokol', 0),
+(119464, 7, 'P05101001.R01.01', NULL, 'P05101001', 'Sert zeminde elle kazı yapılması', 'İşçilik', 'R', '$', 'm3', '17.64000000', NULL, NULL, NULL, NULL, 'BWPP.14000 / 8.10.2007.İ', 0),
+(119465, 7, 'P01202001.R01.01', NULL, 'P01202001', 'Kazıdan çıkan uygun Malzeme ile Sıkıştırılarak Dolgu Yapılması (30cm)', 'İşçilik', 'R', '$', 'm3', '1.85000000', NULL, 'Dolguya Uygun Malzemenin (Yüklenici Talebi ile Uygun Çapı aşmayacak şekilde ) en fazla 30 cm lik Tabakalar Halinde Serilmesi ,gerekirse sulanması, Dinamik ve Statik Testleri geçecek şekilde Silindir, El kompaktörü v.b ile sıkıştırılması', 'Makimsan', NULL, 'STKP-4033 Nolu protokol', 0),
+(119466, 7, 'P01202001.R01.02', NULL, 'P01202001', 'Granüler malzeme ile sıkıştırarak dolgu yapılması (Max 30cm katmanlar halinde)', 'İşçilik', 'R', '$', 'M3', '1.85000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119468, 7, 'P10010600.R01.04', NULL, 'MA10010600', 'Dolgu İçin Çakıl malzemesi', 'Malzeme', 'R', '$', 'M3', '5.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119471, 7, 'P01203001.R01.01', NULL, 'P01203001', '65cm çapında Jetgrout yapılması işçiliği', 'İşçilik', 'R', '$', 'M', '20.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119472, 7, 'P01203001.R01.02', NULL, 'P01203001', '80cm çapında Jetgrout yapılması işçiliği', 'İşçilik', 'R', '$', 'M', '25.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119473, 7, 'P01203003.A01.01', NULL, 'P01203003', '65cm çapında fore kazık yapılması(16m)', 'Malzeme + İşçilik', 'A', '$', 'M', '92.97319000', NULL, 'Zemin seviyesinin üzerindeki imalatlar dikkate alanmamıştır.\nÖlçü foraj boyudur.\nKazık Başı kırılması adet olarak ayrıca dikkate alınacaktır.', NULL, NULL, NULL, 0),
+(119485, 7, 'P01203003.R01.01', NULL, 'P01203003', '65cm çapında fore kazık yapılması işçiliği (16m)', 'İşçilik', 'R', '$', 'M', '49.40000000', NULL, 'Zemin seviyesinin üzerindeki imalatlar dikkate alanmamıştır.\nÖlçü foraj boyudur.', NULL, NULL, NULL, 0),
+(119488, 7, 'P01203003.R01.04', NULL, 'P01203003', '80cm çapında fore kazık yapılması işçiliği (16m)', 'İşçilik', 'R', '$', 'M', '75.40000000', NULL, 'Zemin seviyesinin üzerindeki imalatlar dikkate alanmamıştır.\nÖlçü foraj boyudur.', NULL, NULL, NULL, 0),
+(119491, 7, 'P01203003.R01.07', NULL, 'P01203003', '100cm çapında fore kazık yapılması işçiliği (16m)', 'İşçilik', 'R', '$', 'M', '83.50000000', NULL, 'Zemin seviyesinin üzerindeki imalatlar dikkate alanmamıştır.\nÖlçü foraj boyudur.', NULL, NULL, NULL, 0),
+(119494, 7, 'P01203003.R01.10', NULL, 'P01203003', '120cm çapında fore kazık yapılması işçiliği (16m)', 'İşçilik', 'R', '$', 'M', '129.76000000', NULL, 'Zemin seviyesinin üzerindeki imalatlar dikkate alanmamıştır.\nÖlçü foraj boyudur.', NULL, NULL, NULL, 0),
+(119497, 7, 'P01203003.R01.13', NULL, 'P01203003', 'Kazık Başı Kırılması İşçiliği', 'İşçilik', 'R', '$', 'Adet', '1.33000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119498, 7, 'P01301001.A01.01', NULL, 'P01301001', 'Grobeton Dökülmesi (10cm Kalınlığında)', 'Malzeme + İşçilik', 'A', '$', 'M2', '16.66222219', NULL, 'Kalıp dahil izolasyona uygun 1m2 grobeton imalatı fiyatı', NULL, NULL, NULL, 0),
+(119499, 7, 'P01301001.R01.01', NULL, 'P01301001', 'Grobeton imalatı İşçiliği (10cm)', 'İşçilik', 'R', '$', 'M2', '6.00000000', NULL, 'Su izolasyonu uygulanacak grobetonun perdah makinası (helikopter) ile yüzey bitirilmesi işçiliği grobeton fiyatına dahildir.', 'Turret İnşaat Taahhüt LTD ŞTİ.', NULL, 'BKON/4001/20010 Nolu Sözleşme', 0),
+(119504, 7, 'P01301002.A01.05', NULL, 'P01301002', 'Taşıyıcı İskele ile Döşeme Kalıbı Yapılması h=5,35-5,75m', 'Malzeme + İşçilik', 'A', '$', 'M2', '24.66027197', NULL, NULL, NULL, NULL, NULL, 0),
+(119506, 7, 'P10021000.R01.01', NULL, 'MA10021000', 'Çok delikli çelik perde kuşak ws10 top 50', 'Malzeme', 'R', '$', 'M', '52.22000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119507, 7, 'P10040200.R01.02', NULL, 'MA10040200', 'H20 ahşap kiriş', 'Malzeme', 'R', '$', 'M', '8.90000000', NULL, NULL, 'Pfeifer', 'H20', 'Muhasebe', 0),
+(119508, 7, 'P10040200.R01.04', NULL, 'MA10040200', 'Doseme dikmesi H20 400', 'Malzeme', 'R', '$', 'ADET', '70.29920000', NULL, NULL, 'Doka', 'eco 20 400', NULL, 0),
+(119509, 7, 'P10021000.R01.05', NULL, 'MA10021000', 'İç köşe bağlantı parçası H20 top 20', 'Malzeme', 'R', '$', 'ADET', '21.41060000', NULL, NULL, NULL, NULL, NULL, 0),
+(119510, 7, 'P10021000.R01.06', NULL, 'MA10021000', 'kiris kelepcesi top 50', 'Malzeme', 'R', '$', 'ADET', '8.63000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119511, 7, 'P10021000.R01.07', NULL, 'MA10021000', 'konsol icin ayak', 'Malzeme', 'R', '$', 'ADET', '59.71420000', NULL, NULL, NULL, NULL, NULL, 0),
+(119512, 7, 'P10021000.R01.08', NULL, 'MA10021000', 'merdiven kupeste 225', 'Malzeme', 'R', '$', 'ADET', '80.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119513, 7, 'P10021000.R01.09', NULL, 'MA10021000', 'montaj kosebenti top 50', 'Malzeme', 'R', '$', 'ADET', '2.50970000', NULL, NULL, NULL, NULL, NULL, 0),
+(119514, 7, 'P10021000.R01.10', NULL, 'MA10021000', 'tekerlek takimi ws10', 'Malzeme', 'R', '$', 'ADET', '45.14670000', NULL, NULL, NULL, NULL, NULL, 0),
+(119515, 7, 'P10040100.R01.11', NULL, 'MA10040100', 'Laminated Plywood 18mm', 'Malzeme', 'R', '$', 'M3', '900.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119516, 7, 'P10020400.R01.12', NULL, 'MA10020400', 'Sac Plaka her ebat ve kalınlıkta', 'Malzeme', 'R', '$', 'TON', '840.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119517, 7, 'P10040200.R01.13', NULL, 'MA10040200', 'cam kerestesi 1.sinif 5*10cm', 'Malzeme', 'R', '$', 'M3', '307.24860000', NULL, NULL, NULL, NULL, NULL, 0),
+(119518, 7, 'P10040200.R01.14', NULL, 'MA10040200', 'cam kerestesi 1.sinif 5*20cm', 'Malzeme', 'R', '$', 'M3', '316.61600000', NULL, NULL, NULL, NULL, NULL, 0),
+(119519, 7, 'P10040200.R01.15', NULL, 'MA10040200', 'cam kerestesi 1.sinif 10*10cm', 'Malzeme', 'R', '$', 'M3', '312.53950000', NULL, NULL, NULL, NULL, NULL, 0),
+(119520, 7, 'P10040200.R01.16', NULL, 'MA10040200', 'cam kerestesi 2.sinif 2.5*10cm', 'Malzeme', 'R', '$', 'M3', '248.91100000', NULL, NULL, NULL, NULL, NULL, 0),
+(119521, 7, 'P10040200.R01.17', NULL, 'MA10040200', 'cam kerestesi 2.sinif 5*10cm', 'Malzeme', 'R', '$', 'M3', '309.81290000', NULL, NULL, NULL, NULL, NULL, 0),
+(119522, 7, 'P10040200.R01.18', NULL, 'MA10040200', 'cam kerestesi 2.sinif 10*10cm', 'Malzeme', 'R', '$', 'M3', '314.16270000', NULL, NULL, NULL, NULL, NULL, 0),
+(119523, 7, 'P10040200.R01.19', NULL, 'MA10040200', '80x80 mm kereste', 'Malzeme', 'R', '$', 'M3', '260.41670000', NULL, NULL, NULL, NULL, NULL, 0),
+(119524, 7, 'P10040200.R01.20', NULL, 'MA10040200', '80x80 mm kereste', 'Malzeme', 'R', '$', 'M3', '261.93440000', NULL, NULL, NULL, NULL, NULL, 0),
+(119525, 7, 'P10040200.R01.21', NULL, 'MA10040200', '3x5x400 cm olculerinde cam kereste', 'Malzeme', 'R', '$', 'M', '0.40710000', NULL, NULL, NULL, NULL, NULL, 0),
+(119526, 7, 'P10040200.R01.22', NULL, 'MA10040200', 'kalas 5cm*20cm 6mt', 'Malzeme', 'R', '$', 'M3', '303.49010000', NULL, NULL, NULL, NULL, NULL, 0),
+(119527, 7, 'P10060100.R02.01', NULL, 'MA10060100', 'Kalıp Yağı', 'Malzeme', 'R', '$', 'LT', '1.55080000', NULL, NULL, 'YKS', NULL, 'Muhasebe', 0),
+(119528, 7, 'P10060100.R02.02', NULL, 'MA10060100', 'Kalıp Yağı', 'Malzeme', 'R', '$', 'LT', '1.89390000', NULL, NULL, 'Sika', NULL, 'Muhasebe', 0),
+(119529, 7, 'P10060100.R02.03', NULL, 'MA10060100', 'Kalıp Yağı', 'Malzeme', 'R', '$', 'LT', '1.24500000', NULL, NULL, 'Basf', 'Reofinish hd 255', 'Muhasebe', 0),
+(119530, 7, 'P10060100.R02.04', NULL, 'MA10060100', 'Kalıp Yağı', 'Malzeme', 'R', '$', 'LT', '1.24410000', NULL, NULL, 'Basf', 'Reofinish hd 202', 'Muhasebe', 0),
+(119531, 7, 'P01301002.R02.01', NULL, 'P01301002', 'Kalıp Yapılması (iskele kurulumu dahil)', 'İşçilik', 'R', '$', 'M2', '15.00000000', NULL, 'İskele kurulumu dahil olmak üzere betonarme kalıbı yapılması', 'Turret İnşaat Taahhüt LTD ŞTİ.', NULL, 'BPRE/0022/2009 Nolu sözleşme', 0),
+(119532, 7, 'P01301002.R02.02', NULL, 'P01301002', 'Desenli Kalıp Yapılması (iskele kurulumu dahil)', 'İşçilik', 'R', '$', 'M2', '17.00000000', NULL, 'İskele kurulumu dahil olmak üzere betonarme kalıbı yapılması', 'Turret İnşaat Taahhüt LTD ŞTİ.', NULL, 'BPRE/0022/2009/Zey1 Nolu sözleşme', 0),
+(119534, 7, 'P01301003.A01.01', NULL, 'P01301003', 'İnşaat demiri işlenmesi ve montajı', 'Malzeme + İşçilik', 'A', '$', 'TON', '1093.03454400', NULL, NULL, NULL, NULL, NULL, 0),
+(119536, 7, 'P10020100.R01.01', NULL, 'MA10020100', 'İnşaat demiri 8mm nervürlü (İstanbul Fiyat)', 'Malzeme', 'R', '$', 'TON', '809.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119537, 7, 'P10020100.R01.02', NULL, 'MA10020100', 'İnşaat demiri 10mm nervürlü (İstanbul Fiyat)', 'Malzeme', 'R', '$', 'TON', '801.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119538, 7, 'P10020100.R01.03', NULL, 'MA10020100', 'İnşaat demiri >=12mm nervürlü (İstanbul Fiyat)', 'Malzeme', 'R', '$', 'TON', '795.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119539, 7, 'P10020100.R01.04', NULL, 'MA10020100', 'İnşaat demiri (hurda)', 'Malzeme', 'R', '$', 'TON', '301.13640000', NULL, NULL, NULL, NULL, NULL, 0),
+(119540, 7, 'P10020100.R01.05', NULL, 'MA10020100', 'Hasır Çelik', 'Malzeme', 'R', '$', 'TON', '883.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119541, 7, 'P01301003.R02.01', NULL, 'P01301003', 'İnşaat demiri işlenmesi ve montajı', 'İşçilik', 'R', '$', 'Ton', '200.00000000', NULL, 'İnşaat demiri işlenmesi ve montajı', 'Turret İnşaat Taahhüt LTD ŞTİ.', NULL, 'BPRE/0022/2009 Nolu sözleşme', 0),
+(119542, 7, 'P10010100.R01.01', NULL, 'MA10010100', 'B7,5 ( m100 ) II3 F75 W2 Beton', 'Malzeme', 'R', '$', 'M3', '82.46640000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119543, 7, 'P10010100.R01.02', NULL, 'MA10010100', 'B10 ( m150 ) II3 F100 W4 Beton', 'Malzeme', 'R', '$', 'M3', '88.80990000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119544, 7, 'P10010100.R01.03', NULL, 'MA10010100', 'B15 ( m 200 ) II3 F100 W4 Beton', 'Malzeme', 'R', '$', 'M3', '95.15350000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119545, 7, 'P10010100.R01.04', NULL, 'MA10010100', 'B20 ( m 250 ) II3 F150 W4 Beton', 'Malzeme', 'R', '$', 'M3', '101.49710000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119546, 7, 'P10010100.R01.05', NULL, 'MA10010100', 'B22,5 ( m 300 ) II3 F200 W6 Beton', 'Malzeme', 'R', '$', 'M3', '107.84060000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119547, 7, 'P10010100.R01.06', NULL, 'MA10010100', 'B25 ( m 350 ) II3 F200 W8 Beton', 'Malzeme', 'R', '$', 'M3', '114.18420000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119548, 7, 'P10010100.R01.07', NULL, 'MA10010100', 'B30 ( m 400 ) II3 F200 W10 Beton', 'Malzeme', 'R', '$', 'M3', '120.53000000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119549, 7, 'P10010100.R01.08', NULL, 'MA10010100', 'B35 ( m 450 ) II3 F200 W12 Beton', 'Malzeme', 'R', '$', 'M3', '126.87140000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119550, 7, 'P10010100.R01.09', NULL, 'MA10010100', 'B40 ( m 550 ) II3 F300 W12 Beton', 'Malzeme', 'R', '$', 'M3', '152.24560000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119551, 7, 'P10010100.R01.10', NULL, 'MA10010100', 'B45 ( m 600 ) II3 F300 W12 Beton', 'Malzeme', 'R', '$', 'm3', '158.58920000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119552, 7, 'P10010100.R01.11', NULL, 'MA10010100', 'B50 ( m 650 ) II3 F300 W12 Beton', 'Malzeme', 'R', '$', 'M3', '178.88860000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119553, 7, 'P10010300.R01.12', NULL, 'MA10010300', 'B10 Şap', 'Malzeme', 'R', '$', 'M3', '101.49710000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119554, 7, 'P10010300.R01.13', NULL, 'MA10010300', 'B15 Şap', 'Malzeme', 'R', '$', 'M3', '109.10940000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119555, 7, 'P10010300.R01.14', NULL, 'MA10010300', 'B20 Şap', 'Malzeme', 'R', '$', 'M3', '116.72160000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119556, 7, 'P10010300.R01.15', NULL, 'MA10010300', 'B22,5 Şap', 'Malzeme', 'R', '$', 'M3', '133.21490000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119557, 7, 'P10010300.R01.16', NULL, 'MA10010300', 'B25 Şap', 'Malzeme', 'R', '$', 'M3', '144.63330000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119558, 7, 'P10010300.R01.17', NULL, 'MA10010300', 'B30 Şap', 'Malzeme', 'R', '$', 'M3', '156.05180000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119559, 7, 'P10010300.R01.18', NULL, 'MA10010300', 'B35 Şap', 'Malzeme', 'R', '$', 'M3', '89.51000000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119560, 7, 'P10010300.R01.19', NULL, 'MA10010300', 'B40 Şap', 'Malzeme', 'R', '$', 'M3', '167.47020000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119561, 7, 'P01301004.R01.20', NULL, 'P01301004', 'SST 25 km Sonrası Mesafeler İçin Mixer Taşıma Farkı', 'İşçilik', 'R', '$', 'M3', '5.07490000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119562, 7, 'P10060100.R01.21', NULL, 'MA10060100', 'SST Sülfata Dayanıklı Beton Fiyat Farkı', 'Malzeme', 'R', '$', 'M3', '5.07490000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119563, 7, 'P10060100.R01.22', NULL, 'MA10060100', 'SST Brüt Beton Fiyat Farkı', 'Malzeme', 'R', '$', 'M3', '6.34360000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119564, 7, 'P10060100.R01.23', NULL, 'MA10060100', 'SST Özel Beton Katkısı Fiyat Farkı', 'Malzeme', 'R', '$', 'M3', '3.80610000', NULL, NULL, 'SST', NULL, NULL, 0),
+(119565, 7, 'P10010600.R02.01', NULL, 'MA10010600', 'Cement CEM II 42,5', 'Malzeme', 'R', '$', 'Ton', '120.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119566, 7, 'P10010600.R02.02', NULL, 'MA10010600', 'Cement PÇ52,5', 'Malzeme', 'R', '$', 'Ton', '130.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119567, 7, 'P10010400.R03.01', NULL, 'MA10010400', 'Tamir harci', 'Malzeme', 'R', '$', 'KG', '0.53040000', NULL, NULL, 'Basf', 'Emaco s88', 'Muhasebe', 0),
+(119568, 7, 'P10010400.R03.02', NULL, 'MA10010400', 'Brüt beton tamir harci', 'Malzeme', 'R', '$', 'KG', '0.48130000', NULL, NULL, 'Basf', 'Yapkret T ( Emaco R 600 )', NULL, 0),
+(119569, 7, 'P10060100.R03.01', NULL, 'MA10060100', 'Beton Kürü', 'Malzeme', 'R', '$', 'LT', '4.60430000', NULL, NULL, 'Basf', 'Masterkure 176', NULL, 0),
+(119570, 7, 'P10060100.R03.02', NULL, 'MA10060100', 'Beton Kürü', 'Malzeme', 'R', '$', 'LT', '5.91940000', NULL, NULL, 'Basf', 'Masterkure 181', NULL, 0),
+(119571, 7, 'P10060200.R03.05', NULL, 'MA10060200', 'Çimento esasli su yaltim malzemesi', 'Malzeme', 'R', '$', 'KG', '9.33650000', NULL, NULL, 'Basf', 'Masterseal 525 b', NULL, 0),
+(119572, 7, 'P10060200.R03.06', NULL, 'MA10060200', 'Çimento esasli su yaltim malzemesi', 'Malzeme', 'R', '$', 'LT', '1.26930000', NULL, NULL, 'Basf', 'Masterseal 501', NULL, 0),
+(119573, 7, 'P10010500.R03.07', NULL, 'MA10010500', 'Seramik Harcı Katkısı', 'Malzeme', 'R', '$', 'KG', '2.40200000', NULL, NULL, 'Basf', 'Mastertile 200', 'Muhasebe Kaydı', 0),
+(119574, 7, 'P10060400.R03.08', NULL, 'MA10060400', 'Yüzey Sertleştirici', 'Malzeme', 'R', '$', 'LT', '1.54000000', NULL, NULL, 'Basf', 'Mastertop 20', NULL, 0),
+(119575, 7, 'P10060400.R03.09', NULL, 'MA10060400', 'Yüzey Sertleştirici', 'Malzeme', 'R', '$', 'LT', '2.26640000', NULL, NULL, 'Sika', 'Sikafloor curehard-24 25 lpb (pb25)', NULL, 0),
+(119576, 7, 'P01301004.R04.01', NULL, 'P01301004', 'Betonarme betonu dökümü', 'İşçilik', 'R', '$', 'M3', '4.50000000', NULL, NULL, 'Turret İnşaat Taahhüt LTD ŞTİ.', NULL, 'BPRE/0022/2009 Nolu sözleşme', 0),
+(119577, 7, 'P01501000.R01.01', NULL, 'P01501000', 'Dekoratif Dış Cephe - Pencere Sövesi (20-40)cm x 7,5cm', 'Malzeme + İşçilik', 'R', '$', 'M', '26.58000000', NULL, '(20-40)cm x 7,5cm XPS üzeri Akrilik Sıva kaplı Dekoratif', 'Abaküs Müh.', NULL, 'BPRE/0007/2008 Nolu sözleşme', 0),
+(119578, 7, 'P01501000.R01.02', NULL, 'P01501000', 'Dekoratif Dış Cephe - Saçak Silmesi 58cm x 72cm', 'Malzeme + İşçilik', 'R', '$', 'M', '103.55000000', NULL, '58cm x 72cm XPS üzeri Akrilik Sıva kaplı Dekoratif', 'Abaküs Müh.', NULL, 'BPRE/0007/2008 Nolu sözleşme', 0),
+(119579, 7, 'P01501000.R01.03', NULL, 'P01501000', 'Dekoratif Dış Cephe - Kat Silmesi 60cm x 20,5cm', 'Malzeme + İşçilik', 'R', '$', 'M', '60.80000000', NULL, '60cm x 20,5cm XPS üzeri Akrilik Sıva kaplı Dekoratif', 'Abaküs Müh.', NULL, 'BPRE/0007/2008 Nolu sözleşme', 0),
+(119580, 7, 'P01501000.R01.04', NULL, 'P01501000', 'Dekoratif Dış Cephe - Kat Sövesi ve Subasman Silmesi 12,8cm x 9,5cm', 'Malzeme + İşçilik', 'R', '$', 'M', '25.17000000', NULL, '12,8cm x 9,5cm XPS üzeri Akrilik Sıva kaplı Dekoratif', 'Abaküs Müh.', NULL, 'BPRE/0007/2008 Nolu sözleşme', 0),
+(119581, 7, 'P01501000.R01.05', NULL, 'P01501000', 'Dekoratif Dış Cephe - Çatı Saçak Harpuştası 62cm x 35cm', 'Malzeme + İşçilik', 'R', '$', 'M', '51.20000000', NULL, '62cm x 35cm XPS üzeri Akrilik Sıva kaplı Dekoratif', 'Abaküs Müh.', NULL, 'BPRE/0007/2008 Nolu sözleşme', 0),
+(119582, 7, 'P01501000.R01.06', NULL, 'P01501000', 'Dekoratif Dış Cephe - Duvar Harpuştası 30cm x 18cm', 'Malzeme + İşçilik', 'R', '$', 'M', '34.02000000', NULL, '30cm x 18cm XPS üzeri Akrilik Sıva kaplı Dekoratif', 'Abaküs Müh.', NULL, 'BPRE/0007/2008 Nolu sözleşme', 0),
+(119583, 7, 'P01501000.R01.07', NULL, 'P01501000', 'Dekoratif Dış Cephe - Dairesel Kolon R=50cm', 'Malzeme + İşçilik', 'R', '$', 'M', '151.45000000', NULL, 'R=50cm XPS üzeri Akrilik Sıva kaplı Dekoratif', 'Abaküs Müh.', NULL, 'BPRE/0007/2008 Nolu sözleşme', 0),
+(119584, 7, 'P01501000.R01.08', NULL, 'P01501000', 'Dekoratif Dış Cephe - Dairesel Kolon Başlığı 58cm x 14cm', 'Malzeme + İşçilik', 'R', '$', 'M', '51.01000000', NULL, '58cm x 14cm XPS üzeri Akrilik Sıva kaplı Dekoratif', 'Abaküs Müh.', NULL, 'BPRE/0007/2008 Nolu sözleşme', 0),
+(119585, 7, 'P01501000.R01.09', NULL, 'P01501000', 'Dekoratif Dış Cephe - Kolon Kaidesi 70cm x 51,5cm', 'Malzeme + İşçilik', 'R', '$', 'M', '89.54000000', NULL, '70cm x 51,5cm XPS üzeri Akrilik Sıva kaplı Dekoratif', 'Abaküs Müh.', NULL, 'BPRE/0007/2008 Nolu sözleşme', 0),
+(119586, 7, 'P01501000.R01.10', NULL, 'P01501000', 'Dekoratif Dış Cephe - Kemer 20cm x 7,5cm', 'Malzeme + İşçilik', 'R', '$', 'M', '36.71000000', NULL, '20cm x 7,5cm XPS üzeri Akrilik Sıva kaplı Dekoratif', 'Abaküs Müh.', NULL, 'BPRE/0007/2008 Nolu sözleşme', 0),
+(119587, 7, 'P01501000.R01.11', NULL, 'P01501000', 'Dekoratif Dış Cephe - Fugalı Kaplama', 'Malzeme + İşçilik', 'R', '$', 'M2', '40.14000000', NULL, 'XPS üzeri Akrilik Sıva kaplı Dekoratif', 'Abaküs Müh.', NULL, 'BPRE/0007/2008 Nolu sözleşme', 0),
+(119588, 7, 'P01501003.R01.12', NULL, 'P01501003', 'Dekoratif Dış Cephe -Kilit Taşı 46cm x 45cm x 9cm', 'Malzeme + İşçilik', 'R', '$', 'Adet', '27.95000000', NULL, '46cm x 45cm x 9cm XPS üzeri Akrilik Sıva kaplı Dekoratif', 'Abaküs Müh.', NULL, 'BPRE/0007/2008 Nolu sözleşme', 0),
+(119589, 7, 'P01501003.R01.13', NULL, 'P01501003', 'Dekoratif Dış Cephe -Kilit Taşı 32cm x 30cm x 9cm', 'Malzeme + İşçilik', 'R', '$', 'Adet', '25.79000000', NULL, '32cm x 30cm x 9cm XPS üzeri Akrilik Sıva kaplı Dekoratif', 'Abaküs Müh.', NULL, 'BPRE/0007/2008 Nolu sözleşme', 0),
+(119590, 7, 'P01501003.R01.14', NULL, 'P01501003', 'Dekoratif Dış Cephe -Kolon Silmesi 40cm x 23cm', 'Malzeme + İşçilik', 'R', '$', 'M', '60.21000000', NULL, '32cm x 30cm x 9cm XPS üzeri Akrilik Sıva kaplı Dekoratif', 'Abaküs Müh.', NULL, 'BPRE/0007/2008 Nolu sözleşme', 0),
+(119591, 7, 'P10031000.R02.01', NULL, 'MA10031000', 'Kültür Taşı - Urban Travetine - UR026', 'Malzeme', 'R', 'TL', 'M2', '35.00000000', NULL, 'Kültür Taşı', 'Atlantis Müh.', 'Urban Travetine - UR026', 'BPRE/0063/2009 Nolu sözleşme', 0),
+(119592, 7, 'P10031000.R02.02', NULL, 'MA10031000', 'Kültür Taşı - Urban Travetine Köşe Taşı', 'Malzeme', 'R', 'TL', 'M', '24.00000000', NULL, 'Kültür Taş', 'Atlantis Müh.', 'Urban Travetine - Köşe Taşı', 'BPRE/0063/2009 Nolu sözleşme', 0),
+(119593, 7, 'P10031000.R02.03', NULL, 'MA10031000', 'Kültür Taşı - Kale Taşı Bej - CR568', 'Malzeme', 'R', 'TL', 'M2', '35.00000000', NULL, 'Kültür Taşı', 'Atlantis Müh.', 'Kale Taşı Bej - CR568', 'BPRE/0063/2009 Nolu sözleşme', 0),
+(119594, 7, 'P10031000.R02.04', NULL, 'MA10031000', 'Kültür Taşı - Kale Taşı Bej - Köşe Taşı', 'Malzeme', 'R', 'TL', 'M', '24.00000000', NULL, 'Kültür Taşı', 'Atlantis Müh.', 'Kale Taşı Bej - Köşe Taşı', 'BPRE/0063/2009 Nolu sözleşme', 0),
+(119597, 7, 'P01501005.R01.01', NULL, 'P01501005', 'Dış Cephe Mantolama Yapılması (Alçak Binalar)', 'Malzeme + İşçilik', 'R', '$', 'M2', '22.30000000', NULL, 'Kaba sıvası tamamlanmış duvarlara 5cm kalınlığında XPS Mantolama yapılması.', 'Yapı Çözümleri İnşaat LTD ŞTİ.', NULL, 'BPRE/0028/2009 Nolu sözleşme', 0),
+(119598, 7, 'P01501005.R01.02', NULL, 'P01501005', 'Dış Cephe Boyası Yapılması (Alçak Binalar)', 'Malzeme + İşçilik', 'R', '$', 'M2', '6.20000000', NULL, 'Mantolama üzeri astar ve silikon esaslı textürlü boya yapılması.', 'Yapı Çözümleri İnşaat LTD ŞTİ.', NULL, 'BPRE/0028/2009 Nolu sözleşme', 0),
+(119599, 7, 'P01501005.R01.03', NULL, 'P01501005', 'Mantolama altı sıva yapılması', 'İşçilik', 'R', '$', 'M2', '8.50000000', NULL, NULL, NULL, NULL, 'BPRE/0107/2009 Nolu sözleşme', 0),
+(119600, 7, 'P10050300.R01.04', NULL, 'MA10050300', 'UV Dayanımlı dış cephe izolasyon membranı', 'Malzeme', 'R', '$', 'M2', '3.76000000', NULL, 'UV Dayanımlı dış cephe izolasyon membranı.\nBirim fiyata çift taraflı bant fiyatı dahil edilmiştir.', 'Dupont', 'TYVEK UV 195gr/m2', 'BPRE/0004/2008 Nolu sözleşme. Italyan villa', 0),
+(119601, 7, 'P10010500.R02.01', NULL, 'MA10010500', 'Mantolama Yapıştırma Harcı', 'Malzeme', 'R', '$', 'TON', '200.00000000', NULL, 'Mavi Kale Mantolama Paket Sistemi\n25kg paketler halinde', 'Kalekim Kimyevi Maddeler Sanayi', 'Kalefiks 1067', 'BPRE/0125/2009 Nolu sözleşme', 0),
+(119602, 7, 'P10010300.R02.02', NULL, 'MA10010300', 'Mantolama Üstü Sıva Harcı', 'Malzeme', 'R', '$', 'TON', '245.00000000', NULL, 'Mavi Kale Mantolama Paket Sistemi - 25kg paketler halinde', 'Kalekim Kimyevi Maddeler Sanayi', 'Kaleplast 1068', 'BPRE/0125/2009 Nolu sözleşme', 0),
+(119603, 7, 'P10160300.R02.03', NULL, 'MA10160300', 'Mantolama Üstü Sıva Filesi', 'Malzeme', 'R', '$', 'M2', '0.75000000', NULL, 'Kalekim Marka, Mavi Kale Mantolama Paket Sistemi - 160gr/m2 - 50m2/Rulo', 'Kalekim Kimyevi Maddeler Sanayi', NULL, 'BPRE/0125/2009 Nolu sözleşme', 0),
+(119604, 7, 'P10160300.R02.04', NULL, 'MA10160300', 'Mantolama için Plastik Dübel', 'Malzeme', 'R', '$', 'Adet', '0.04200000', NULL, 'Kalekim Marka, Mavi Kale Mantolama Paket Sistemi - 11cm - 1000 adet/paket', 'Kalekim Kimyevi Maddeler Sanayi', NULL, 'BPRE/0125/2009 Nolu sözleşme', 0),
+(119605, 7, 'P10050500.R03.01', NULL, 'MA10050500', 'Mantolama XPS 50MM', 'Malzeme', 'R', 'TL', 'M2', '7.90000000', NULL, NULL, 'Mavi Çizgi Yapı Sanayi', NULL, 'BPRE/0088/2009 Nolu sözleşme', 0),
+(119606, 7, 'P10010500.R03.02', NULL, 'MA10010500', 'Mantolama Yapıştırma Harcı', 'Malzeme', 'R', 'TL', 'TON', '360.00000000', NULL, NULL, 'Mavi Çizgi Yapı Sanayi', NULL, 'BPRE/0088/2009 Nolu sözleşme', 0),
+(119607, 7, 'P10010300.R03.03', NULL, 'MA10010300', 'Mantolama Üstü Sıva Harcı', 'Malzeme', 'R', 'TL', 'TON', '380.00000000', NULL, NULL, 'Mavi Çizgi Yapı Sanayi', NULL, 'BPRE/0088/2009 Nolu sözleşme', 0),
+(119608, 7, 'P10160300.R03.06', NULL, 'MA10160300', 'Mantolama Üstü Sıva İçin Fileli Köşe Profili', 'Malzeme', 'R', 'TL', 'M', '0.82000000', NULL, NULL, 'Mavi Çizgi Yapı Sanayi', NULL, 'BPRE/0088/2009 Nolu sözleşme', 0),
+(119609, 7, 'P01601000.A02.01', NULL, 'P01601000', 'Düz Çatı Yapılması (Şap + İzolasyon + Kaplama)', 'Malzeme + İşçilik', 'A', '$', 'M2', '20.70665386', NULL, NULL, NULL, NULL, NULL, 0),
+(119612, 7, 'P01601001.R01.01', NULL, 'P01601001', 'Ahşap oturma çatı yapılması (Eğik ölçü) İşçilik', 'İşçilik', 'R', '$', 'M2', '14.00000000', NULL, 'OSB kaplama, izolasyon, şilte serilmesi dahil)', NULL, NULL, 'BPRE/057/2009 Nolu sözleşme', 0),
+(119613, 7, 'P01601001.R01.02', NULL, 'P01601001', 'Çatı meyil dere su izolasyonu yapılması', 'İşçilik', 'R', '$', 'Mt', '2.00000000', NULL, NULL, NULL, NULL, 'BPRE/057/2009 Nolu sözleşme', 0),
+(119614, 7, 'P01601001.R01.03', NULL, 'P01601001', 'Alaturka kiremit döşenmesi', 'İşçilik', 'R', '$', 'M2', '14.00000000', NULL, 'Membran ile su izolasyonu, çıta, mahya kiremit döşenmesi dahil.', NULL, NULL, 'BPRE/057/2009 Nolu sözleşme', 0),
+(119615, 7, 'P01601001.R01.04', NULL, 'P01601001', 'Çatı altı cam yünü kaplama', 'İşçilik', 'R', '$', 'M2', '3.50000000', NULL, NULL, NULL, NULL, 'BPRE/057/2009 Nolu sözleşme', 0),
+(119616, 7, 'P01601001.R01.05', NULL, 'P01601001', 'Çatı çıkış kapağı montajı', 'İşçilik', 'R', '$', 'Adet', '69.00000000', NULL, NULL, NULL, NULL, 'BPRE/057/2009 Nolu sözleşme', 0),
+(119617, 7, 'P10030200.R01.06', NULL, 'MA10030200', 'Çatı kiremit ve aksesuarları', 'Malzeme', 'R', '$', 'M2', '23.51000000', NULL, 'Çatı kiremiti ve aksesuarları', 'Persan', NULL, 'BPRE/046/2009 Nolu sözleşme. Villa 11', 0),
+(119620, 7, 'P10020100.R02.01', NULL, 'MA10020100', 'Çelik Çatı Yapılması İçin ST37 Çeliği', 'Malzeme', 'R', '$', 'Ton', '1820.00000000', NULL, NULL, NULL, 'ST37 Çeliği', 'BPRE/0001/2008 Nolu sözleşme. Italyan Villa', 0),
+(119621, 7, 'P01601001.R02.02', NULL, 'P01601001', 'Çelik Çatı Yapılması İşçiliği', 'İşçilik', 'R', '$', 'Ton', '780.00000000', NULL, NULL, 'Mim Mühendislik', NULL, 'BPRE/0001/2008 Nolu sözleşme. Italyan Villa', 0),
+(119622, 7, 'P10040200.R02.03', NULL, 'MA10040200', 'Çatı imalatları için Çam Kerestesi', 'Malzeme', 'R', '$', 'M3', '261.70000000', NULL, 'Vakum Emprenyeli, Planyalı ve Budaksız', 'Zeybek Kereste', NULL, 'BPRE/0002/2008 Nolu sözleşme. Italyan Villa', 0),
+(119623, 7, 'P10050500.R02.04', NULL, 'MA10050500', 'Çatı ısı yalıtımı için XPS 30kg/m3', 'Malzeme', 'R', '$', 'M3', '95.00000000', NULL, 'Isı iletkenliği 0,028', 'ODE', 'Isıpan DT', 'BPRE/0003/2008 Nolu sözleşme. Italyan Villa 552,96m2 5cm+3cm', 0),
+(119624, 7, 'P10040100.R02.05', NULL, 'MA10040100', 'OSB3', 'Malzeme', 'R', '$', 'M2', '7.20000000', NULL, '(18x1220x2440)mm', 'Zeybek Kereste', 'OSB3', 'BPRE/0005/2008 Nolu sözleşme. Italyan Villa', 0),
+(119625, 7, 'P01601001.R02.06', NULL, 'P01601001', 'Camyünü Takviyeli Poliester Çatı Kaplaması Yapılması (CTP)', 'Malzeme + İşçilik', 'R', '$', 'M2', '53.13000000', NULL, 'Camyünü Takviyeli Poliester Çatı Kaplaması Yapılması (CTP)', 'İZOBER Su Yalıtım CTP Sanayi ve Ticareti', NULL, 'BPRE/0014/2009 Nolu sözleşme. Italyan Villa', 0),
+(119627, 7, 'P01701001.A01.02', NULL, 'P01701001', 'Tuğla duvar yapılması 15cm', 'Malzeme + İşçilik', 'A', '$', 'M2', '24.98216009', NULL, 'Malzeme + İşçilik', NULL, NULL, NULL, 0),
+(119630, 7, 'P01701001.R01.01', NULL, 'P01701001', 'Tuğla duvar yapılması', 'İşçilik', 'R', '$', 'M2', '8.00000000', NULL, NULL, NULL, NULL, 'BPRE/0107/2009 Nolu sözleşme', 0),
+(119631, 7, 'P01701001.R01.02', NULL, 'P01701001', 'Yerinde hatıl dökülmesi', 'İşçilik', 'R', '$', 'M', '8.00000000', NULL, NULL, NULL, NULL, 'BPRE/0107/2009 Nolu sözleşme', 0),
+(119632, 7, 'P10030100.R02.01', NULL, 'MA10030100', 'Tuğla 19 x 19 x 8,5', 'Malzeme', 'R', 'TL', 'Adet', '0.20600000', NULL, NULL, 'Kilsan', NULL, 'www.kilsan.com', 0),
+(119633, 7, 'P10030100.R02.02', NULL, 'MA10030100', 'Tuğla 19 x 19 x 13,5', 'Malzeme', 'R', 'TL', 'Adet', '0.23500000', NULL, NULL, 'Kilsan', NULL, 'www.kilsan.com', 0),
+(119634, 7, 'P10030100.R02.03', NULL, 'MA10030100', 'Tuğla 24 x 25 x 13,5', 'Malzeme', 'R', 'TL', 'Adet', '0.44800000', NULL, NULL, 'Kilsan', NULL, 'www.kilsan.com', 0),
+(119635, 7, 'P10030100.R02.04', NULL, 'MA10030100', 'Tuğla 24 x 25 x 18,5', 'Malzeme', 'R', 'TL', 'Adet', '0.73000000', NULL, NULL, 'Kilsan', NULL, 'www.kilsan.com', 0),
+(119636, 7, 'P10030600.R02.05', NULL, 'MA10030600', 'Asmolen 20 x 40 x 20', 'Malzeme', 'R', 'TL', 'Adet', '0.93500000', NULL, NULL, 'Kilsan', NULL, 'www.kilsan.com', 0),
+(119637, 7, 'P10030600.R02.06', NULL, 'MA10030600', 'Asmolen 20 x 40 x 25', 'Malzeme', 'R', 'TL', 'Adet', '1.14500000', NULL, NULL, 'Kilsan', NULL, 'www.kilsan.com', 0),
+(119638, 7, 'P10030600.R02.07', NULL, 'MA10030600', 'Asmolen 20 x 40 x 30', 'Malzeme', 'R', 'TL', 'Adet', '1.43000000', NULL, NULL, 'Kilsan', NULL, 'www.kilsan.com', 0),
+(119639, 7, 'P10030600.R02.08', NULL, 'MA10030600', 'Asmolen 20 x 40 x 35', 'Malzeme', 'R', 'TL', 'Adet', '1.70000000', NULL, NULL, 'Kilsan', NULL, 'www.kilsan.com', 0),
+(119648, 7, 'P01701003.R01.01', NULL, 'P01701003', 'İç kaba sıva yapılması', 'İşçilik', 'R', '$', 'M2', '7.50000000', NULL, 'Serpme sıva dahil', NULL, NULL, 'BPRE/0107/2009 Nolu sözleşme', 0),
+(119649, 7, 'P10010300.A02.01', NULL, 'MA10010300', 'Kaba Sıva Harcı', 'Malzeme', 'A', '$', 'm3', '67.35000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119651, 7, 'P01701005.R01.01', NULL, 'P01701005', 'Kaba sıva üzeri perlitli alçı sıva yapılması işçilik', 'İşçilik', 'R', '$', 'M2', '10.00000000', NULL, NULL, NULL, NULL, 'BPRE/0107/2009 Nolu sözleşme', 0),
+(119652, 7, 'P01701005.R01.02', NULL, 'P01701005', 'Perlitli alçı sıva üzerine Saten alçı sıva yapılması', 'İşçilik', 'R', '$', 'M2', '2.30000000', NULL, NULL, NULL, NULL, 'BPRE/0107/2009 Nolu sözleşme', 0),
+(119653, 7, 'P10010600.R01.03', NULL, 'MA10010600', 'Sıva Alçısı', 'Malzeme', 'R', '$', 'TON', '58.97000000', NULL, '35kg/torba', 'Knauf / Tokcan Ltd.', 'İzogibs', 'BPRE/0090/2009 Nolu sözleşme', 0),
+(119656, 7, 'P01701006.R01.01', NULL, 'P01701006', 'Şap yapılması işçilik', 'İşçilik', 'R', '$', 'M2', '4.75000000', NULL, NULL, NULL, NULL, 'BPRE/0107/2009 Nolu sözleşme', 0),
+(119658, 7, 'P01702001.A01.02', NULL, 'P01702001', 'Orta Kalite Laminant Parke Döşenmesi', 'Malzeme + İşçilik', 'A', '$', 'M2', '31.10942432', NULL, 'Malzeme + İşçilik', NULL, NULL, NULL, 0),
+(119660, 7, 'P10040300.R01.01', NULL, 'MA10040300', 'Smoked Oak Zemin Parkesi', 'Malzeme', 'R', '€', 'M2', '55.00000000', NULL, NULL, 'Parkett Yer Döşemeleri', NULL, 'BPRE/0105/2009 Nolu sözleşme', 0),
+(119661, 7, 'P10040300.R01.02', NULL, 'MA10040300', 'Walnut Zemin Parkesi', 'Malzeme', 'R', '€', 'M2', '65.00000000', NULL, NULL, 'Parkett Yer Döşemeleri', NULL, 'BPRE/0105/2009 Nolu sözleşme', 0),
+(119662, 7, 'P10040300.R01.03', NULL, 'MA10040300', 'Wenge Zemin Parkesi', 'Malzeme', 'R', '€', 'M2', '75.00000000', NULL, NULL, 'Parkett Yer Döşemeleri', NULL, 'BPRE/0105/2009 Nolu sözleşme', 0),
+(119663, 7, 'P10040300.R01.04', NULL, 'MA10040300', 'Wenge Süprürgelik (10x20x1090)mm', 'Malzeme', 'R', '€', 'M', '7.75000000', NULL, NULL, 'Parkett Yer Döşemeleri', NULL, 'BPRE/0105/2009 Nolu sözleşme', 0),
+(119664, 7, 'P10040300.R01.05', NULL, 'MA10040300', 'Walnut Süprürgelik (10x130x1090)mm', 'Malzeme', 'R', '€', 'M2', '85.00000000', NULL, NULL, 'Parkett Yer Döşemeleri', NULL, 'BPRE/0105/2009 Nolu sözleşme', 0),
+(119665, 7, 'P10040300.R01.06', NULL, 'MA10040300', 'Meşe Lamine Parke (14x145x1100)mm', 'Malzeme', 'R', '€', 'M2', '30.00000000', NULL, NULL, 'Ozan Orman Ürünleri', NULL, 'BPRE/0131/2009 Nolu sözleşme', 0),
+(119666, 7, 'P01702001.R01.07', NULL, 'P01702001', 'Lamine Parke Montajı (Yüzer Sistem)', 'İşçilik', 'R', '$', 'M2', '11.00000000', NULL, NULL, 'Ozan Orman Ürünleri', NULL, 'BPRE/0131/2009 Nolu sözleşme', 0),
+(119667, 7, 'P01702001.R01.08', NULL, 'P01702001', 'Lamine Parke Montajı (Yere Yapıştırma)', 'İşçilik', 'R', '$', 'M2', '14.00000000', NULL, NULL, 'Ozan Orman Ürünleri', NULL, 'BPRE/0131/2009 Nolu sözleşme', 0),
+(119668, 7, 'P10051000.R02.01', NULL, 'MA10051000', 'Laminant Parke', 'Malzeme', 'R', 'TL', 'M2', '10.17000000', NULL, NULL, 'Yılmaz Yapı Malzemeleri', 'SC2246', 'BPRE/0132/2010 Nolu sözleşme', 0),
+(119669, 7, 'P10050300.R02.02', NULL, 'MA10050300', 'Laminant Parke Şiltesi', 'Malzeme', 'R', 'TL', 'M2', '0.23000000', NULL, NULL, 'Yılmaz Yapı Malzemeleri', NULL, 'BPRE/0132/2010 Nolu sözleşme', 0),
+(119673, 7, 'P01702002.R01.01', NULL, 'P01702002', 'Seramik Kaplama Yapılması İşçilik', 'İşçilik', 'R', '$', 'M2', '10.00000000', NULL, NULL, NULL, NULL, 'BPRE/0107/2009 Nolu sözleşme', 0),
+(119674, 7, 'P10070201.R02.01', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '14.72000000', NULL, 'Banyo duvar ve döşeme seramikleri', 'Vitra / Güneyliler Yapı Malzemeleri', 'K790874 60x60 (RAL 9016 Mat)', 'BPRE/0138/2010 Nolu sözleşme', 0),
+(119675, 7, 'P10070201.R02.02', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '9.86000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K790605 10x30 (RAL 9016 Beyaz Parlak)', 'BPRE/0138/2010 Nolu sözleşme', 0),
+(119676, 7, 'P10070201.R02.03', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '14.22000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K510501 5x5 (Colorline mix 5 pool Mavi)', 'BPRE/0138/2010 Nolu sözleşme', 0),
+(119677, 7, 'P10070201.R02.04', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '14.22000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K508982 (Colorline mix 1 green-blue)', 'BPRE/0138/2010 Nolu sözleşme', 0),
+(119678, 7, 'P10070201.R02.05', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '5.67000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K230030001 20x20 (RAL 9016 Beyaz Mat)', 'BPRE/0138/2010 Nolu sözleşme', 0),
+(119679, 7, 'P10070201.R02.06', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '16.34000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K525984 5x5 (Solid line mix 6 grey)', 'BPRE/0138/2010 Nolu sözleşme', 0),
+(119680, 7, 'P10070201.R03.01', NULL, 'MA10070201', 'Teknik oda ve Garaj Zemini seramikleri', 'Malzeme', 'R', '$', 'M2', '10.89000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K825131 30x30 (Arkitekt Dotti Serisi Fildişi Renk Porselen Seramik)', 'BPRE/0139/2010 Nolu sözleşme', 0),
+(119681, 7, 'P10070201.R03.02', NULL, 'MA10070201', 'Teknik oda ve Garaj Zemini seramikleri', 'Malzeme', 'R', '$', 'Adet', '1.49000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K754681 (Arkitekt Dotti Serisi Fildişi Renk Porselen Seramik Basamak Profili)', 'BPRE/0139/2010 Nolu sözleşme', 0),
+(119682, 7, 'P10070201.R03.03', NULL, 'MA10070201', 'Teknik oda ve Garaj Zemini seramikleri', 'Malzeme', 'R', '$', 'M2', '7.52000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K751623 30x30 (Arkitekt Dotti Serisi Fildişi Renk Porselen Seramik Basamak Profili)', 'BPRE/0139/2010 Nolu sözleşme', 0),
+(119683, 7, 'P10070202.R04.01', NULL, 'MA10070202', 'Havuz içi desenli seramik', 'Malzeme', 'R', '$', 'M2', '350.00000000', NULL, NULL, 'Matego Universal Limited', '(A1 1010-5044) - (A1 1010-6165) 10x10', 'BPRE/0159/2010 Nolu sözleşme', 0),
+(119684, 7, 'P10070202.R04.02', NULL, 'MA10070202', 'Havuz - porselen seramik (Savak Üzeri)', 'Malzeme', 'R', '€', 'M2', '16.06000000', NULL, NULL, 'Serapool / Güneyliler Yapı Malzemeleri', '80127 12x24,5cm Savak Üzeri Porselen Seramik (Kobalt Mavisi)', 'BPRE/0165/2010 Nolu sözleşme', 0),
+(119685, 7, 'P10070202.R04.03', NULL, 'MA10070202', 'Havuz - porselen seramik (Düz Savak)', 'Malzeme', 'R', '€', 'M', '76.56000000', NULL, NULL, 'Serapool / Güneyliler Yapı Malzemeleri', 'E90107 10x13,5x24,5cm Düz Savak Porselen Seramik (Kobalt Mavisi)', 'BPRE/0165/2010 Nolu sözleşme', 0),
+(119686, 7, 'P10070202.R04.04', NULL, 'MA10070202', 'Havuz - porselen seramik (Giderli Savak)', 'Malzeme', 'R', '€', 'M', '85.04000000', NULL, NULL, 'Serapool / Güneyliler Yapı Malzemeleri', 'E90127 10x13,5x24,5cm Giderli Savak Porselen Seramik (Kobalt Mavisi)', 'BPRE/0165/2010 Nolu sözleşme', 0),
+(119687, 7, 'P10070202.R04.05', NULL, 'MA10070202', 'Havuz - porselen seramik (Savak İç veya Dış Köşe)', 'Malzeme', 'R', '€', 'Adet', '29.06000000', NULL, NULL, 'Serapool / Güneyliler Yapı Malzemeleri', 'E90137-E90147 13,5x13,5cm Savak İç veya Dış Köşe Porselen Seramik (Kobalt Mavisi)', 'BPRE/0165/2010 Nolu sözleşme', 0),
+(119688, 7, 'P10070202.R04.06', NULL, 'MA10070202', 'Havuz - porselen seramik', 'Malzeme', 'R', '€', 'M2', '16.06000000', NULL, NULL, 'Serapool / Güneyliler Yapı Malzemeleri', '80052.1 5x5x0,6cm Porselen Seramik (Koyu Yeşil)', 'BPRE/0165/2010 Nolu sözleşme', 0),
+(119689, 7, 'P10070202.R04.07', NULL, 'MA10070202', 'Havuz - porselen seramik (Savak Üzeri)', 'Malzeme', 'R', '€', 'M2', '13.23000000', NULL, NULL, 'Serapool / Güneyliler Yapı Malzemeleri', '80122.1 12x24,5cm Savak Üzeri Porselen Seramik (Koyu Yeşil)', 'BPRE/0165/2010 Nolu sözleşme', 0),
+(119690, 7, 'P10070202.R04.08', NULL, 'MA10070202', 'Havuz - porselen seramik (Düz Savak)', 'Malzeme', 'R', '€', 'M', '95.64000000', NULL, NULL, 'Serapool / Güneyliler Yapı Malzemeleri', 'E90102.1 10x13,5x24,5cm Düz Savak Porselen Seramik (Koyu Yeşil)', 'BPRE/0165/2010 Nolu sözleşme', 0),
+(119691, 7, 'P10070202.R04.09', NULL, 'MA10070202', 'Havuz - porselen seramik (Giderli Savak)', 'Malzeme', 'R', '€', 'M', '106.28000000', NULL, NULL, 'Serapool / Güneyliler Yapı Malzemeleri', 'E90122.1 10x13,5x24,5cm Giderli Savak Porselen Seramik (Koyu Yeşil)', 'BPRE/0165/2010 Nolu sözleşme', 0),
+(119692, 7, 'P10070202.R04.10', NULL, 'MA10070202', 'Havuz - porselen seramik (Savak İç veya Dış Köşe)', 'Malzeme', 'R', '€', 'Adet', '36.33000000', NULL, NULL, 'Serapool / Güneyliler Yapı Malzemeleri', 'E90132.1-E90142.1 13,5x13,5cm Savak İç veya Dış Köşe Porselen Seramik (Koyu Yeşil)', 'BPRE/0165/2010 Nolu sözleşme', 0),
+(119693, 7, 'P10070201.R05.01', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '16.07000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K5170354 5x5 (Rock Bej)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119694, 7, 'P10070201.R05.02', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '7.11000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K807681 30x30 (RAL 095 80 10 Krem)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119695, 7, 'P10070201.R05.03', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '7.25000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K773646 30x30 (Jerusalem Sand)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119696, 7, 'P10070201.R05.04', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '25.69000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K864852LPR 45x45 (Pompei Lap Moka Rec)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119697, 7, 'P10070201.R05.05', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '15.79000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K869144 20x50 (Kinetikc Beyaz Mat Rec)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119698, 7, 'P10070201.R05.05', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '71.01000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K059931 15x15 (Pompei Kaydırmalı Moka Rec)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119699, 7, 'P10070201.R05.06', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '14.72000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K850526R 30x60 (Oxidian Gri Rec)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119700, 7, 'P10070201.R05.07', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '16.79000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K848274 30x60 (Kinetix Antrasit Mat)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119701, 7, 'P10070201.R05.08', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '16.87000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K060615 30x30 (Timeless Mozaik Dekor Gri)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119702, 7, 'P10070201.R05.09', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '28.98000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K027670 2,5x2,5 (RAL 000 7500 Gri)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119703, 7, 'P10070201.R05.10', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '52.16000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K853396-K853374 8,5x60 (Cemento Sup Krem Mat)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119704, 7, 'P10070201.R05.11', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '7.43000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K500971 10x20 (RAL 9016)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119705, 7, 'P10020900.R06.01', NULL, 'MA10020900', 'Banyo duvar ve döşeme seramikleri Köşe Profili', 'Malzeme', 'R', '$', 'M', '21.09000000', NULL, NULL, 'Sclüter / Güneyliler Yapı Malzemeleri', '(Quadec-EP Parlak Q 80 EP)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119706, 7, 'P10020900.R06.02', NULL, 'MA10020900', 'Banyo duvar ve döşeme seramikleri Köşe Profili', 'Malzeme', 'R', '$', 'M', '4.70000000', NULL, NULL, 'Sclüter / Güneyliler Yapı Malzemeleri', '(Quadec-60-AE-V20)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119707, 7, 'P10020900.R06.03', NULL, 'MA10020900', 'Banyo duvar ve döşeme seramikleri Köşe Profili', 'Malzeme', 'R', '$', 'M', '13.11000000', NULL, NULL, 'Sclüter / Güneyliler Yapı Malzemeleri', '(Reno EU Parlak Krom 80lik)', 'BPRE/0163/2010 Nolu sözleşme', 0),
+(119715, 7, 'P10070100.R01.01', NULL, 'MA10070100', 'Granit Bordür', 'Malzeme', 'R', '$', 'M', '29.00000000', NULL, NULL, NULL, 'Bergama Gri (15x25x50)', 'BPRE/0117/2009 Nolu sözleşme', 0),
+(119716, 7, 'P10070100.R01.02', NULL, 'MA10070100', 'Granit Yağmur Oluğu', 'Malzeme', 'R', '$', 'M', '29.00000000', NULL, NULL, NULL, '(8x25x50)', 'BPRE/0117/2009 Nolu sözleşme', 0),
+(119717, 7, 'P10070100.R01.03', NULL, 'MA10070100', 'Suni Taş (Granit)', 'Malzeme', 'R', '$', 'M2', '70.00000000', NULL, NULL, 'Doğaltaş Granit Mermer', 'Ice White 20mm', 'BPRE/0120/2009 Nolu sözleşme', 0),
+(119718, 7, 'P10070100.R01.04', NULL, 'MA10070100', 'Granit Plaka', 'Malzeme', 'R', '$', 'M2', '80.00000000', NULL, NULL, 'Doğaltaş Granit Mermer', 'Star Galaksi', 'BPRE/0120/2009 Nolu sözleşm', 0),
+(119719, 7, 'P10070100.R01.05', NULL, 'MA10070100', 'Suni Taş Basamak', 'Malzeme', 'R', '$', 'M', '140.00000000', NULL, NULL, 'Doğaltaş Granit Mermer', 'Ice White 20mm (20x335x1350)mm', 'BPRE/0120/2009 Nolu sözleşme', 0),
+(119720, 7, 'P10070100.R01.06', NULL, 'MA10070100', 'Suni Taş Rıht', 'Malzeme', 'R', '$', 'M', '24.00000000', NULL, 'Malzeme', 'Doğaltaş Granit Mermer', 'Ice White 20mm (20x120x1350)mm', 'BPRE/0120/2009 Nolu sözleşme', 0),
+(119725, 7, 'P10070300.R01.01', NULL, 'MA10070300', 'Desenli Karo Mozaik Kaplama', 'Malzeme', 'R', 'TL', 'M2', '77.50000000', NULL, NULL, 'Mavi Pencere Güzel Sanatlar Tasarım', '(13 kodlu ürün)', 'BPRE/0130/2009 Nolu sözleşme', 0),
+(119726, 7, 'P10070400.R02.01', NULL, 'MA10070400', 'Cam Mozaik', 'Malzeme', 'R', '$', 'M2', '768.70000000', NULL, NULL, 'Betebe / Güneyliler Yapı Malzemeleri', '(Tunalay Serisi Altın Rengi 2,5x2,5)', 'BPRE/0141/2010 Nolu sözleşme', 0),
+(119727, 7, 'P10070400.R02.02', NULL, 'MA10070400', 'Cam Mozaik', 'Malzeme', 'R', '$', 'M2', '302.78000000', NULL, NULL, 'Betebe / Güneyliler Yapı Malzemeleri', '(Gümüş Gri Varak 2,5x2,5)', 'BPRE/0141/2010 Nolu sözleşme', 0),
+(119728, 7, 'P10070400.R02.03', NULL, 'MA10070400', 'Cam Mozaik', 'Malzeme', 'R', '$', 'M2', '16.70000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K5259844 (Gri Mozaik)', 'BPRE/0141/2010 Nolu sözleşme', 0),
+(119731, 7, 'P01702041.R01.01', NULL, 'P01702041', 'Boya Yapılması (Astar Dahil) İşçilik', 'Malzeme + İşçilik', 'R', '$', 'M2', NULL, NULL, 'İşçilik', NULL, NULL, NULL, 0),
+(119732, 7, 'P10060300.R01.01', NULL, 'MA10060300', 'Dış Cephe Boyası', 'Malzeme', 'R', '$', 'Kg', '1.15000000', NULL, '25kg lık kovalarda', 'Marshall / Ortaç Boya San. Tic.', 'Akrilik Grenli Dış Cephe Boya KOD 8131, KOD 1300', 'BPRE/0295/2010 Nolu sözleşme', 0),
+(119739, 7, 'P10030900.R01.01', NULL, 'MA10030900', 'Flex Alçıpan 12,5mm', 'Malzeme', 'R', 'TL', 'M2', '1.70000000', NULL, NULL, NULL, '12.5 mm', 'BPRE/0266/2010 Nolu sözleşme', 0),
+(119740, 7, 'P10030900.R01.02', NULL, 'MA10030900', 'WR Alçıpan', 'Malzeme', 'R', 'TL', 'M2', '2.60000000', NULL, NULL, NULL, 'WR', 'BPRE/0266/2010 Nolu sözleşme', 0),
+(119741, 7, 'P10020200.R01.03', NULL, 'MA10020200', 'Tavan C Profil 0,5mm (Asma tavanda kullanılmak üzere)', 'Malzeme', 'R', 'TL', 'M', '0.90000000', NULL, '(Asma tavanda kullanılmak üzere)', NULL, NULL, 'BPRE/0266/2010 Nolu sözleşme', 0),
+(119742, 7, 'P10020200.R01.04', NULL, 'MA10020200', 'Tavan U Profil (Asma tavanda kullanılmak üzere)', 'Malzeme', 'R', 'TL', 'M', '0.60000000', NULL, '(Asma tavanda kullanılmak üzere)', NULL, NULL, 'BPRE/0266/2010 Nolu sözleşme', 0),
+(119743, 7, 'P10020500.R01.05', NULL, 'MA10020500', 'Askı Çubuğu 80cm (Asma tavanda kullanılmak üzere)', 'Malzeme', 'R', 'TL', 'Adet', '0.23000000', NULL, '(Asma tavanda kullanılmak üzere)', NULL, NULL, 'BPRE/0266/2010 Nolu sözleşme', 0),
+(119744, 7, 'P10020500.R01.06', NULL, 'MA10020500', 'Askı Masası (Asma tavanda kullanılmak üzere)', 'Malzeme', 'R', 'TL', 'Adet', '0.27000000', NULL, '(Asma tavanda kullanılmak üzere)', NULL, NULL, 'BPRE/0266/2010 Nolu sözleşme', 0),
+(119745, 7, 'P10020500.R01.07', NULL, 'MA10020500', 'Klips (Asma tavanda kullanılmak üzere)', 'Malzeme', 'R', 'TL', 'Adet', '0.06000000', NULL, '(Asma tavanda kullanılmak üzere)', NULL, NULL, 'BPRE/0266/2010 Nolu sözleşme', 0),
+(119746, 7, 'P10020500.R01.08', NULL, 'MA10020500', 'Çelik Dübel M8*100', 'Malzeme', 'R', 'TL', 'Adet', '0.11000000', NULL, '(Asma tavanda kullanılmak üzere)', NULL, NULL, 'BPRE/0266/2010 Nolu sözleşme', 0),
+(119747, 7, 'P10050600.R01.09', NULL, 'MA10050600', 'Derz Bandı (Asma tavanda kullanılmak üzere)', 'Malzeme', 'R', 'TL', 'M', '0.04000000', NULL, '(Asma tavanda kullanılmak üzere)', NULL, NULL, 'BPRE/0266/2010 Nolu sözleşme', 0),
+(119750, 7, 'P01703002.R01.01', NULL, 'P01703002', 'Aluminium Doğrama Kapı ve Pencere Yapılması', 'Malzeme + İşçilik', 'R', '$', 'M2', '290.00000000', NULL, '2mm et kalınlıklı Aluminium Profil ve Panibel Top N pos.2 (6mm x2) Çift Cam.\nBirim Fiyat 2.30 x 3,75 Kapı ve Pencere birim fiyatı dikkate alınarak hesaplanmıştır.', 'Hueck / SAFİ YAPI SİSTEMLERİ A.Ş.', NULL, 'BPRE/023/2009 Nolu sözleşme', 0),
+(119751, 7, 'P01703002.R01.02', NULL, 'P01703002', 'Aluminium Doğrama Kapı ve Pencere Yapılması', 'Malzeme + İşçilik', 'R', '$', 'M2', '125.00000000', NULL, '(6mm x2) Çift Cam - Beyaz Boyalı\n\nBirim Fiyat 2.70 x 2,75 Kapı ve Pencere birim fiyatı dikkate alınarak hesaplanmıştır.', 'ACS Aluminium dış cephe sistemleri A.Ş.', NULL, 'BPRE/050/2009 Nolu sözleşme', 0),
+(119752, 7, 'P01703002.R01.03', NULL, 'P01703002', 'Motorlu otopark kapısı yapılması', 'Malzeme + İşçilik', 'R', '$', 'M2', '92.20000000', NULL, NULL, 'Breda / İKON Yapı Elektronik San. Ve Tic. A.Ş.', 'Dock S3 Yüksek Yataklamalı', 'BPRE/053/2009 Nolu sözleşme - Villa 11', 0),
+(119753, 7, 'P01703002.R01.04', NULL, 'P01703002', 'Ahşap Doğrama Yapılması (Eğrisel)', 'Malzeme + İşçilik', 'R', '€', 'M2', '147.62000000', NULL, 'Körkasalar, Dış Kapatama çıtaları ve cam malzeme ve işçiliği dahil olmak üzere Meranti ağacından ahşap doğrama yapılması\n\nBirim fiyat 220x355 kapı baz alınarak hesaplanmıştır.', 'BELFA', NULL, 'BPRE/0123/2009 Nolu sözleşme.', 0),
+(119754, 7, 'P01703002.R01.05', NULL, 'P01703002', 'Ahşap Doğrama Yapılması (Dikdörtgen)', 'Malzeme + İşçilik', 'R', '€', 'M2', '110.22000000', NULL, 'Körkasalar, Dış Kapatama çıtaları ve cam malzeme ve işçiliği dahil olmak üzere Meranti ağacından ahşap doğrama yapılması.\n\nBirim fiyat 220x355 kapı baz alınarak hesaplanmıştır.', 'BELFA', NULL, 'BPRE/0123/2009 Nolu sözleşme', 0),
+(119755, 7, 'P01703002.R02.01', NULL, 'P01703002', 'PVC Doğrama Yapılması', 'Malzeme + İşçilik', 'R', '$', 'M2', '209.00000000', NULL, 'Körkasalar ve cam, malzeme ve işçiliği dahil olmak üzere PVC doğrama yapılması.', 'Pimeks', NULL, 'BPRE/0137/2009 Nolu sözleşme', 0);
+INSERT INTO `pozlar_try` (`PozID`, `BFKitapNo`, `PozNo`, `PozSNo`, `MkkCode`, `PozTanim`, `MaliyetGrup`, `PozTipi`, `ParaBirim`, `OlcuBirim`, `BirimFiyat`, `BfTarih`, `PozAciklama`, `PozFirma`, `PozModel`, `PozRef`, `sorumluluk`) VALUES
+(119756, 7, 'P10051200.R01.01', NULL, 'MA10051200', 'Geotextile Keçe 200gr/m2', 'Malzeme', 'R', '$', 'm2', '0.40000000', NULL, '- Malzeme', 'İstanbul Teknik', '(2x100)m 200gr/m2 gri keçe', 'BPRE/0006/2008 Nolu sözleşme - Premium Villalar', 0),
+(119757, 7, 'P10050300.R01.02', NULL, 'MA10050300', '2mm PVC Membran', 'Malzeme', 'R', '$', 'M2', '5.25000000', NULL, NULL, 'Ahed Plastik', '(2,1x25)m PVC gri membran', 'BPRE/0007/2008 Nolu sözleşme - Italyan Villa ve 5 Premium Villa', 0),
+(119758, 7, 'P10020800.R01.03', NULL, 'MA10020800', 'Aluminium baskı çıtası', 'Malzeme', 'R', 'TL', 'M', '0.76000000', NULL, NULL, 'ARFEN İnşaat', 'AR2004 E (Tek kulaklı yalıtım baskı profili) 1,1mm et kalınlığı', 'BPRE/0040/2009 Nolu sözleşme - Premium Villa', 0),
+(119763, 7, 'P04201003.A01.02', NULL, 'P04201003', '200mm Corrugated HDPE Atıksu/Yağmur suyu Hattı Döşenmesi', 'Malzeme + İşçilik', 'A', '$', 'M', '33.31028409', NULL, NULL, NULL, NULL, NULL, 0),
+(119783, 7, 'P10120900.R01.01', NULL, 'MA10120900', 'Triplex Atıksu Borusu 200mm SN4', 'Malzeme', 'R', '€', 'M', '2.25000000', NULL, '6m Boru uzunluğu Manşon ve Conta kullanılacak', 'Fırat Plastik', '200mm SN4', 'BPRE/0013/2008 Nolu sözleşme', 0),
+(119784, 7, 'P10120900.R01.02', NULL, 'MA10120900', 'Triplex Atıksu Borusu 300mm SN4', 'Malzeme', 'R', '€', 'M', '5.04000000', NULL, '6m Boru uzunluğu Manşon ve Conta kullanılacak', 'Fırat Plastik', '300mm SN4', 'BPRE/0013/2008 Nolu sözleşme', 0),
+(119785, 7, 'P10120900.R01.03', NULL, 'MA10120900', 'Triplex Atıksu Borusu 400mm SN4', 'Malzeme', 'R', '€', 'M', '7.84000000', NULL, '6m Boru uzunluğu Manşon ve Conta kullanılacak', 'Fırat Plastik', '400mm SN4', 'BPRE/0013/2008 Nolu sözleşme', 0),
+(119786, 7, 'P10120900.R01.04', NULL, 'MA10120900', 'Triplex Atıksu Borusu 500mm SN8 (Kendinden Manşonlu)', 'Malzeme', 'R', '€', 'M', '16.47000000', NULL, '6m Boru uzunluğu kendinden manşonlu ancak Conta kullanılacak', 'Fırat Plastik', '500mm SN8', 'BPRE/0013/2008 Nolu sözleşme', 0),
+(119787, 7, 'P10120900.R01.05', NULL, 'MA10120900', 'Triplex Boru Manşonu 200mm', 'Malzeme', 'R', '€', 'Adet', '1.26000000', NULL, '200mm Manşon', 'Fırat Plastik', '200mm', 'BKON/2055/2011 Nolu sözleşme', 0),
+(119788, 7, 'P10120900.R01.06', NULL, 'MA10120900', 'Triplex Boru Manşonu 300mm', 'Malzeme', 'R', '€', 'Adet', '3.28000000', NULL, '300mm Manşon', 'Fırat Plastik', '300mm', 'BKON/2055/2011 Nolu sözleşme', 0),
+(119789, 7, 'P10120900.R01.07', NULL, 'MA10120900', 'Triplex Boru Manşonu 400mm', 'Malzeme', 'R', '€', 'Adet', '7.52000000', NULL, '400mm Manşon', 'Fırat Plastik', '400mm', 'BPRE/0155/2010 Nolu sözleşme', 0),
+(119790, 7, 'P10120900.R01.08', NULL, 'MA10120900', 'Triplex Boru Contası 200mm', 'Malzeme', 'R', '€', 'Adet', '0.40000000', NULL, '200mm Conta', 'Fırat Plastik', '200mm', 'BKON/2055/2011 Nolu sözleşme', 0),
+(119791, 7, 'P10120900.R01.09', NULL, 'MA10120900', 'Triplex Boru Contası 300mm', 'Malzeme', 'R', '€', 'Adet', '0.87000000', NULL, '300mm Conta', 'Fırat Plastik', '300mm', 'BKON/2055/2011 Nolu sözleşme', 0),
+(119792, 7, 'P10120900.R01.10', NULL, 'MA10120900', 'Triplex Boru Contası 400mm', 'Malzeme', 'R', '€', 'Adet', '1.95000000', NULL, '400mm Conta', 'Fırat Plastik', '400mm', 'BPRE/0155/2010 Nolu sözleşme', 0),
+(119793, 7, 'P10120900.R01.11', NULL, 'MA10120900', 'Triplex Boru Contası 500mm', 'Malzeme', 'R', '€', 'Adet', '2.97000000', NULL, '500mm Conta', 'Fırat Plastik', '500mm', 'BPRE/0013/2008 Nolu sözleşme', 0),
+(119794, 7, 'P10120900.R01.12', NULL, 'MA10120900', 'Triplex Atıksu Borusu 200mm SN8', 'Malzeme', 'R', '€', 'M', '2.94000000', NULL, '6m Boru uzunluğu Manşon ve Conta kullanılacak', 'Fırat Plastik', '200mm SN8', 'BKON/2055/2011 Nolu sözleşme', 0),
+(119795, 7, 'P10120900.R01.13', NULL, 'MA10120900', 'Triplex Atıksu Borusu 300mm SN8', 'Malzeme', 'R', '€', 'M', '6.60000000', NULL, '6m Boru uzunluğu Manşon ve Conta kullanılacak', 'Fırat Plastik', '300mm SN8', 'BKON/2055/2011 Nolu sözleşme', 0),
+(119796, 7, 'P10120900.R01.14', NULL, 'MA10120900', 'Triplex Atıksu Borusu 400mm SN8', 'Malzeme', 'R', '€', 'M', '11.71000000', NULL, '6m Boru uzunluğu Manşon ve Conta kullanılacak', 'Fırat Plastik', '400mm SN8', 'BPRE/0155/2010 Nolu sözleşme', 0),
+(119797, 7, 'P10120900.R01.15', NULL, 'MA10120900', 'Triplex Atıksu Borusu 600mm SN8 (Kendinden Manşonlu)', 'Malzeme', 'R', '€', 'M', '29.38000000', NULL, '6m Boru uzunluğu kendinden manşonlu ancak Conta kullanılacak', 'Fırat Plastik', '600mm SN8', 'BPRE/0155/2010 Nolu sözleşme', 0),
+(119798, 7, 'P10120900.R01.16', NULL, 'MA10120900', 'Triplex Boru Contası 600mm', 'Malzeme', 'R', '€', 'Adet', '5.38000000', NULL, '600mm Conta', 'Fırat Plastik', '600mm', 'BPRE/0155/2010 Nolu sözleşme', 0),
+(119799, 7, 'P10120300.R02.01', NULL, 'MA10120300', '90mm SDR17 PN10 PE100 Boru', 'Malzeme', 'R', '€', 'M', '1.97000000', NULL, '90mm SDR17 PN10 PE100 Boru, 12m Boru uzunluğu. Elektrofüzyon kaynaklı montaj', 'Fırat Plastik', '90mm SDR17 PN10 PE100', 'BPRE/0013/2008 Nolu sözleşme', 0),
+(119800, 7, 'P10120300.R02.02', NULL, 'MA10120300', '110mm SDR17 PN10 PE100 Boru', 'Malzeme', 'R', '€', 'M', '2.93000000', NULL, '110mm SDR17 PN10 PE100 Boru, 12m Boru uzunluğu. Elektrofüzyon kaynaklı montaj', 'Fırat Plastik', '110mm SDR17 PN10 PE100', 'BPRE/0013/2008 Nolu sözleşme', 0),
+(119801, 7, 'P10120300.R02.03', NULL, 'MA10120300', '160mm SDR17 PN10 PE100 Boru', 'Malzeme', 'R', '€', 'M', '6.10000000', NULL, '160mm SDR17 PN10 PE100 Boru, 12m Boru uzunluğu. Elektrofüzyon kaynaklı montaj', 'Fırat Plastik', '160mm SDR17 PN10 PE100', 'BPRE/0013/2008 Nolu sözleşme', 0),
+(119802, 7, 'P10120300.R02.04', NULL, 'MA10120300', '90mm SDR17 PN10 PE100 Elektro Füzyon Manşon', 'Malzeme', 'R', '€', 'M', '2.86000000', NULL, '90mm SDR17 PN10 PE100 Elektro Füzyon Manşon.', 'Fırat Plastik', '90mm SDR17 PN10 PE100 Elektro Füzyon', 'BPRE/0013/2008 Nolu sözleşme', 0),
+(119803, 7, 'P10120300.R02.05', NULL, 'MA10120300', '110mm SDR17 PN10 PE100 Elektro Füzyon Manşon', 'Malzeme', 'R', '€', 'M', '3.54000000', NULL, '110mm SDR17 PN10 PE100 Elektro Füzyon Manşon', 'Fırat Plastik', '110mm SDR17 PN10 PE100 Elektro Füzyon', 'BPRE/0013/2008 Nolu sözleşme', 0),
+(119804, 7, 'P10120300.R02.06', NULL, 'MA10120300', '160mm SDR17 PN10 PE100 Elektro Füzyon Manşon', 'Malzeme', 'R', '€', 'M', '7.59000000', NULL, '160mm SDR17 PN10 PE100 Elektro Füzyon Manşon.', 'Fırat Plastik', '160mm SDR17 PN10 PE100 Elektro Füzyon', 'BPRE/0013/2008 Nolu sözleşme', 0),
+(119805, 7, 'P10121000.R03.01', NULL, 'MA10121000', 'DN160 Drenaj Borusu', 'Malzeme', 'R', '$', 'M', '1.56000000', NULL, '160 mm drenaj borusu', 'Esen Plastik', 'DN160 Drenaj', 'BPRE/0094/2009 Nolu sözleşme', 0),
+(119806, 7, 'P10121000.R03.02', NULL, 'MA10121000', 'DN200 Drenaj Borusu', 'Malzeme', 'R', '$', 'M', '2.43000000', NULL, '200 mm drenaj borusu', 'Esen Plastik', 'DN200', 'BPRE/0094/2009 Nolu sözleşme', 0),
+(119807, 7, 'P10120900.R03.03', NULL, 'MA10120900', 'Triplex Atıksu Borusu 200mm SN4', 'Malzeme', 'R', '€', 'M', '3.24000000', NULL, '6m Boru uzunluğu Manşon ve Conta kullanılacak', 'Esen Plastik', '200mm SN4', 'BPRE/0094/2008 Nolu sözleşme', 0),
+(119808, 7, 'P10120900.R03.04', NULL, 'MA10120900', 'Triplex Boru Manşonu 200mm SN4', 'Malzeme', 'R', '€', 'Adet', '1.68000000', NULL, '200mm Manşon', 'Esen Plastik', '200mm SN4', 'BPRE/0094/2008 Nolu sözleşme', 0),
+(119809, 7, 'P10120900.R03.05', NULL, 'MA10120900', 'Triplex Boru Contası 200mm SN4', 'Malzeme', 'R', '€', 'Adet', '0.53000000', NULL, '200mm Conta', 'Esen Plastik', '200mm SN4', 'BPRE/0094/2008 Nolu sözleşme', 0),
+(119810, 7, 'P10130000.R01.01', NULL, 'MA10130000', 'Torf', 'Malzeme', 'R', '$', 'M3', '53.00000000', NULL, NULL, 'Cardstone Import AG', NULL, 'BPRE/0283/2010 Nolu sözleşme', 0),
+(119811, 7, 'P10150100.R01.01', NULL, 'MA10150100', 'Dumy Düz İşçi', 'İşçilik', 'R', '$', 'SA', '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119812, 7, 'P10150100.R01.02', NULL, 'MA10150100', 'Dumy Usta İşçi', 'İşçilik', 'R', '$', 'SA', '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119813, 7, 'P10150100.R01.03', NULL, 'MA10150100', 'Dumy Nakliye (KG)', 'Nakliye', 'R', '$', 'Kg', '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119814, 7, 'P10150100.R01.04', NULL, 'MA10150100', 'Dumy Nakliye (M3)', 'Nakliye', 'R', '$', 'M3', '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119815, 7, 'P10010600.R01.01', NULL, 'MA10010600', 'Kullanma Suyu', 'Malzeme', 'R', '$', 'M3', '1.14000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119971, 1, '2', NULL, 'P01100000', 'Kırım, Yıkım ve demontaj işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119972, 1, '3', NULL, 'P01101000', 'Kırım işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119973, 1, '4', NULL, 'P01101001', 'Delme kesme ve imalat kırımları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119974, 1, '5', NULL, 'P01101002', 'Rezerve', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119975, 1, '6', NULL, 'P01102000', 'Yıkım ve demontaj işleri (Saha hazırlık işleri)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119976, 1, '7', NULL, 'P01102001', 'Yıkım işleri (saha dışına taşımalar dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119977, 1, '8', NULL, 'P01102002', 'Demontaj işleri (saha dışına taşımalar dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119978, 1, '9', NULL, 'P01200000', 'Toprak ve Zemin Güçlendirme İşleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119979, 1, '10', NULL, 'P01201000', 'Kazı yapılması', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119980, 1, '11', NULL, 'P01201001', 'Makinalı Kazılar (Yumuşak Toprak, Kaya vs her türlü kazı işi)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119981, 1, '12', NULL, 'P01201002', 'Elle Kazılar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119982, 1, '13', NULL, 'P01202000', 'Dolgu işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119983, 1, '14', NULL, 'P01202001', 'Dolgu İşleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119984, 1, '15', NULL, 'P01203000', 'Zemin güçlendirme', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119985, 1, '16', NULL, 'P01203001', 'Jetgrout', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119986, 1, '17', NULL, 'P01203002', 'Çakma Kazık', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119987, 1, '18', NULL, 'P01203003', 'Fore Kazık', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119988, 1, '19', NULL, 'P01209900', 'Diğer', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119989, 1, '20', NULL, 'P01209999', 'Diğer Toprak İşleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119990, 1, '21', NULL, 'P01300000', 'Betonarme İşleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119991, 1, '22', NULL, 'P01301000', 'Taşıyıcı B/A Sistem (Karkas)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119992, 1, '23', NULL, 'P01301001', 'Grobeton/harçlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119993, 1, '24', NULL, 'P01301002', 'Kalıp yapılması (Düz/eğri yüzeyli her tür kalıp, iskelesi dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119994, 1, '25', NULL, 'P01301003', 'Betonarme Demiri (Nervürlü/Düz ve değişik çaplarla)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119995, 1, '26', NULL, 'P01301004', 'Yapısal Beton (Her tür ve sınıf ; katkıları, koruma önlemleri dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119996, 1, '27', NULL, 'P01301005', 'Prekast Elemanlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119997, 1, '28', NULL, 'P01301099', 'Diğer', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119998, 1, '29', NULL, 'P01400000', 'Çelik ve Metal Konstrüksiyonlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(119999, 1, '30', NULL, 'P01401000', 'Yapısal çelik', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120000, 1, '31', NULL, 'P01401001', 'Uzay kafes sistemler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120001, 1, '32', NULL, 'P01401002', 'Yapıda taşıyıcı çelik konstrüksiyon imalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120002, 1, '33', NULL, 'P01401003', 'Cephede taşıyıcı çelik konstrüksiyon imalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120003, 1, '34', NULL, 'P01401099', 'Diğer yapısal çelik işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120004, 1, '35', NULL, 'P01402000', 'Taşıyıcı olmayan metal konstrüksiyonlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120005, 1, '36', NULL, 'P01402001', 'Taşıyıcı olmayan çelik işleri (kutu profil benzeri tüm elemanlardan imalatlar)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120006, 1, '37', NULL, 'P01402099', 'Diğer ikincil çelik işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120007, 1, '38', NULL, 'P01500000', 'Dış Cephe İşleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120008, 1, '39', NULL, 'P01501000', 'Dış cephe işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120009, 1, '40', NULL, 'P01501001', 'Cephe macun vb şekilde alt hazırlıklar yapılması', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120010, 1, '41', NULL, 'P01501002', 'Cephe giydirme sistemleri ( kompozit panel vs mamül sistemler )', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120011, 1, '42', NULL, 'P01501003', 'Cephe Doğal Taş, Fibrobeton vb sistemler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120012, 1, '43', NULL, 'P01501004', 'Cephe Bakü Taşı kaplamaları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120013, 1, '44', NULL, 'P01501005', 'Cephe sıva/boya sistemleri (mantolama sistemleri dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120014, 1, '45', NULL, 'P01501006', 'Cephe sandviç panel benzeri panel imalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120015, 1, '46', NULL, 'P01501007', 'Cam giydirmeler (alüminyum profiller dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120016, 1, '47', NULL, 'P01501008', 'Cephe seramik, tuğla kaplamalar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120017, 1, '48', NULL, 'P01501099', 'Diğerleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120018, 1, '49', NULL, 'P01600000', 'Çatı İşleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120019, 1, '50', NULL, 'P01601000', 'Çatı işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120020, 1, '51', NULL, 'P01601001', 'Eğik çatı konstrüksiyonları (ahşaptan ya da çelikten mamul, OSB vb dahil, izolasyonlar hariç)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120021, 1, '52', NULL, 'P01601002', 'Düz çatı örtüsü kaplamaları (izolasyon hariç,şap dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120022, 1, '53', NULL, 'P01601003', 'Çatı kaplamaları (metal kiremit, kiremit, dekoratif diğer elemanlar vs)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120023, 1, '54', NULL, 'P01601004', 'Çatı oluk,dere vs imalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120024, 1, '55', NULL, 'P01601099', 'Diğer Çatı ve Kaplama Giderleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120025, 1, '56', NULL, 'P01700000', 'İnce İşler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120026, 1, '57', NULL, 'P01701000', 'Kaba/ince işler (duvarlar ve kaplama hazırlık işleri)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120027, 1, '58', NULL, 'P01701001', 'Örme Duvarlar (her tür malzemeyle ve kalınlıkta ; harçlar dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120028, 1, '59', NULL, 'P01701002', 'Bölme Duvarlar (tüm alçıpan vb malzemeyle üretilen ; metal konstrüksiyonlar dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120029, 1, '60', NULL, 'P01701003', 'Kaba sıva yapılması (setka vs dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120030, 1, '61', NULL, 'P01701004', 'Duvar giydirmeleri (alçıpan benzeri malzemelerle ; konstrüksiyonları dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120031, 1, '62', NULL, 'P01701005', 'Perlitli alçı sıva/saten alçı vb yüzey hazırlık işleri (profiller dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120032, 1, '63', NULL, 'P01701006', 'Şap ve harçlar vb döşeme alt hazırlıkları yapılması', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120033, 1, '64', NULL, 'P01701007', 'Yükseltilmiş döşeme sistemleri yapılması', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120034, 1, '65', NULL, 'P01701099', 'Diğerleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120035, 1, '66', NULL, 'P01702000', 'Kaplamalar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120036, 1, '67', NULL, 'P01702001', 'Parke (süpürgelikler ilgili kalemde dahil olacaktır)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120037, 1, '68', NULL, 'P01702002', 'Seramik-Granit Seramik (yapıştırıcılar , derz dolguları, profiller dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120038, 1, '69', NULL, 'P01702003', 'Granit-Mermer-Doğal Taş kaplamalar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120039, 1, '70', NULL, 'P01702004', 'PVC/Taraflex/Linolyum benzeri kaplamalar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120040, 1, '71', NULL, 'P01702005', 'Özel zemin kaplamaları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120041, 1, '72', NULL, 'P01702006', 'Halı', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120042, 1, '73', NULL, 'P01702007', 'Epoxy kaplamalar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120043, 1, '74', NULL, 'P01702008', 'Cam Parke', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120044, 1, '75', NULL, 'P01702009', 'Mozaik kaplamalar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120045, 1, '76', NULL, 'P01702039', 'Süpürgelikler (parke, mermer,seramik vb toplam olarak)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120046, 1, '77', NULL, 'P01702040', 'Diğer zemin kaplamaları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120047, 1, '78', NULL, 'P01702041', 'Boya', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120048, 1, '79', NULL, 'P01702042', 'Duvar Kağıdı', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120049, 1, '80', NULL, 'P01702043', 'Ahşap, lambri vb kaplamalar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120050, 1, '81', NULL, 'P01702044', 'Kumaş kaplamalar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120051, 1, '82', NULL, 'P01702045', 'Süs kolonları vb özel imalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120052, 1, '83', NULL, 'P01702046', 'Cam tuğla', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120053, 1, '84', NULL, 'P01702047', 'Rezerve', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120054, 1, '85', NULL, 'P01702048', 'Rezerve', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120055, 1, '86', NULL, 'P01702049', 'Rezerve', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120056, 1, '87', NULL, 'P01702070', 'Diğer duvar kaplamaları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120057, 1, '88', NULL, 'P01702081', 'Rezerve', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120058, 1, '89', NULL, 'P01702082', 'Asma Tavanlar (alçıpan)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120059, 1, '90', NULL, 'P01702083', 'Asma Tavanlar (.........)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120060, 1, '91', NULL, 'P01702084', 'Rezerve', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120061, 1, '92', NULL, 'P01702085', 'Kartonpiyer vs süslemeler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120062, 1, '93', NULL, 'P01702086', 'Diğer tavan kaplamaları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120063, 1, '94', NULL, 'P01702087', 'Eşik profilleri, dilatasyon profil ve kapakları, şaft kapakları vb elemanlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120064, 1, '95', NULL, 'P01702088', 'Silikon,mastik vb dolgular', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120065, 1, '96', NULL, 'P01702089', 'Rezerve', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120066, 1, '97', NULL, 'P01702099', 'Diğerleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120067, 1, '98', NULL, 'P01703000', 'Kapılar/Pencereler/Doğramalar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120068, 1, '99', NULL, 'P01703001', 'Kapı kasaları ile ilgili imalatlar (ayarlı sac kapı kasaları, profilden imalatlar vb)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120069, 1, '100', NULL, 'P01703002', 'Kapılar (alüminyum, metal, kaplama, masif vs ; aksesuarları ile beraber )', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120070, 1, '101', NULL, 'P01703003', 'Pencere doğramaları (alüminyum,ahşap, PVC)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120071, 1, '102', NULL, 'P01703004', 'Kapı ve pencere camları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120072, 1, '103', NULL, 'P01703099', 'Diğerleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120073, 1, '104', NULL, 'P01709900', 'Diğer', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120074, 1, '105', NULL, 'P01709901', 'Korkuluk ve küpeşteler (ferforje, ahşap vs)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120075, 1, '106', NULL, 'P01709902', 'Sanatçı İşi Çalışmalar (gravür,bezeme, süsleme vb dekoratif elemanlar)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120076, 1, '107', NULL, 'P01709903', 'Polikor tezgahlar vb elemanlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120077, 1, '108', NULL, 'P01709904', 'Bariyerler, yönlendirme çizgileri vb elemanlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120078, 1, '109', NULL, 'P01709905', 'Kepenk, jaluzi vs imalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120079, 1, '110', NULL, 'P01709906', 'Tuvalet kabinleri (Cubicle)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120080, 1, '111', NULL, 'P01709999', 'Diğer İnce İşler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120081, 1, '112', NULL, 'P01800000', 'İzolasyon İşleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120082, 1, '113', NULL, 'P01801000', 'Su izolasyonları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120083, 1, '114', NULL, 'P01801001', 'Bitümen izolasyonları (keçe, bitümlü karton, membranlar vs dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120084, 1, '115', NULL, 'P01801002', 'Sürme (sıvı izolasyonlar)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120085, 1, '116', NULL, 'P01801099', 'Diğer imalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120086, 1, '117', NULL, 'P01802000', 'Isı izolasyonları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120087, 1, '118', NULL, 'P01802001', 'Isı İzolasyonları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120088, 1, '119', NULL, 'P01802099', 'Diğer imalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120089, 1, '120', NULL, 'P02000000', 'MEKANİK İŞLER', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120090, 1, '121', NULL, 'P02100000', 'Tesisat ve Sistemler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120091, 1, '122', NULL, 'P02101000', 'Sıhhi tesisat', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120092, 1, '123', NULL, 'P02101001', 'Temiz Soğuk Su, Sıcak Su Borulamalar (borular, fittingler)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120093, 1, '124', NULL, 'P02101002', 'Atık Su.Yağmur Suyu borulamalar (borular,fittingler)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120094, 1, '125', NULL, 'P02101004', 'Ekipmanlar (pompalar, hidroforlar,tanklar,filtrasyon sistemleri vs)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120095, 1, '126', NULL, 'P02101005', 'Vitrifiye , batarya (finiş elemanları)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120096, 1, '127', NULL, 'P02101099', 'Diğerleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120097, 1, '128', NULL, 'P02102000', 'Isıtma-Soğutma', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120098, 1, '129', NULL, 'P02102001', 'Isıtma ve Soğutma Sistemleri borulamalar (borular, izolasyonlar dahil-yerden ısıtma sistemleri dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120099, 1, '130', NULL, 'P02102002', 'Rezerve', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120100, 1, '131', NULL, 'P02102003', 'Vanalar ve sair elemanlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120101, 1, '132', NULL, 'P02102004', 'Ekipmanlar (Chiller, pompalar, kazanlar, brülörler,fancoil vs)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120102, 1, '133', NULL, 'P02102005', 'Radyatör vb fikstürler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120103, 1, '134', NULL, 'P02102099', 'Diğerleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120104, 1, '135', NULL, 'P02103000', 'HVAC', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120105, 1, '136', NULL, 'P02103001', 'HVAC borulamalar (borular, izolasyonlar dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120106, 1, '137', NULL, 'P02103002', 'Havalandırma sistemleri (kanallar, izolasyonlar dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120107, 1, '138', NULL, 'P02103003', 'Egzost sistemleri (fanlar, merdiven basınçlandırmalar,damperler)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120108, 1, '139', NULL, 'P02103004', 'Ekipmanlar (klima santralleri, chillerler,split klima,VRF vs)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120109, 1, '140', NULL, 'P02103005', 'Menfez,anemostad vs', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120110, 1, '141', NULL, 'P02103099', 'Diğerleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120111, 1, '142', NULL, 'P02104000', 'Yangın söndürme', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120112, 1, '143', NULL, 'P02104001', 'Yağmurlama Sistemleri (borulama, fittingler,vanalar vs)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120113, 1, '144', NULL, 'P02104002', 'Yangın Dolapları, sprinklerler,söndürücüler vb finiş elemanları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120114, 1, '145', NULL, 'P02104003', 'Ekipmanlar (pompalar, hidroforlar,tanklar vs)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120115, 1, '146', NULL, 'P02104004', 'Gazlı söndürme sistemleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120116, 1, '147', NULL, 'P02104099', 'Diğerleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120117, 1, '148', NULL, 'P02105000', 'Doğalgaz', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120118, 1, '149', NULL, 'P02105001', 'Doğalgaz dağıtım sistemi imalatları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120119, 1, '150', NULL, 'P02200000', 'Özel İmalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120120, 1, '151', NULL, 'P02201000', 'Mekanik otomasyon', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120121, 1, '152', NULL, 'P02201001', 'Otomasyon Sistemleri tüm imalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120122, 1, '153', NULL, 'P02201002', 'Akıllı ev benzeri özel sistemler mekanik işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120123, 1, '154', NULL, 'P02209900', 'Diğer mekanik işler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120124, 1, '155', NULL, 'P02209901', 'Sismik koruma sistemleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120125, 1, '156', NULL, 'P02209902', 'Havuz, jakuzi vs sistemler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120126, 1, '157', NULL, 'P02209903', 'Titreşim yutucular, absorberler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120127, 1, '158', NULL, 'P02209904', 'Rezerve', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120128, 1, '159', NULL, 'P02209905', 'Rezerve', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120129, 1, '160', NULL, 'P02209999', 'Diğer Mekanik İşler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120130, 1, '161', NULL, 'P02402002', 'Metal boya ve koruma işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120131, 1, '162', NULL, 'P03000000', 'ELEKTRİK İŞLERİ', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120132, 1, '163', NULL, 'P03100000', 'Tesisat ve Sistemler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120133, 1, '164', NULL, 'P03101000', 'Enerji Temini, Alçak Gerilim ve Orta Gerilim', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120134, 1, '165', NULL, 'P03101001', 'Enerji Nakli (alçak gerilim ve orta gerilim kablolamalar)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120135, 1, '166', NULL, 'P03101002', 'Trafo, switchgear vs', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120136, 1, '167', NULL, 'P03101003', 'Vanalar ve sair elemanlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120137, 1, '168', NULL, 'P03101099', 'Diğerleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120138, 1, '169', NULL, 'P03102000', 'Kuvvetli akım ve sistemleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120139, 1, '170', NULL, 'P03102001', 'UPS, Jeneratörler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120140, 1, '171', NULL, 'P03102002', 'Elektrik Panoları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120141, 1, '172', NULL, 'P03102003', 'Anahtar, priz ve buatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120142, 1, '173', NULL, 'P03102004', 'Topraklama ve Yıldırımdan Korunma sistemleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120143, 1, '174', NULL, 'P03102005', 'Kablo taşıyıcı sistemler (tavalar, borular)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120144, 1, '175', NULL, 'P03102006', 'Tüm kablolamalar (kablolar,kablo pabuçları, bağları dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120145, 1, '176', NULL, 'P03102007', 'Aydınlatma armatürleri (lambalar dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120146, 1, '177', NULL, 'P03102008', 'Şalt malzemeler (kontaktör, röle, otomat, sigorta,şalterler)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120147, 1, '178', NULL, 'P03102099', 'Diğerleri (ör.kapı zilleri, klemensler,sayaçlar)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120148, 1, '179', NULL, 'P03200000', 'Özel İmalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120149, 1, '180', NULL, 'P03201000', 'Zayıf akım sistemleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120150, 1, '181', NULL, 'P03201001', 'Yangın', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120151, 1, '182', NULL, 'P03201002', 'Telefon', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120152, 1, '183', NULL, 'P03201003', 'TV/CCTV', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120153, 1, '184', NULL, 'P03201004', 'Ses, ışık,anons ve müzik Sistemi', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120154, 1, '185', NULL, 'P03201005', 'Data', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120155, 1, '186', NULL, 'P03201006', 'Güvenlik', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120156, 1, '187', NULL, 'P03201007', 'Otomasyon Sistemi', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120157, 1, '188', NULL, 'P03201008', 'Intercom Sistemi', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120158, 1, '189', NULL, 'P03201009', 'Hırsız Alarm Sistemi', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120159, 1, '190', NULL, 'P03201010', 'Kartlı Giriş Sistemleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120160, 1, '191', NULL, 'P03201011', 'Akıllı ev benzeri özel sistemler elektrik işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120161, 1, '192', NULL, 'P03201012', 'Otopark kontrol sistemleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120162, 1, '193', NULL, 'P03201013', 'Turnike sistemleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120163, 1, '194', NULL, 'P03201060', 'ICT Sistemleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120164, 1, '195', NULL, 'P03201099', 'Diğer zayıf akım sistemleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120165, 1, '196', NULL, 'P03209900', 'Diğer', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120166, 1, '197', NULL, 'P03209901', 'Çevre Aydınlatma (aydınlatma direkleri ve sistemleri)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120167, 1, '198', NULL, 'P03209999', 'Diğer Elektrik İşleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120168, 1, '199', NULL, 'P03703005', 'Kapı ve pencere aksesuarları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120169, 1, '200', NULL, 'P04000000', 'ALTYAPI İŞLERİ', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120170, 1, '201', NULL, 'P04100000', 'Toprak ve Kazı İşleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120171, 1, '202', NULL, 'P04101000', 'Toprak ve kazı işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120172, 1, '203', NULL, 'P04101001', 'Elle Altyapı Kazısı ve yataklamalar benzeri toprak işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120173, 1, '204', NULL, 'P04101002', 'Altyapı iksa işleri (palplanş vb imalatlar)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120174, 1, '205', NULL, 'P04200000', 'Borulama İşleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120175, 1, '206', NULL, 'P04201000', 'Borulama işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120176, 1, '207', NULL, 'P04201001', 'Drenaj işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120177, 1, '208', NULL, 'P04201002', 'Altyapı ekipmanları (tank, hidrant vs)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120178, 1, '209', NULL, 'P04201003', 'Altyapı boruları (korrüge, pvc vs ; sulama sistemleri dahil ; vana, fitting her türlü aksesuar dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120179, 1, '210', NULL, 'P04201004', 'Altyapı Bağlantıları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120180, 1, '211', NULL, 'P04201050', 'Ortak Zayıf Akım sinyal kabloları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120181, 1, '212', NULL, 'P04300000', 'Menhol, galeri vb işler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120182, 1, '213', NULL, 'P04301000', 'Menhol, galeri vb işler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120183, 1, '214', NULL, 'P04301001', 'Menholler (yerinde döküm ya da prekast elemanlarla )', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120184, 1, '215', NULL, 'P04301099', 'Diğer Altyapı İşleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120185, 1, '216', NULL, 'P05000000', 'PEYZAJ ve ÇEVRE DÜZENLEME', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120186, 1, '217', NULL, 'P05100000', 'Peyzaj ve Çevre Düzenleme', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120187, 1, '218', NULL, 'P05101000', 'Çevre düzenleme toprak işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120188, 1, '219', NULL, 'P05101001', 'Tesviye ve reglaj işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120189, 1, '220', NULL, 'P05102000', 'Sert zemin imalatları (Hardscape)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120190, 1, '221', NULL, 'P05102001', 'Kazı, dolgu ve benzeri toprak işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120191, 1, '222', NULL, 'P05102002', 'Yürüme yolları gibi yayalar için sert zemin imalatları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120192, 1, '223', NULL, 'P05102003', 'Araçlar için sert zemin imalatları (asfalt, stabilize dolgu, kazı, toprak işleri birlikte olmak üzere)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120193, 1, '224', NULL, 'P05102099', 'Diğer Sert Zemin imalatları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120194, 1, '225', NULL, 'P05103000', 'Yeşillendirme (Softscape)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120195, 1, '226', NULL, 'P05103001', 'Ağaçlar, bitki, çim, bitkisel toprak vs', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120196, 1, '227', NULL, 'P05103099', 'Diğer softscape imalatları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120197, 1, '228', NULL, 'P05109900', 'Diğer', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120198, 1, '229', NULL, 'P05109901', 'Heykel, bahçe mobilyası vs elemanlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120199, 1, '230', NULL, 'P05109902', 'Peyzaj strüktürel işler (göletler, köprüler vs)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120200, 1, '231', NULL, 'P05109903', 'Ağaç ev vb hazır peyzaj elemanları', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120201, 1, '232', NULL, 'P05109904', 'Çevre çiti, çevre duvarı vs', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120202, 1, '233', NULL, 'P05109905', 'Bekçi klübesi, nizamiye vb prefabrik imalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120203, 1, '234', NULL, 'P05109999', 'Diğer Peyzaj İşleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120204, 1, '235', NULL, 'P06000000', 'TAŞIMA SİSTEMLERİ', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120205, 1, '236', NULL, 'P06100000', 'Taşıma Sistemleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120206, 1, '237', NULL, 'P06101000', 'Yürüyen merdiven ve eskalatörler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120207, 1, '238', NULL, 'P06101001', 'Yürüyen Merdiven ve eskalatörler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120208, 1, '239', NULL, 'P06101002', 'Asansörler (İnsan ve yük dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120209, 1, '240', NULL, 'P06101099', 'Diğer Taşıma Sistemleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120210, 1, '241', NULL, 'P06102000', 'Özel Ekipmalnar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120211, 1, '242', NULL, 'P06102001', 'Diğer Özel Ekipmanlar (Bagaj taşıma vb. Sistemler)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120212, 1, '243', NULL, 'P07000000', 'MOBİLYA, TEFRİŞ & TEDARİK İŞLERİ', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120213, 1, '244', NULL, 'P07100000', 'Mobilya/Tefriş ve temin/tedarik işleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120214, 1, '245', NULL, 'P07101000', 'Mobilya/tefriş ve tedarik', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120215, 1, '246', NULL, 'P07101001', 'Sabit mobilyalar (dolaplar,radyatör kapamalar)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120216, 1, '247', NULL, 'P07101002', 'Tefriş ve tedarik (hareketli mobilyalar, yemek takımları, banyo takımları, perdeler vs dahil)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120217, 1, '248', NULL, 'P07101003', 'Beyaz eşya vb elektronik/mekanik ev tefriş malzemeleri (mutfak ekipmanları, tv vs)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120218, 1, '249', NULL, 'P07101004', 'Özel tefriş malzemeleri (aydınlatma ve avizeler benzeri )', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120219, 1, '250', NULL, 'P07101005', 'Sauna vb ahşap imalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120220, 1, '251', NULL, 'P07101006', 'Şömine vb elemanlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120221, 1, '252', NULL, 'P07101099', 'Diğerleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120222, 1, '253', NULL, 'P08000000', 'ÖZEL İMALATLAR', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120223, 1, '254', NULL, 'P08100000', 'Özel İmalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120224, 1, '255', NULL, 'P08101000', 'Tüm özel imalatlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120225, 1, '256', NULL, 'P08101001', 'Yüzme havuzu inşaası', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120226, 1, '257', NULL, 'P08101002', 'Akvaryum inşaası', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120227, 1, '258', NULL, 'P08101003', 'Buz pateni pisti, halı saha , tenis kortu vb spor sahaları inşaası', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120228, 1, '259', NULL, 'P08101004', 'Prefabrik elemanlar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120229, 1, '260', NULL, 'P08101005', 'Kule inşaası', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120230, 1, '261', NULL, 'P08101006', 'Radyasyon koruma vb özel amaçlı inşaalar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120231, 1, '262', NULL, 'P09000000', 'MOBİLİZASYON', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120232, 1, '263', NULL, 'P09100000', 'Mobilizasyon', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120233, 1, '264', NULL, 'P09101000', 'Mobilizasyon', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120234, 1, '265', NULL, 'P09101001', 'Prefabrik Binalar', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120235, 1, '266', NULL, 'P09101002', 'Ofis ve Kamp Tefriş', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120236, 1, '267', NULL, 'P09101003', 'Ofis ve Kamp Sahası tüm İnşaat,Elektik ve Mekanik İşleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120237, 1, '268', NULL, 'P09101004', 'Ofis ve Kamp Sahası - Utilities', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120238, 1, '269', NULL, 'P09101005', 'Saha İşleri (Altyapı ve Düzeltme)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120239, 1, '270', NULL, 'P09101007', 'Panik Odası', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120240, 1, '271', NULL, 'P09101099', 'Diğerleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120241, 1, '272', NULL, 'P99000000', 'DİĞERLERİ', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120242, 1, '273', NULL, 'P99100000', 'Direkt İmalat Giderlerine Paylaştırılacak Ortak Giderler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120243, 1, '274', NULL, 'P99101000', 'Sarf malzemeler ve sair malzemeler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120244, 1, '275', NULL, 'P99101001', 'Sarf Malzemeler ve Sair Malzemeler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120245, 1, '276', NULL, 'P99101002', 'Amortismana tabi olmayan el aletleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120246, 1, '277', NULL, 'P99101003', 'Tüpler, elektrodlar,kırıcı-delici-kesici uçlar gibi sarf malzemeleri', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120247, 1, '278', NULL, 'P99101099', 'Diğerleri (iş güvenliği malzemeleri)', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120248, 1, '279', NULL, 'P99102000', 'Maket, Mock-up vb giderler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120249, 1, '280', NULL, 'P99102001', 'Maket ve Mockup yaptırılması', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120250, 1, '281', NULL, 'P99200000', 'Ortak Rayicler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120251, 1, '282', NULL, 'P99201000', 'İşçilik - Nakliye Dumy Rayiçler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120255, 1, '1', NULL, 'P07101001', 'İNŞAAT İŞLERİ', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120265, 1, '283', NULL, 'P99202000', 'Sarf Malzemeler', NULL, 'B', 'TL', NULL, '0.00000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120331, 7, ' ', NULL, 'MA10150100', ' ', NULL, 'B', '$', NULL, '0.00000000', NULL, 'Poz Analizleri Açıklama Satırı Silmeyiniz', NULL, NULL, NULL, 0),
+(120334, 7, 'P01203003.A01.04', NULL, 'P01203003', '80cm çapında fore kazık yapılması(16m)', 'Malzeme + İşçilik', 'A', '$', 'M', '129.37731000', NULL, 'Zemin seviyesinin üzerindeki imalatlar dikkate alanmamıştır.\nÖlçü foraj boyudur.\nKazık Başı kırılması adet olarak ayrıca dikkate alınacaktır.', NULL, NULL, NULL, 0),
+(120336, 7, 'P01203003.A01.07', NULL, 'P01203003', '100cm çapında fore kazık yapılması(16m)', 'Malzeme + İşçilik', 'A', 'TL', 'M', '270.16946880', NULL, 'Zemin seviyesinin üzerindeki imalatlar dikkate alanmamıştır.\nÖlçü foraj boyudur.\nKazık Başı kırılması adet olarak ayrıca dikkate alınacaktır.', NULL, NULL, NULL, 0),
+(120338, 7, 'P04301001.A01.01', NULL, 'P04301001', 'Yerinde Döküm 1,5m Çap - 2,25m Yükseklikte Manhole Yapılması', 'Malzeme + İşçilik', 'A', '$', 'Adet', '2099.40330000', NULL, NULL, NULL, '1,5m Çap, H=2,25m', NULL, 0),
+(120339, 7, 'P10120700.R01.01', NULL, 'MA10120700', 'Dökme Demir Manhole Kapağı', 'Malzeme', 'R', '$', 'Adet', '125.00000000', NULL, 'Piyasa araştırması yapılacak', NULL, NULL, NULL, 0),
+(120340, 7, 'P04301001.A01.02', NULL, 'P04301001', 'Yerinde Döküm 1m Çap - 2,25m Yükseklikte Manhole Yapılması', 'Malzeme + İşçilik', 'A', '$', 'Adet', '1385.57880000', NULL, NULL, NULL, '1,0m Çap, H=2,25m', NULL, 0);
+INSERT INTO `pozlar_try` (`PozID`, `BFKitapNo`, `PozNo`, `PozSNo`, `MkkCode`, `PozTanim`, `MaliyetGrup`, `PozTipi`, `ParaBirim`, `OlcuBirim`, `BirimFiyat`, `BfTarih`, `PozAciklama`, `PozFirma`, `PozModel`, `PozRef`, `sorumluluk`) VALUES
+(120341, 7, 'P10010600.R01.05', NULL, 'MA10010600', 'Dolgu İçin kum malzemesi', 'Malzeme', 'R', '$', 'M3', '12.00000000', NULL, 'Birim Fiyat Araştırılacak', NULL, NULL, NULL, 0),
+(120342, 7, 'P04201003.A01.03', NULL, 'P04201003', '300mm Corrugated HDPE Atıksu/Yağmur suyu Hattı Döşenmesi', 'Malzeme + İşçilik', 'A', '$', 'M', '38.92829545', NULL, NULL, NULL, NULL, NULL, 0),
+(120343, 7, 'P04201003.A01.04', NULL, 'P04201003', '400mm Corrugated HDPE Atıksu/Yağmur suyu Hattı Döşenmesi', 'Malzeme + İşçilik', 'A', '$', 'M', '47.61275568', NULL, NULL, NULL, NULL, NULL, 0),
+(120344, 7, 'P04201003.A01.05', NULL, 'P04201003', '500mm Corrugated HDPE Atıksu/Yağmur suyu Hattı Döşenmesi', 'Malzeme + İşçilik', 'A', '$', 'M', '51.93571023', NULL, NULL, NULL, NULL, NULL, 0),
+(120345, 7, 'P04201003.A01.06', NULL, 'P04201003', '600mm Corrugated HDPE Atıksu/Yağmur suyu Hattı Döşenmesi', 'Malzeme + İşçilik', 'A', '$', 'M', '70.28017045', NULL, NULL, NULL, NULL, NULL, 0),
+(120346, 7, 'P01801002.R01.01', NULL, 'P01801000', 'YUZME HAVUZLARI SU YALITIMI-TAM ELASTIK', 'Malzeme + İşçilik', 'R', '$', 'm2', '5.84000000', NULL, 'Taban-duvar su izolasyonu -çimento esaslı çift kompanentli tam elastik.\nGider-suzgec etrafi dolgu;Tamirat ve pah yapilmasi dahil (SIKA TOPSEAL107)', 'PENAT İNŞAAT MMC', NULL, 'BPRE-202-2010', 0),
+(120348, 7, 'P01801002.R01.02', NULL, 'P01801000', 'BANYO-WC SU YALITIMI-YARI ELASTIK', 'Malzeme + İşçilik', 'R', '$', 'm2', '3.40000000', NULL, 'Zemin izolasyonu-çimento esaslı çift kompanentli yarı elastik\nGider-suzgec etrafi dolgu;Tamirat ve pah yapilmasi dahil (SIKA TOPSEAL107)', 'PENAT İNŞAAT MMC', NULL, 'BPRE-202-2010', 0),
+(120349, 7, 'P01801002.R01.03', NULL, 'P01801000', 'BALKONLAR VE TERASLAR SU YALITIMIİZOLASİYASI-ELASTİK', 'Malzeme + İşçilik', 'R', '$', 'm2', '4.00000000', NULL, 'Zemin izolasyonu-çimento esaslı çift kompanentli yarı elastik\nGider-suzgec etrafi dolgu;Tamirat ve pah yapilmasi dahil (SIKA TOPSEAL107)', 'PENAT İNŞAAT MMC', NULL, 'BPRE-202-2010', 0),
+(120350, 7, 'P10060300.R04.01', NULL, 'MA10060300', 'Dış cephe akrilik grenli boya', 'Malzeme', 'R', '$', 'Kg', '1.15000000', NULL, '25kg lık kovalarda akrilik grenli boya\nRenk kodu marshal kataloğundan alınmıştır.', 'Ortaç Boya San. Tic. Ltd. Şti.', 'Renk Kodu: 8131-40', 'BPRE-295-2010', 0),
+(120351, 7, 'P10060300.R04.02', NULL, 'MA10060300', 'Dış cephe akrilik grenli boya', 'Malzeme', 'R', '$', 'Kg', '1.15000000', NULL, '25kg lık kovalarda akrilik grenli boya\nRenk kodu marshal kataloğundan alınmıştır.', 'Ortaç Boya San. Tic. Ltd. Şti.', 'Renk Kodu: 1300-40', 'BPRE-295-2010', 0),
+(120352, 7, 'P05102003.R01.01', NULL, 'P05102003', 'Asphalt Binder Tabakası Yapılması 6cm', 'Malzeme + İşçilik', 'R', '$', 'm2', '7.50000000', NULL, 'BHAP Mobilizasyon asfalt işi', 'ITM MMC', NULL, 'BHAP', 0),
+(120353, 7, 'P05102003.R01.02', NULL, 'P05102003', 'Asphalt Binder Tabakası Yapılması 6cm', 'Malzeme + İşçilik', 'R', '$', 'm2', '8.50000000', NULL, 'BHAP Mobilizasyon asfalt işi', 'TALEH AT MMC', NULL, 'BHAP', 0),
+(120354, 7, 'P05102003.R01.03', NULL, 'P05102003', 'Asphalt Binder Tabakası Yapılması 6cm', 'Malzeme + İşçilik', 'R', '$', 'm2', '11.00000000', NULL, 'BHAP Mobilizasyon asfalt işi', 'AYNUR MMC', NULL, 'BHAP', 0),
+(120355, 7, 'P10020400.R01.01', NULL, 'MA10020400', 'Titanyumlu çinko çatı levhası (Bobin)', 'Malzeme', 'R', '€', 'Kg', '5.40000000', NULL, NULL, 'RHEINZINK / HİLMİ GÜNER MİMARLIK', 'kurşun-gri patinalı', 'HİLMİ GÜNER MİMARLIK Teklifi QUBA House için', 0),
+(120356, 7, 'P10020500.R01.01', NULL, 'MA10020500', 'Sabit bağlantı klipsi (Çatı imalatlarında kullanılmak üzere)', 'Malzeme', 'R', '€', 'Adet', '0.25000000', NULL, 'Çatı imalatlarında kullanılmak üzere', 'RHEINZINK / HİLMİ GÜNER MİMARLIK', NULL, 'HİLMİ GÜNER MİMARLIK Teklifi QUBA House için', 0),
+(120357, 7, 'P10020500.R01.02', NULL, 'MA10020500', 'Hareketli bağlantı klipsi (Çatı imalatlarında kullanılmak üzere)', 'Malzeme', 'R', '€', 'Adet', '0.30000000', NULL, '10 metreye kadar olan levhalarda kullanılır\n(Çatı imalatlarında kullanılmak üzere)', 'RHEINZINK / HİLMİ GÜNER MİMARLIK', NULL, 'HİLMİ GÜNER MİMARLIK Teklifi QUBA House için', 0),
+(120358, 7, 'P10020800.R01.03', NULL, 'MA10020800', 'Kenet Sızdırmazlık Bandı (Çatı imalatlarında kullanılmak üzere)', 'Malzeme', 'R', '€', 'Adet', '7.20000000', NULL, 'Düşük eğimli çatılarda ve/veya yoğun kar yağışlı bölgelerde kullanılır.', 'RHEINZINK / HİLMİ GÜNER MİMARLIK', NULL, 'HİLMİ GÜNER MİMARLIK Teklifi QUBA House için', 0),
+(120359, 7, 'P01601000.A01.01', NULL, 'P01601000', 'Titanyumlu Çinko Kenet Sistem Çatı Kaplaması', 'Malzeme + İşçilik', 'A', '€', 'm2', '41.47000000', NULL, NULL, 'RHEINZINK / HİLMİ GÜNER MİMARLIK', NULL, 'HİLMİ GÜNER MİMARLIK Teklifi QUBA House için', 0),
+(120360, 7, 'P01601000.A01.02', NULL, 'P01601000', 'Titanyumlu Çinko Gizli Dere Kaplaması', 'Malzeme + İşçilik', 'A', '€', 'm2', '36.21600000', NULL, NULL, 'RHEINZINK / HİLMİ GÜNER MİMARLIK', NULL, 'HİLMİ GÜNER MİMARLIK Teklifi QUBA House için', 0),
+(120361, 7, 'P10020400.R01.04', NULL, 'MA10020400', 'Gizli Dere Genleşme Levhası (Çatı imalatlarında kullanılmak üzere)', 'Malzeme', 'R', '€', 'm', '30.00000000', NULL, '6 m''de bir kullanılır.\n(Çatı imalatlarında kullanılmak üzere)', 'RHEINZINK / HİLMİ GÜNER MİMARLIK', NULL, 'HİLMİ GÜNER MİMARLIK Teklifi QUBA House için', 0),
+(120362, 7, 'P01701001.R03.01', NULL, 'P01701001', 'Tuğla duvar imalatı 13,5cm', 'İşçilik', 'R', '€', 'M2', '8.50000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'STKP/4045/2011 Nolu sözleşme', 0),
+(120363, 7, 'P01701001.R03.02', NULL, 'P01701001', 'Tuğla duvar imalatı 15cm', 'İşçilik', 'R', '€', 'M2', '8.50000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'STKP/4045/2011 Nolu sözleşme', 0),
+(120364, 7, 'P01701001.R03.03', NULL, 'P01701001', 'Tuğla duvar imalatı 20cm', 'İşçilik', 'R', '€', 'M2', '10.40000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'STKP/4045/2011 Nolu sözleşme', 0),
+(120365, 7, 'P01701001.R03.04', NULL, 'P01701001', 'Yatay Hatıl İmalatı', 'İşçilik', 'R', '€', 'm', '11.00000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'STKP/4045/2011 Nolu sözleşme', 0),
+(120366, 7, 'P01701001.R03.05', NULL, 'P01701001', 'Düşey Hatıl İmalatı', 'İşçilik', 'R', '€', 'm', '10.50000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'STKP/4045/2011 Nolu sözleşme', 0),
+(120367, 7, 'P01701001.R03.06', NULL, 'P01701001', 'Lento İmalatı', 'İşçilik', 'R', '€', 'm', '12.00000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'STKP/4045/2011 Nolu sözleşme', 0),
+(120368, 7, 'P01701001.R03.07', NULL, 'P01701001', 'Gazbeton Duvar Örülmesi 30cm', 'İşçilik', 'R', '€', 'm2', '12.25000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'STKP/4045/2011 Nolu sözleşme', 0),
+(120369, 7, 'P01701001.R03.08', NULL, 'P01701001', 'Gazbeton Duvar Örülmesi 13,5cm', 'İşçilik', 'R', '€', 'm2', '10.00000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'STKP/4045/2011 Nolu sözleşme', 0),
+(120370, 7, 'P01701001.R03.09', NULL, 'P01701001', 'BIMS Duvar Örülmesi 10cm', 'İşçilik', 'R', '€', 'm2', '10.00000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'STKP/4045/2011 Nolu sözleşme', 0),
+(120371, 7, 'P10030300.R04.01', NULL, 'MA10030300', 'Gazbeton', 'Malzeme', 'R', '€', 'm3', '35.00000000', NULL, NULL, 'AKG Gazbeton İşletmeleri Sanayi ve Ticaret AŞ.', NULL, 'STKP/2680/2011 Nolu sözleşme', 0),
+(120372, 7, 'P10010500.R04.02', NULL, 'MA10010500', 'Gazbeton Yapıştırıcısı', 'Malzeme', 'R', '€', 'Kg', '0.14000000', NULL, NULL, 'AKG Gazbeton İşletmeleri Sanayi ve Ticaret AŞ.', NULL, 'STKP/2680/2011 Nolu sözleşme', 0),
+(120373, 7, 'P01701001.A03.07', NULL, 'P01701001', 'Gazbeton Duvar Örülmesi 30cm', 'Malzeme + İşçilik', 'A', '€', 'm2', '24.53500000', NULL, NULL, NULL, NULL, NULL, 0),
+(120374, 7, 'P06101002.R01.01', NULL, 'P06101002', 'Asansör 1600kg 30 Stops 130.71m Travel Distance 4m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '99999.99999999', NULL, 'Asansör 1600kg 30 Stops 130.71m Travel Distance 4m/s Speed\nOverhead traction compact machine room (Nexway)\nHOTEL', 'Eta-Melco Elevator Co. LLC', '1600kg 30 Stops 4m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120375, 7, 'P06101002.R01.02', NULL, 'P06101002', 'Asansör 1600kg 29 Stops 119.71m Travel Distance 4m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '99999.99999999', NULL, 'Asansör 1600kg 29 Stops 119.71m Travel Distance 4m/s Speed\nOverhead traction compact machine room (Nexway)\nHOTEL', 'Eta-Melco Elevator Co. LLC', '1600kg 29 Stops 4m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120376, 7, 'P06101002.R01.03', NULL, 'P06101002', 'Asansör 1050kg 3 Stops 18m Travel Distance 1m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '29399.74000000', NULL, 'Asansör 1050kg 3 Stops 18m Travel Distance 1m/s Speed\nMRL (Elenessa)\nHOTEL', 'Eta-Melco Elevator Co. LLC', '1050kg 3 Stops 1m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120377, 7, 'P06101002.R01.04', NULL, 'P06101002', 'Asansör 1050kg 5 Stops 22,25m Travel Distance 1m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '42661.48000000', NULL, 'Asansör 1050kg 5 Stops 22,25m Travel Distance 1m/s Speed\nMRL (Elenessa)\nHOTEL', 'Eta-Melco Elevator Co. LLC', '1050kg 5 Stops 1m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120378, 7, 'P06101002.R01.05', NULL, 'P06101002', 'Asansör 2000kg 32 Stops 130.71m Travel Distance 2.5m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '99999.99999999', NULL, 'Asansör 2000kg 32 Stops 130.71m Travel Distance 2.5m/s Speed\nOverhead traction compact machine room (Nexway)\nHOTEL', 'Eta-Melco Elevator Co. LLC', '1600kg 32 Stops 2.5m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120379, 7, 'P06101002.R01.06', NULL, 'P06101002', 'Asansör 1600kg 30 Stops 119.71m Travel Distance 2.5m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '99999.99999999', NULL, 'Asansör 1600kg 30 Stops 119.71m Travel Distance 2.5m/s Speed\nOverhead traction compact machine room (Nexway)\nHOTEL', 'Eta-Melco Elevator Co. LLC', '1600kg 30 Stops 2.5m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120380, 7, 'P06101002.R01.07', NULL, 'P06101002', 'Asansör 1600kg 9 Stops 26.25m Travel Distance 1.75m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '52638.00000000', NULL, 'Asansör 1600kg 9 Stops 26.25m Travel Distance 1.75m/s Speed\nMRL (Elenessa)\nHOTEL', 'Eta-Melco Elevator Co. LLC', '1600kg 9 Stops 1.75m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120381, 7, 'P06101002.R01.08', NULL, 'P06101002', 'Asansör 1050kg 7 Stops 20,10m Travel Distance 1m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '33238.00000000', NULL, 'Asansör 1050kg 7 Stops 20,10m Travel Distance 1m/s Speed\nMRL (Elenessa)\nHOTEL', 'Eta-Melco Elevator Co. LLC', '1050kg 7 Stops 1m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120382, 7, 'P06101002.R01.09', NULL, 'P06101002', 'Asansör 1600kg 2 Stops 5,71m Travel Distance 1m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '41538.00000000', NULL, 'Asansör 1600kg 2 Stops 5,71m Travel Distance 1m/s Speed\nMRL (Elenessa)\nHOTEL', 'Eta-Melco Elevator Co. LLC', '1600kg 2 Stops 1m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120383, 7, 'P06101002.R01.10', NULL, 'P06101002', 'Asansör 1600kg 32 Stops 130,71m Travel Distance 4m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '99999.99999999', NULL, 'Asansör 1600kg 32 Stops 130,71m Travel Distance 4m/s Speed\nOverhead traction compact machine room (Nexway)\nHOTEL', 'Eta-Melco Elevator Co. LLC', '1600kg 32 Stops 4m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120384, 7, 'P06101002.R01.11', NULL, 'P06101002', 'Asansör 1275kg 28 Stops 126m Travel Distance 4m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '99999.99999999', NULL, 'Asansör 1275kg 28 Stops 126m Travel Distance 4m/s Speed\nOverhead traction compact machine room (Nexway)\nRESIDANCE', 'Eta-Melco Elevator Co. LLC', '1275kg 28 Stops 4m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120385, 7, 'P06101002.R01.12', NULL, 'P06101002', 'Asansör 2500kg 35 Stops 157,85m Travel Distance 2.5m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '99999.99999999', NULL, 'Asansör 2500kg 35 Stops 157,85m Travel Distance 2.5m/s Speed\nOverhead traction compact machine room (Nexway)\nRESIDANCE', 'Eta-Melco Elevator Co. LLC', '2500kg 35 Stops 2.5m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120386, 7, 'P06101002.R01.13', NULL, 'P06101002', 'Asansör 1600kg 4 Stops 10,95m Travel Distance 1m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '44161.48000000', NULL, 'Asansör 1600kg 4 Stops 10,95m Travel Distance 1m/s Speed\nMRL (Elenessa)\nRESIDANCE', 'Eta-Melco Elevator Co. LLC', '1600kg 4 Stops 1m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120387, 7, 'P06101002.R01.14', NULL, 'P06101002', 'Asansör 1600kg 36 Stops 161,15m Travel Distance 3m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '99999.99999999', NULL, 'Asansör 1600kg 36 Stops 161,15m Travel Distance 3m/s Speed\nOverhead traction compact machine room (Nexway)\nRESIDANCE', 'Eta-Melco Elevator Co. LLC', '1600kg 36 Stops 3m/s\nm/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120388, 7, 'P06101002.R01.15', NULL, 'P06101002', 'Asansör 2000kg 24 Stops 106,55m Travel Distance 4m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '99999.99999999', NULL, 'Asansör 2000kg 24 Stops 106,55m Travel Distance 4m/s Speed\nOverhead traction compact machine room (Nexway)\nOFFICE', 'Eta-Melco Elevator Co. LLC', '2000kg 24 Stops 4m/s\nm/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120389, 7, 'P06101002.R01.16', NULL, 'P06101002', 'Asansör 1275kg 13 Stops 54,50m Travel Distance 2,5m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '99999.99999999', NULL, 'Asansör 1275kg 13 Stops 54,50m Travel Distance 2,5m/s Speed\nOverhead traction compact machine room (Nexway)\nOFFICE', 'Eta-Melco Elevator Co. LLC', '1275kg 13 Stops 2.5m/s\nm/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120390, 7, 'P06101002.R01.17', NULL, 'P06101002', 'Asansör 1050kg 7 Stops 26,25m Travel Distance 1,75m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '51231.48000000', NULL, 'Asansör 1050kg 7 Stops 26,25m Travel Distance 1,75m/s Speed\nMRL (Elenessa)\nOFFICE', 'Eta-Melco Elevator Co. LLC', '1050kg 7 Stops 1.75m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120391, 7, 'P06101002.R01.18', NULL, 'P06101002', 'Asansör 2500kg 29 Stops 126,20m Travel Distance 4m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '99999.99999999', NULL, 'Asansör 2500kg 29 Stops 126,20m Travel Distance 4m/s Speed\nOverhead traction compact machine room (Nexway)\nOFFICE', 'Eta-Melco Elevator Co. LLC', '2500kg 29 Stops 4m/s\nm/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120392, 7, 'P06101002.R01.19', NULL, 'P06101002', 'Asansör 1600kg 2 Stops 3,45m Travel Distance 1m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '37638.00000000', NULL, 'Asansör 1600kg 2 Stops 3,45m Travel Distance 1m/s Speed\nMRL (Elenessa)\nRETAIL', 'Eta-Melco Elevator Co. LLC', '1600kg 2 Stops 1m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120393, 7, 'P06101002.R01.20', NULL, 'P06101002', 'Asansör 1050kg 4 Stops 19,35m Travel Distance 1m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '29138.00000000', NULL, 'Asansör 1050kg 4 Stops 19,35m Travel Distance 1m/s Speed\nMRL\nRETAIL', 'Eta-Melco Elevator Co. LLC', '1050kg 4 Stops 1m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120394, 7, 'P06101002.R01.21', NULL, 'P06101002', 'Asansör 2000kg 4 Stops 18,65m Travel Distance 1m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '82138.00000000', NULL, 'Asansör 2000kg 4 Stops 18,65m Travel Distance 1m/s Speed\nMRL\nRETAIL', 'Eta-Melco Elevator Co. LLC', '2000kg 4 Stops 1m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120395, 7, 'P06101002.R01.22', NULL, 'P06101002', 'Asansör 1050kg 2 Stops 3,30m Travel Distance 1m/s Speed', 'Malzeme + İşçilik', 'R', '$', 'Adet', '23938.00000000', NULL, 'Asansör 1050kg 2 Stops 3,30m Travel Distance 1m/s Speed\nMRL\nRETAIL', 'Eta-Melco Elevator Co. LLC', '1050kg 2 Stops 1m/s', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120396, 7, 'P06101001.R01.01', NULL, 'P06101001', 'Escalator 35 degree - 3,30m travel distance', 'Malzeme + İşçilik', 'R', '$', 'Adet', '38890.00000000', NULL, 'Steel Bottom\nSteel Side\nGlass Balustrade', 'Eta-Melco Elevator Co. LLC', '35 Degree 3,30m Travel Distance 1m Width (ZJ-SE 1000)', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120397, 7, 'P06101001.R01.02', NULL, 'P06101001', 'Escalator 35 degree - 3,45m travel distance', 'Malzeme + İşçilik', 'R', '$', 'Adet', '39090.00000000', NULL, 'Steel Bottom\nSteel Side\nGlass Balustrade', 'Eta-Melco Elevator Co. LLC', '35 Degree 3,45m Travel Distance 1m Width (ZJ-SE 1000)', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120398, 7, 'P06101001.R01.03', NULL, 'P06101001', 'Escalator 30 degree - 6,60m travel distance', 'Malzeme + İşçilik', 'R', '$', 'Adet', '57458.00000000', NULL, 'Steel Bottom\nSteel Side\nGlass Balustrade', 'Eta-Melco Elevator Co. LLC', '30 Degree 6,60m Travel Distance 1m Width (ZJ-SE 1000)', 'BFTP-PO-T-0033 Nolu Sözleşme', 0),
+(120436, 7, 'P10050300.R03.01', NULL, 'MA10050300', 'Polimer Bitümlü Membran 3mm', 'Malzeme', 'R', '€', 'm2', '2.05000000', NULL, NULL, 'Stoper Yapı ve Yalıtım Sistemleri A.Ş.', 'PlaStoper PP3 (3mm)', 'BKON 2016 nolu Sözleşme', 0),
+(120437, 7, 'P10050300.R03.02', NULL, 'MA10050300', 'Polimer Bitümlü Membran 4mm', 'Malzeme', 'R', '€', 'm2', '2.60000000', NULL, NULL, 'Stoper Yapı ve Yalıtım Sistemleri A.Ş.', 'PlaStoper PP4 (4mm)', 'BKON 2016 nolu Sözleşme', 0),
+(120438, 7, 'P10060200.R04.01', NULL, 'MA10060200', 'Bitüm Astar', 'Malzeme', 'R', '€', 'Kg', '0.54880000', NULL, '17 kg''lık Tenekelerde\nm2 Bitümlü membran başına 0,25kg olarak uygulanır', 'Stoper Yapı ve Yalıtım Sistemleri A.Ş.', 'Stoper Bitüm Astar', 'BKON 2004 Nolu sözleşme', 0),
+(120439, 7, 'P10051200.R02.01', NULL, 'MA10051200', '250 gr/m2 Geotextile', 'Malzeme', 'R', '€', 'm2', '0.32000000', NULL, '250gr/m2 örgüsüz geotextile', 'Istanbul Teknik', 'IZOTEKNIK 2500', 'BKON 2007 nolu sözleşme', 0),
+(120440, 7, 'P10090100.R01.01', NULL, 'MA10090100', '20mm PE Halojensiz Kangal Boru', 'Malzeme', 'R', 'TL', 'm', '0.34100000', NULL, '20mm 10ATU / 750N Halojensiz PE Elktrik borusu', 'Mutlusan Plastik San. Ve Tic. LTD ŞTİ.', '20mm 10ATU / 750N Halojensiz PE', 'BKON 2020 nolu sözleşme', 0),
+(120441, 7, 'P10090100.R01.02', NULL, 'MA10090100', '25mm PE Halojensiz Kangal Boru', 'Malzeme', 'R', 'TL', 'm', '0.45600000', NULL, '25mm 10ATU / 750N Halojensiz PE Elktrik borusu', 'Mutlusan Plastik San. Ve Tic. LTD ŞTİ.', '25mm 10ATU / 750N Halojensiz PE', 'BKON 2020 nolu sözleşme', 0),
+(120442, 7, 'P10090100.R01.03', NULL, 'MA10090100', '32mm PE Halojensiz Kangal Boru', 'Malzeme', 'R', 'TL', 'm', '0.72300000', NULL, '32mm 10ATU / 750N Halojensiz PE Elktrik borusu', 'Mutlusan Plastik San. Ve Tic. LTD ŞTİ.', '32mm 10ATU / 750N Halojensiz PE', 'BKON 2020 nolu sözleşme', 0),
+(120443, 7, 'P10090100.R01.04', NULL, 'MA10090100', '20mm Kangal Boru Kroşesi', 'Malzeme', 'R', 'TL', 'Adet', '0.05000000', NULL, NULL, 'Mutlusan Plastik San. Ve Tic. LTD ŞTİ.', NULL, 'BKON 2020 nolu sözleşme', 0),
+(120444, 7, 'P10090100.R01.05', NULL, 'MA10090100', '25mm Kangal Boru Kroşesi', 'Malzeme', 'R', 'TL', 'Adet', '0.06000000', NULL, NULL, 'Mutlusan Plastik San. Ve Tic. LTD ŞTİ.', NULL, 'BKON 2020 nolu sözleşme', 0),
+(120445, 7, 'P10090100.R01.06', NULL, 'MA10090100', '32mm Kangal Boru Kroşesi', 'Malzeme', 'R', 'TL', 'Adet', '0.08100000', NULL, NULL, 'Mutlusan Plastik San. Ve Tic. LTD ŞTİ.', NULL, 'BKON 2020 nolu sözleşme', 0),
+(120449, 7, 'P10040300.R02.01', NULL, 'MA10040300', 'Meşe Lamine Parke (14x188x2200)mm', 'Malzeme', 'R', '€', 'm2', '34.74000000', NULL, NULL, 'Parkett Yer Döşemeleri', NULL, 'BKON/2029/2010 Nolu Sözleşme', 0),
+(120451, 7, 'P10040100.R03.01', NULL, 'MA10040100', 'Laminated Plywood 18mm', 'Malzeme', 'R', '$', 'm3', '870.00000000', NULL, '(18x1250x2500)mm', 'LES MMC', '(18x1250x2500)mm', 'BKON/2013/2011 nolu sözleşme', 0),
+(120452, 7, 'P10090400.R01.01', NULL, 'MA10090400', 'NYY 3x50+25 Kablo', 'Malzeme', 'R', 'AZN', 'm', '16.56000000', NULL, NULL, 'Göknur Baki LTD', NULL, 'BKON/2014/2011 nolu sözleşme', 0),
+(120453, 7, 'P10070201.R06.01', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '17.60000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K863286 15x60 (RAL 9016) PRL D34', 'BKON/2047/2011 Nolu sözleşme', 0),
+(120454, 7, 'P10070201.R06.02', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '12.12000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K863286 30x60 Cemento Krem Mat R9 A18', 'BKON/2047/2011 Nolu sözleşme', 0),
+(120455, 7, 'P10070100.R02.01', NULL, 'MA10070100', 'Suni Mermer, Cilalı Yer Döşemesi', 'Malzeme', 'R', 'TL', 'm2', '36.44000000', NULL, '(29.7x60x3.5)cm', 'Kıvanç İnşaat San. Ve Tic. LTD ŞTİ.', '(29.7x60x3.5)cm', 'BKON/2062/2011', 0),
+(120456, 7, 'P01702003.R01.01', NULL, 'P01702003', 'Suni Mermer Yer Döşemesi İşçiliği', 'İşçilik', 'R', '$', 'm2', '11.20000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'BKON/ZEY2024/2011 Nolu Sözleşme', 0),
+(120457, 7, 'P01702003.R01.02', NULL, 'P01702003', 'L Tip Suni Mermer Merdiven Basamağı Yapılması İşçiliği', 'İşçilik', 'R', '$', 'm', '8.00000000', NULL, 'Mevcut beton basamakların iyice temizlenip ıslatıldıktan sonra, 400 kg çimento dozlu harçla döşeme ve duvar kaplaması teknik şartnamesine uygun olarak, suni mermer plak ile basamak ve rıhtın ayrı ayrı yekpare şekilde hazırlanması ve kaplanması, işidir.\n\nAna malzemeler YÜKLENİCİ tarafından temin edilir, sarf malzemeleri ve her türlü alet, edevat (sulu testere vs.) ALTYÜKLENİCİ tarafından temin edilir.', 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'BKON/ZEY2024/2011 Nolu Sözleşme', 0),
+(120458, 7, 'P01702003.R01.03', NULL, 'P01702003', 'Suni Mermer Süpürgelik Yapılması İşçiliği', 'İşçilik', 'R', '$', 'm', '3.20000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'BKON/ZEY2024/2011 Nolu Sözleşme', 0),
+(120459, 7, 'P01702003.R01.04', NULL, 'P01702003', 'Granit Yer Döşemesi Yapılması İşçiliği', 'İşçilik', 'R', '$', 'm2', '12.00000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'BKON/ZEY2024/2011 Nolu Sözleşme', 0),
+(120460, 7, 'P01702003.R01.05', NULL, 'P01702003', 'Granit Süpürgelik Yapılması İşçiliği', 'İşçilik', 'R', '$', 'm', '3.20000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'BKON/ZEY2024/2011 Nolu Sözleşme', 0),
+(120461, 7, 'P01702003.R01.06', NULL, 'P01702003', 'Yakılmış Granit Yer Döşemesi Yapılması İşçiliği', 'İşçilik', 'R', '$', 'm2', '12.00000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'BKON/ZEY2024/2011 Nolu Sözleşme', 0),
+(120462, 7, 'P01702003.R01.07', NULL, 'P01702003', 'Yakılmış Granit Süpürgelik Yapılması İşçiliği', 'İşçilik', 'R', '$', 'm', '3.20000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'BKON/ZEY2024/2011 Nolu Sözleşme', 0),
+(120463, 7, 'P01702003.R01.08', NULL, 'P01702003', 'Granit Eşik Yapılması İşçiliği', 'İşçilik', 'R', '$', 'm', '8.00000000', NULL, NULL, 'Köprülüler Grup İnşaat Ticaret LTD ŞTİ.', NULL, 'BKON/ZEY2024/2011 Nolu Sözleşme', 0),
+(120464, 7, 'P01301002.R03.01', NULL, 'P01301002', 'Kalıp Yapılması İşçiliği (iskele kurulumu dahil)', 'İşçilik', 'R', '$', 'm2', '18.00000000', NULL, NULL, 'Turret İnşaat Taahhüt LTD ŞTİ.', NULL, 'BKON/4001/20010 Nolu Sözleşme', 0),
+(120465, 7, 'P01301003.R03.01', NULL, 'P01301003', 'İnşaat demiri işlenmesi ve montajı', 'İşçilik', 'R', '$', 'Ton', '240.00000000', NULL, 'İnşaat demiri işlenmesi ve montajı', 'Turret İnşaat Taahhüt LTD ŞTİ.', NULL, 'BKON/4001/20010 Nolu Sözleşme', 0),
+(120466, 7, 'P01301004.R05.01', NULL, 'P01301004', 'Betonarme betonu dökümü', 'İşçilik', 'R', '$', 'M3', '6.00000000', NULL, NULL, 'Turret İnşaat Taahhüt LTD ŞTİ.', NULL, 'BKON/4001/20010 Nolu Sözleşme', 0),
+(120467, 7, 'P01201001.R02.01', NULL, 'P01201001', 'Toprak kazısı yapılması ve Çıkan malzemenin taşınması', 'İşçilik', 'R', 'AZN', 'm3', '3.50000000', NULL, NULL, 'AYAZ M.S. MMC', NULL, 'BKON/4002/2010 Nolu sözleşme ekindeki TMKF', 0),
+(120468, 7, 'P01201001.R02.02', NULL, 'P01201001', 'Toprak kazısı yapılması ve Çıkan malzemenin taşınması', 'İşçilik', 'R', 'AZN', 'm3', '2.85000000', NULL, NULL, 'TSS QRUP', NULL, 'BKON/4002/2010 Nolu sözleşme', 0),
+(120469, 7, 'P01201001.R02.03', NULL, 'P01201001', 'Kaya kazısı yapılması ve Çıkan malzemenin taşınması', 'İşçilik', 'R', 'AZN', 'm3', '9.00000000', NULL, NULL, 'AYAZ M.S. MMC', NULL, 'BKON/4002/2010 Nolu sözleşme ekindeki TMKF', 0),
+(120470, 7, 'P01201001.R02.04', NULL, 'P01201001', 'Kaya kazısı yapılması ve Çıkan malzemenin taşınması', 'İşçilik', 'R', 'AZN', 'm3', '6.80000000', NULL, NULL, 'TSS QRUP', NULL, 'BKON/4002/2010 Nolu sözleşme', 0),
+(120471, 7, 'P10050300.R04.01', NULL, 'MA10050300', 'Arduazlı Membran', 'Malzeme', 'R', '€', 'm2', '2.50000000', NULL, 'Parapette kullanılmak üzere.', 'IZOSER MMC', NULL, 'BKON/4004/2010 Nolu Sözleşme', 0),
+(120472, 7, 'P01702002.R03.01', NULL, 'P01702002', 'Zemin Seramik Kaplama Yapılması İşçiliği', 'İşçilik', 'R', '$', 'M2', '10.00000000', NULL, 'Mevcut şap veya benzeri yüzey üzerine fayans ve seramik yapıştırıcısının sürülmesi, özel tarak ile yivlendirilmesi, projede belirtilen boyut, cins ve renkteki seramik/porselen seramik levhaların projesine uygun olarak derz aralıkları bırakılarak döşenmesi, derzlerin işverenin belirleyeceği cins,renk ve kalitede derz macunu ile doldurulması, kaplanan yüzeylerin temizlenmesi işidir.\n\nSeramik/porselen levhalar,dolgu ve yapıştırıcı gibi ana malzemeler YÜKLENİCİ tarafından temin edilir. El aleti, ekipman(seramik kesme makinesi vs.) ve (sarf malzemeler köşe profilleri, geçiş profilleri vb.) ALTYÜKLENİCİ tarafından temin edilir.', 'LOKMAN BÖLÜKBAŞI', NULL, 'BKON/4005/2011 Nolu sözleşme', 0),
+(120473, 7, 'P01702002.R03.02', NULL, 'P01702002', 'Duvar Seramik Kaplama Yapılması İşçiliği', 'İşçilik', 'R', '$', 'M2', '10.00000000', NULL, 'Sıvası yapılmış duvar yüzeyin temizlenip yapıştırma harcının sürülmesi, özel tarak ile yivlendirilmesi, işverenin belirleyeceği cins ve renkte seramik plakların projesine uygun olarak kaplanması, arkalarının çimento şerbeti ile doldurulması, derzlerin işverenin belirleyeceği renkte hazırlanmış hazır derz macunu ile doldurulması, kaplanan yüzeylerin temizlenmesi, 2 sıra metal bordürün yapılması işidir.\n\nSeramik/porselen levhalar,dolgu ve yapıştırıcı gibi ana malzemeler YÜKLENİCİ tarafından temin edilir. El aleti, ekipman(seramik kesme makinesi vs.) ve (sarf malzemeler köşe profilleri, geçiş profilleri vb.) ALTYÜKLENİCİ tarafından temin edilir.', 'LOKMAN BÖLÜKBAŞI', NULL, 'BKON/4005/2011 Nolu sözleşme', 0),
+(120474, 7, 'P01702002.R03.03', NULL, 'P01702002', 'Seramik Süpürgelik Yapılması İşçiliği', 'İşçilik', 'R', '$', 'm', '5.00000000', NULL, NULL, 'LOKMAN BÖLÜKBAŞI', NULL, 'BKON/4005/2011 Nolu sözleşme', 0),
+(120475, 7, 'P01702001.R02.01', NULL, 'P01702001', 'Lamine Parke Yapılması', 'İşçilik', 'R', '$', 'M2', '12.00000000', NULL, 'Projesindeki boyutlarında, lamba zıvana geçmeli doğal freze meşe ahşap parkelerin iki bileşenli poliüretan esaslı parke yapıştırıcısı ile aluminyum mastarla hizalanarak yapıştırılması, parke yüzeyinin sistre ile pürüzlerinin giderilmesi, dolgu macunu çekilmesi, zımparalanması, astarlanması, markası YÜKLENİCİ tarafından belirlenecek olan parke cilası ile birinci katı parlak, ikinci ve üçüncü katları mukavemetli mat poliüretan esaslı cilayla (projede belirtilen yerlerde renkli olacaktır) üç kat cila yapılması işidir.', 'Ozan Orman Ürünleri', NULL, 'BKON/4006/2011 Nolu sözleşme', 0),
+(120476, 7, 'P06101002.R02.01', NULL, 'P06101002', 'Asansör Montajı Yapılması İşçiliği', 'İşçilik', 'R', 'AZN', 'Adet', '5000.00000000', NULL, 'Asansör içindeki iskelelerin kurulması, asansör kovasının ışıklandırılması, asansör malzemelerinin şantiyeye temini, motorların çatı katına çıkarılmasl için makine ekipman verilmesi, asansör kovasında açılacak kayıt deliklerinin açılması YÜKLENİCİ''ye aittir.', 'ABIŞOV ŞEMDİN', 'Yükseklik = 21m, Kapasite = 400kg (Ortalama Değer)', 'BKON/SD/006/2011', 0),
+(120477, 7, 'P01703002.R03.01', NULL, 'P01703002', 'Yangın Kapısı (105x220)', 'Malzeme + İşçilik', 'R', '$', 'Adet', '380.00000000', NULL, '*60 dakika yangın dayanımlı\n*Kasa: 1.5-2 mm galvanizli bükme sac kasa\n*Kanat: 1.5 mm kalınlığındal galvanizli sac kanat+özel yanglna dayanıklı boya\n*Avrupa Birligi normlarına uygun, El2-60 sertifikalı\n*Renk:RAL kodu işveren tarafından belirlenecektir.\n*Dolgu ve yalıtım malzemesi olarak yanmaz ve yalıtım değeri yüksek taş yünü veya benzeri malzemeler', 'İdeal Taahhüt İnşaat İç Mimarlık San. Tic. Ltd Şti', NULL, 'BKON/2041/2011 Nolu Sözleşme', 0),
+(120478, 7, 'P01703002.R03.02', NULL, 'P01703002', 'Sac Kapı (105x220)', 'Malzeme + İşçilik', 'R', '$', 'Adet', '347.50000000', NULL, '*Kasa: En az 1.5 mm galvanizli bükme sac kasa\n*Kanat: 1.5 mm kalınlığında galvanizli sac\n*TS 12655''e uygun\n*Renk:RAL kodu işveren tarafından belirlenecektir.', 'İdeal Taahhüt İnşaat İç Mimarlık San. Tic. Ltd Şti', NULL, 'BKON/2041/2011 Nolu Sözleşme', 0),
+(120479, 7, 'P01703002.R03.03', NULL, 'P01703002', 'Sac Kapı (145x220)', 'Malzeme + İşçilik', 'R', '$', 'Adet', '610.00000000', NULL, '*Kasa: En az 1.5 mm galvanizli bükme sac kasa\n*Kanat: 1.5 mm kalınlığında galvanizli sac\n*TS 12655''e uygun\n*Renk:RAL kodu işveren tarafından belirlenecektir.', 'İdeal Taahhüt İnşaat İç Mimarlık San. Tic. Ltd Şti', NULL, 'BKON/2041/2011 Nolu Sözleşme', 0),
+(120480, 7, 'P01703002.R03.04', NULL, 'P01703002', 'Sac Kapı (200x220)', 'Malzeme + İşçilik', 'R', '$', 'Adet', '730.00000000', NULL, '*Kasa: En az 1.5 mm galvanizli bükme sac kasa\n*Kanat: 1.5 mm kalınlığında galvanizli sac\n*TS 12655''e uygun\n*Renk:RAL kodu işveren tarafından belirlenecektir.', 'İdeal Taahhüt İnşaat İç Mimarlık San. Tic. Ltd Şti', NULL, 'BKON/2041/2011 Nolu Sözleşme', 0),
+(120481, 7, 'P01703002.R03.05', NULL, 'P01703002', 'Sac Kapı (80x80)', 'Malzeme + İşçilik', 'R', '$', 'Adet', '300.00000000', NULL, '*Kasa: En az 1.5 mm galvanizli bükme sac kasa\n*Kanat: 1.5 mm kalınlığında galvanizli sac\n*TS 12655''e uygun\n*Renk:RAL kodu işveren tarafından belirlenecektir.', 'İdeal Taahhüt İnşaat İç Mimarlık San. Tic. Ltd Şti', NULL, 'BKON/2041/2011 Nolu Sözleşme', 0),
+(120482, 7, 'P01703002.R03.06', NULL, 'P01703002', 'Çelik Kapı (105x220)', 'Malzeme + İşçilik', 'R', '$', 'Adet', '630.00000000', NULL, '*Kapı kanat kısmı 1.5 mm DKP kasa kısmı 2mm sactan imal edilecek.\n*Kasa ölçüleri ayarlanabilir olacak\n*Ahsap kanat yüzeyleri 10 mm MDF üzeri meşe freze olacaktır.\n*Sac aksamlar 240 derecede fırınlanıp elektrostatik toz boyalı değişik boya rengi alternatifli olacak.\n*Alt ve üst olmak üzere ikili Monoblok kilit sistemli olup, 5 yıl garantili olacaktır\n*Kasalar beton montajlı olacaktır.\n*Kapıla 2 yıl garantili olacaklar\n*Aksesuarlar 1. sınf Hafele veya muadili olup, kapı tokmağı, iç tarafta emniyet mandalı, kapı dürbünü, numaralık ve isimlik aparatı ile tüm aksesuarlar takılacaktır. (Malzeme için işveren onayı alınacaktır.)', 'İdeal Taahhüt İnşaat İç Mimarlık San. Tic. Ltd Şti', NULL, 'BKON/2041/2011 Nolu Sözleşme', 0),
+(120483, 7, 'P10120900.R04.01', NULL, 'MA10120900', '90 Derece 300mm Triplex Borusu Dirseği', 'Malzeme', 'R', '€', 'Adet', '17.49000000', NULL, NULL, 'Fırat Plastik', '90 Derece', 'BKON/2055/2011 Nolu Sözleşme', 0),
+(120484, 7, 'P10120900.R04.02', NULL, 'MA10120900', '90 Derece 200mm Triplex Borusu Dirseği', 'Malzeme', 'R', '€', 'Adet', '6.52000000', NULL, NULL, 'Fırat Plastik', '90 Derece', 'BKON/2055/2011 Nolu Sözleşme', 0),
+(120486, 7, 'P10070201.R07.01', NULL, 'MA10070201', 'Banyo duvar ve döşeme seramikleri', 'Malzeme', 'R', '$', 'M2', '19.00000000', NULL, 'GMK-V 131 Heraklia Stone Beige 30x60 cm', 'Kaleseramik', 'GMK-V 131 Heraklia Stone Beige 30x60 cm', 'BKON/2059/2011 Nolu sözleşme', 0),
+(120487, 7, 'P10121100.R01.01', NULL, 'MA10121100', 'DN 125 PPRC Boru', 'Malzeme', 'R', '€', 'm', '29.75000000', NULL, 'ASTOLAN tip PPRC Boru L=3000mm olarak üretilmiştir', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 125', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120489, 7, 'P10121100.R01.02', NULL, 'MA10121100', 'DN 100 PPRC Boru', 'Malzeme', 'R', '€', 'm', '22.28000000', NULL, 'ASTOLAN tip Sessiz PPRC Boru L=3000mm olarak üretilmiştir', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 100', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120490, 7, 'P10121100.R01.03', NULL, 'MA10121100', 'DN 70 PPRC Boru', 'Malzeme', 'R', '€', 'm', '14.95000000', NULL, 'ASTOLAN tip Sessiz PPRC Boru L=3000mm olarak üretilmiştir', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 70', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120491, 7, 'P10121100.R01.04', NULL, 'MA10121100', 'DN 56 PPRC Boru', 'Malzeme', 'R', '€', 'm', '10.47000000', NULL, 'ASTOLAN tip Sessiz PPRC Boru L=3000mm olarak üretilmiştir', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 56', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120492, 7, 'P10121100.R01.05', NULL, 'MA10121100', 'DN 125-125 / 100-45 derece Tek Çatal PPRC', 'Malzeme', 'R', '€', 'Adet', '30.89000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 125-125 / 100-45 derece Tek Çatal PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120493, 7, 'P10121100.R01.06', NULL, 'MA10121100', 'DN 125-125 / 125-45 derece Tek Çatal PPRC', 'Malzeme', 'R', '€', 'Adet', '36.36000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 125-125 / 125-45 derece Tek Çatal PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120494, 7, 'P10121100.R01.07', NULL, 'MA10121100', 'DN 100-100 / 100-45 derece Tek Çatal PPRC', 'Malzeme', 'R', '€', 'Adet', '24.38000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 100-100 / 100-45 derece Tek Çatal PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120495, 7, 'P10121100.R01.08', NULL, 'MA10121100', 'DN 100-100 / 70-45 derece Tek Çatal PPRC', 'Malzeme', 'R', '€', 'Adet', '19.72000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 100-100 / 70-45 derece Tek Çatal PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120496, 7, 'P10121100.R01.09', NULL, 'MA10121100', 'DN 100-100 / 56-45 derece Tek Çatal PPRC', 'Malzeme', 'R', '€', 'Adet', '17.35000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 100-100 / 56-45 derece Tek Çatal PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120497, 7, 'P10121100.R01.10', NULL, 'MA10121100', 'DN 70-70 / 70-45 derece Tek Çatal PPRC', 'Malzeme', 'R', '€', 'Adet', '15.63000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 70-70 / 70-45 derece Tek Çatal PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120498, 7, 'P10121100.R01.11', NULL, 'MA10121100', 'DN 70-70 / 56-45 derece Tek Çatal PPRC', 'Malzeme', 'R', '€', 'Adet', '13.69000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 70-70 / 56-45 derece Tek Çatal PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120499, 7, 'P10121100.R01.12', NULL, 'MA10121100', 'DN 56-56 / 56-45 derece Tek Çatal PPRC', 'Malzeme', 'R', '€', 'Adet', '10.98000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 56-56 / 56-45 derece Tek Çatal PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120500, 7, 'P10121100.R01.13', NULL, 'MA10121100', 'DN 125 / 45 Derece Dirsek PPRC', 'Malzeme', 'R', '€', 'Adet', '19.63000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 125 / 45 Derece Dirsek PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120501, 7, 'P10121100.R01.14', NULL, 'MA10121100', 'DN 125 / 87 Derece Dirsek PPRC', 'Malzeme', 'R', '€', 'Adet', '23.47000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 125 / 87 Derece Dirsek PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120502, 7, 'P10121100.R01.15', NULL, 'MA10121100', 'DN 100 / 45 Derece Dirsek PPRC', 'Malzeme', 'R', '€', 'Adet', '11.93000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 100 / 45 Derece Dirsek PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120503, 7, 'P10121100.R01.16', NULL, 'MA10121100', 'DN 100 / 87 Derece Dirsek PPRC', 'Malzeme', 'R', '€', 'Adet', '16.25000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 100 / 87 Derece Dirsek PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120504, 7, 'P10121100.R01.17', NULL, 'MA10121100', 'DN 70 / 45 Derece Dirsek PPRC', 'Malzeme', 'R', '€', 'Adet', '10.22000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 70 / 45 Derece Dirsek PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120505, 7, 'P10121100.R01.18', NULL, 'MA10121100', 'DN 70 / 87 Derece Dirsek PPRC', 'Malzeme', 'R', '€', 'Adet', '11.31000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 70 / 87 Derece Dirsek PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120506, 7, 'P10121100.R01.19', NULL, 'MA10121100', 'DN 56 / 45 Derece Dirsek PPRC', 'Malzeme', 'R', '€', 'Adet', '7.75000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 56 / 45 Derece Dirsek PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120507, 7, 'P10121100.R01.20', NULL, 'MA10121100', 'DN 56 / 87 Derece Dirsek PPRC', 'Malzeme', 'R', '€', 'Adet', '8.08000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 56 / 87 Derece Dirsek PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120508, 7, 'P10121100.R01.21', NULL, 'MA10121100', 'DN 125-100 (AS/AS) Redüksiyon PPRC', 'Malzeme', 'R', '€', 'Adet', '15.25000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 125-100 (AS/AS) Redüksiyon PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120509, 7, 'P10121100.R01.22', NULL, 'MA10121100', 'DN 100-70 (AS/AS) Redüksiyon PPRC', 'Malzeme', 'R', '€', 'Adet', '12.12000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 100-70 (AS/AS) Redüksiyon PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120510, 7, 'P10121100.R01.23', NULL, 'MA10121100', 'DN 100-56 (AS/AS) Redüksiyon PPRC', 'Malzeme', 'R', '€', 'Adet', '10.84000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 100-56 (AS/AS) Redüksiyon PPRC', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120511, 7, 'P10121100.R01.24', NULL, 'MA10121100', 'DN 125 - Körüklü Manşon', 'Malzeme', 'R', '€', 'Adet', '6.29000000', NULL, 'ASTOLAN tip Sessiz Boru L = 132mm', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 125 Körüklü Manşon', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120512, 7, 'P10121100.R01.25', NULL, 'MA10121100', 'DN 100 - Körüklü Manşon', 'Malzeme', 'R', '€', 'Adet', '4.46000000', NULL, 'ASTOLAN tip Sessiz Boru L = 124mm', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 100 Körüklü Manşon', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120513, 7, 'P10121100.R01.26', NULL, 'MA10121100', 'DN 70 - Körüklü Manşon', 'Malzeme', 'R', '€', 'Adet', '3.68000000', NULL, 'ASTOLAN tip Sessiz Boru L = 119mm', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 70 Körüklü Manşon', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120514, 7, 'P10121100.R01.27', NULL, 'MA10121100', 'DN 56 - Körüklü Manşon', 'Malzeme', 'R', '€', 'Adet', '3.39000000', NULL, 'ASTOLAN tip Sessiz Boru L = 126mm', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 56 Körüklü Manşon', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120515, 7, 'P10121100.R01.28', NULL, 'MA10121100', 'DN 125 Köşeli Temizleme Borusu', 'Malzeme', 'R', '€', 'Adet', '67.09000000', NULL, 'ASTOLAN tip Sessiz Boru', 'Wavin / Gelişim Teknik San. Ve Tic. Paz. A.Ş.', 'Wavin AS DN 125 Köşeli Temizleme Borusu', 'BKON/2021/2011 Nolu Sözleşme', 0),
+(120516, 7, 'P04201003.R06.01', NULL, 'P04201003', '110mm Koruge boru döşenmesi(kazı, döşeme, yataklama, geri dolgu)', 'İşçilik', 'R', '$', 'm', '11.25000000', NULL, NULL, 'EXILES STS MMC', NULL, 'SFOH-4003 nolu sozlesme', 0),
+(120517, 7, 'P10120100.R01.01', NULL, 'MA10120100', 'Ductile PIPE 400mmx6M Red epoxy painted', 'Malzeme', 'R', '€', 'm', '79.15000000', NULL, 'DIN EN 598/1994', 'Saint Gobain PAM / MAP', NULL, 'Sozlesme no: SKHC-2001', 0),
+(120518, 7, 'P10120100.R01.02', NULL, 'MA10120100', 'Ductile 45° BEND PECR 400mm', 'Malzeme', 'R', '€', 'm', '408.23000000', NULL, 'DIN EN 598/1994', 'Saint Gobain PAM / MAP', NULL, 'Sozlesme no: SKHC-2001', 0),
+(120519, 7, 'P10120100.R01.03', NULL, 'MA10120100', 'Ductile 11.25° BEND PECR 400mm', 'Malzeme', 'R', '€', 'm', '295.06000000', NULL, 'DIN EN 598/1994', 'Saint Gobain PAM / MAP', NULL, 'Sozlesme no: SKHC-2001', 0),
+(120520, 7, 'P10120100.R01.04', NULL, 'MA10120100', 'Ductile 12.5° BEND PECR 400mm', 'Malzeme', 'R', '€', 'm', '319.21000000', NULL, 'DIN EN 598/1994', 'Saint Gobain PAM / MAP', NULL, 'Sozlesme no: SKHC-2001', 0),
+(120522, 7, 'P10120300.R03.01', NULL, 'MA10120300', '160mm PN20 PE100 HDPE boru', 'Malzeme', 'R', '$', 'M', '14.02300000', NULL, NULL, 'Esen Plastik', NULL, 'sözleşme no: SKHC-2002', 0),
+(120523, 7, 'P10120300.R03.02', NULL, 'MA10120300', '400mm PN20 PE100 HDPE boru', 'Malzeme', 'R', '$', 'M', '87.48000000', NULL, NULL, 'Esen Plastik', NULL, 'sözleşme no: SKHC-2002', 0),
+(120524, 7, 'P10120300.R03.03', NULL, 'MA10120300', '400mm PN20 PE100 30° HDPE Dirsek', 'Malzeme', 'R', '$', 'Adet', '149.89000000', NULL, NULL, 'Esen Plastik', NULL, 'sözleşme no: SKHC-2002', 0),
+(120525, 7, 'P10120300.R03.04', NULL, 'MA10120300', '400mm PN20 PE100 45° HDPE Dirsek', 'Malzeme', 'R', '$', 'Adet', '166.54000000', NULL, NULL, 'Esen Plastik', NULL, 'sözleşme no: SKHC-2002', 0),
+(120526, 7, 'P10120300.R03.05', NULL, 'MA10120300', '400mm PN20 PE100 60° HDPE Dirsek', 'Malzeme', 'R', '$', 'Adet', '223.28000000', NULL, NULL, 'Esen Plastik', NULL, 'sözleşme no: SKHC-2002', 0),
+(120527, 7, 'P10120300.R03.06', NULL, 'MA10120300', '400mm PN20 PE100 90° HDPE Dirsek', 'Malzeme', 'R', '$', 'Adet', '248.09000000', NULL, NULL, 'Esen Plastik', NULL, 'sözleşme no: SKHC-2002', 0),
+(120528, 7, 'P10120300.R03.07', NULL, 'MA10120300', '400-250-250 PN20 PE100 HDPE Inegal T', 'Malzeme', 'R', '$', 'Adet', '275.85000000', NULL, NULL, 'Esen Plastik', NULL, 'sözleşme no: SKHC-2002', 0),
+(120529, 7, 'P10120300.R03.08', NULL, 'MA10120300', '250-160 PN20 PE100 HDPE Reduksiyon', 'Malzeme', 'R', '$', 'Adet', '54.56000000', NULL, NULL, 'Esen Plastik', NULL, 'sözleşme no: SKHC-2002', 0),
+(120530, 7, 'P10120300.R03.09', NULL, 'MA10120300', '160-110 PN20 PE100 HDPE Reduksiyon', 'Malzeme', 'R', '$', 'Adet', '15.32000000', NULL, NULL, 'Esen Plastik', NULL, 'sözleşme no: SKHC-2002', 0),
+(120531, 7, 'P10120300.R03.10', NULL, 'MA10120300', '400 mm PN20 HDPE Flans adaptoru', 'Malzeme', 'R', '$', 'Adet', '181.68000000', NULL, NULL, 'Esen Plastik', NULL, 'sözleşme no: SKHC-2002', 0),
+(120532, 7, 'P10120300.R03.11', NULL, 'MA10120300', '160 mm PN20 HDPE Flans adaptoru', 'Malzeme', 'R', '$', 'Adet', '15.32000000', NULL, NULL, 'Esen Plastik', NULL, 'sözleşme no: SKHC-2002', 0),
+(120533, 7, 'P10120300.R03.12', NULL, 'MA10120300', '110 mm PN20 HDPE Flans adaptoru', 'Malzeme', 'R', '$', 'Adet', '7.34000000', NULL, NULL, 'Esen Plastik', NULL, 'sözleşme no: SKHC-2002', 0),
+(120534, 7, 'P10120100.R02.01', NULL, 'MA10120100', 'PIPE 426x10mm 2mpa duz dikisli boru', 'Malzeme', 'R', 'AZN', 'm', '109.78000000', NULL, NULL, '………../Metal Baku', NULL, 'Sozlesme no: SKHC-2007', 0),
+(120536, 7, 'P07101001.R01.01', NULL, 'P07101001', 'Mutfak alt dolap yapılması', 'Malzeme + İşçilik', 'R', '$', 'm2', '215.61000000', NULL, 'Aluminium baza, Gövde ve kapaklar MDF Lam, Kenarlar 2mm PVC, Aksesuarlar fiyata dahil.', 'Sasha Mimarlık ve Mühendislik İnş. San. Tic. Ltd.', NULL, 'BKON/2086/2011 Nolu Sözleşme', 0),
+(120537, 7, 'P07101001.R01.02', NULL, 'P07101001', 'Mutfak üst dolap yapılması', 'Malzeme + İşçilik', 'R', '$', 'm2', '200.81000000', NULL, 'Aluminium baza, Gövde ve kapaklar MDF Lam, Kenarlar 2mm PVC, Aksesuarlar fiyata dahil.', 'Sasha Mimarlık ve Mühendislik İnş. San. Tic. Ltd.', NULL, 'BKON/2086/2011 Nolu Sözleşme', 0),
+(120538, 7, 'P07101001.R01.03', NULL, 'P07101001', 'Mutfak tezgahı yapılması', 'Malzeme + İşçilik', 'R', '$', 'm2', '41.49000000', NULL, '4mm Kalınlıkta, 63cm derinlikte Yeşil sunta Gentaş Laminant.\nNot: Fiyat m2 değerine göre yeniden düzenlendi.', 'Sasha Mimarlık ve Mühendislik İnş. San. Tic. Ltd.', NULL, 'BKON/2086/2011 Nolu Sözleşme', 0),
+(120539, 7, 'P10120100.R03.01', NULL, 'MA10120100', 'FLANS DN 400 PN25', 'Malzeme', 'R', 'TL', 'Adet', '250.00000000', NULL, 'Ic Cap 430 mm kalinlik 40mm', 'Nalbantoglu.ltd', NULL, 'Sozlesme no: SKHC-2008', 0),
+(120540, 7, 'P10120100.R03.02', NULL, 'MA10120100', 'FLANS DN 150 PN25', 'Malzeme', 'R', 'TL', 'Adet', '40.00000000', NULL, 'Ic Cap 178 mm kalinlik 28mm', 'Nalbantoglu.ltd', NULL, 'Sozlesme no: SKHC-2008', 0),
+(120541, 7, 'P10120100.R03.03', NULL, 'MA10120100', 'FLANS DN 100 PN25', 'Malzeme', 'R', 'TL', 'Adet', '25.00000000', NULL, 'Ic Cap 125 mm kalinlik 24mm', 'Nalbantoglu.ltd', NULL, 'Sozlesme no: SKHC-2008', 0),
+(120542, 7, 'P10120100.R04.01', NULL, 'MA10120100', 'Gate Valf+gear box DN 400 PN25', 'Malzeme', 'R', '€', 'Adet', '2687.00000000', NULL, NULL, 'Yakacik Valf San.Ltd.', NULL, 'Sozlesme no: SKHC-2009', 0),
+(120543, 7, 'P10120100.R04.02', NULL, 'MA10120100', 'Gate Valf DN 150 PN25', 'Malzeme', 'R', '€', 'Adet', '367.00000000', NULL, NULL, 'Yakacik Valf San.Ltd.', NULL, 'Sozlesme no: SKHC-2009', 0),
+(120544, 7, 'P10120100.R04.03', NULL, 'MA10120100', 'Gate Valf DN 100 PN25', 'Malzeme', 'R', '€', 'Adet', '212.80000000', NULL, NULL, 'Yakacik Valf San.Ltd.', NULL, 'Sozlesme no: SKHC-2009', 0),
+(120545, 7, 'P01702003.R02.01', NULL, 'P01702003', 'Mermer iç denizlik yapılması', 'Malzeme + İşçilik', 'R', '$', 'm', '20.00000000', NULL, 'Luna Bej 3cm damlalıksız', 'MM Mühendisler Mermer San. Tic. Ltd. Şti.', 'Luna Bej', 'BKON/2082/2011 Nolu sözleşme', 0),
+(120546, 7, 'P10020500.R02.01', NULL, 'MA10020500', 'Bulon', 'Malzeme', 'R', 'AZN', 'Kg', '2.80000000', NULL, 'Altyapi vana montajinda kullanilmak uzere', 'Kenan Insaat ve Ticaret MMC', NULL, 'SKHC-2011', 0),
+(120547, 7, 'P10120100.R05.01', NULL, 'MA10120100', 'Çelik Gate Valf DN 400 PN25', 'Malzeme', 'R', 'AZN', 'Adet', '4050.00000000', NULL, NULL, 'Kenan Insaat ve Ticaret MMC', NULL, 'Sozlesme no: SKHC-2011', 0),
+(120548, 7, 'P10120100.R05.03', NULL, 'MA10120100', 'Çelik Gate Valf DN 150 PN25', 'Malzeme', 'R', 'AZN', 'Adet', '560.00000000', NULL, NULL, 'Kenan Insaat ve Ticaret MMC', NULL, 'Sozlesme no: SKHC-2011', 0),
+(120549, 7, 'P10120100.R05.05', NULL, 'MA10120100', 'Çelik Gate Valf DN 100 PN25', 'Malzeme', 'R', 'AZN', 'Adet', '320.00000000', NULL, NULL, 'Kenan Insaat ve Ticaret MMC', NULL, 'Sozlesme no: SKHC-2011', 0),
+(120550, 7, 'P10120100.R05.02', NULL, 'MA10120100', 'Conta DN 400', 'Malzeme', 'R', 'AZN', 'Adet', '30.00000000', NULL, NULL, 'Kenan Insaat ve Ticaret MMC', NULL, 'Sozlesme no: SKHC-2011', 0),
+(120551, 7, 'P10120100.R05.04', NULL, 'MA10120100', 'Conta DN 150', 'Malzeme', 'R', 'AZN', 'Adet', '6.00000000', NULL, NULL, 'Kenan Insaat ve Ticaret MMC', NULL, 'Sozlesme no: SKHC-2011', 0),
+(120552, 7, 'P10120100.R05.06', NULL, 'MA10120100', 'Çelik Conta DN 100', 'Malzeme', 'R', 'AZN', 'Adet', '4.50000000', NULL, NULL, 'Kenan Insaat ve Ticaret MMC', NULL, 'Sozlesme no: SKHC-2011', 0),
+(120553, 7, 'P10120100.R05.07', NULL, 'MA10120100', 'Çelik Hava Vantuzu DN 100 PN25', 'Malzeme', 'R', 'AZN', 'Adet', '1250.00000000', NULL, 'Pissu Tesisati icin', 'Kenan Insaat ve Ticaret MMC', NULL, 'Sozlesme no: SKHC-2011', 0),
+(120554, 7, 'P10120100.R05.08', NULL, 'MA10120100', 'Çelik Kör Flanş DN 400 PN25', 'Malzeme', 'R', 'AZN', 'Adet', '1250.00000000', NULL, NULL, 'Kenan Insaat ve Ticaret MMC', NULL, 'Sozlesme no: SKHC-2011', 0),
+(120555, 7, 'P10120100.R06.01', NULL, 'MA10120100', 'Sürgülü Vana DN 250 PN 16 Demir Döküm', 'Malzeme', 'R', 'TL', 'Adet', '840.00000000', NULL, NULL, 'Yakacik Valf San.Ltd.', 'ZGV.2F.85.00', 'Sozlesme no: SSHC-2002', 0),
+(120556, 7, 'P10120100.R06.02', NULL, 'MA10120100', 'Sürgülü Vana DN 100 PN 16 Demir Döküm', 'Malzeme', 'R', 'TL', 'Adet', '240.00000000', NULL, NULL, 'Yakacik Valf San.Ltd.', 'ZGV.2F.81.00', 'Sozlesme no: SSHC-2002', 0),
+(120557, 7, 'P10120100.R06.03', NULL, 'MA10120100', 'Sürgülü Vana DN 50 PN 16 Demir Döküm', 'Malzeme', 'R', 'TL', 'Adet', '118.00000000', NULL, NULL, 'Yakacik Valf San.Ltd.', 'ZGV.2F.50.00', 'Sozlesme no: SSHC-2002', 0),
+(120558, 7, 'P10120100.R06.04', NULL, 'MA10120100', 'Sürgülü Vana DN 300 PN 16 Demir Döküm', 'Malzeme', 'R', 'TL', 'Adet', '1100.00000000', NULL, NULL, 'Yakacik Valf San.Ltd.', 'ZGV.2F.86.00', 'Sozlesme no: SSHC-2002', 0),
+(120559, 7, 'P10120100.R06.05', NULL, 'MA10120100', 'Sürgülü Vana DN 150 PN 40 Çelik Döküm', 'Malzeme', 'R', 'TL', 'Adet', '1336.00000000', NULL, NULL, 'Yakacik Valf San.Ltd.', 'ZGV.7F.83.00', 'Sozlesme no: SSHC-2002', 0),
+(120560, 7, 'P10120100.R06.06', NULL, 'MA10120100', 'Sürgülü Vana DN 250 PN 40 Çelik Döküm', 'Malzeme', 'R', 'TL', 'Adet', '2846.00000000', NULL, NULL, 'Yakacik Valf San.Ltd.', 'ZGV.7F.85.00', 'Sozlesme no: SSHC-2002', 0),
+(120561, 7, 'P10120100.R06.07', NULL, 'MA10120100', 'Sürgülü Vana DN 200 PN 40 Çelik Döküm', 'Malzeme', 'R', 'TL', 'Adet', '2239.00000000', NULL, NULL, 'Yakacik Valf San.Ltd.', 'ZGV.7F.84.00', 'Sozlesme no: SSHC-2002', 0),
+(120562, 7, 'P10120100.R06.08', NULL, 'MA10120100', 'Sürgülü Vana DN 50 PN 40 Çelik Döküm', 'Malzeme', 'R', 'TL', 'Adet', '268.00000000', NULL, NULL, 'Yakacik Valf San.Ltd.', 'ZGV.7F.50.00', 'Sozlesme no: SSHC-2002', 0),
+(120564, 7, 'P10120100.R06.09', NULL, 'MA10120100', 'Kuresel Vana(Flansli) DN 50 PN 16 Demir Döküm', 'Malzeme', 'R', 'TL', 'Adet', '113.12000000', NULL, NULL, 'Yakacik Valf San.Ltd.', 'YBF.2F.50.00', 'Sozlesme no: SSHC-2002', 0);
+INSERT INTO `pozlar_try` (`PozID`, `BFKitapNo`, `PozNo`, `PozSNo`, `MkkCode`, `PozTanim`, `MaliyetGrup`, `PozTipi`, `ParaBirim`, `OlcuBirim`, `BirimFiyat`, `BfTarih`, `PozAciklama`, `PozFirma`, `PozModel`, `PozRef`, `sorumluluk`) VALUES
+(120565, 7, 'P10120100.R06.10', NULL, 'MA10120100', 'Kuresel Vana(Flansli) DN 25 PN 40 Demir Döküm', 'Malzeme', 'R', 'TL', 'Adet', '75.04000000', NULL, NULL, 'Yakacik Valf San.Ltd.', 'YBF.2F.50.00', 'Sozlesme no: SSHC-2002', 0),
+(120566, 7, 'P10120100.R06.11', NULL, 'MA10120100', 'Çek Vana(Flansli) DN 200 PN 40 Çelik Döküm', 'Malzeme', 'R', 'TL', 'Adet', '1216.88000000', NULL, NULL, 'Yakacik Valf San.Ltd.', 'VCV.7F.84.00', 'Sozlesme no: SSHC-2002', 0),
+(120567, 7, 'P10120100.R06.12', NULL, 'MA10120100', 'Çek Vana(Flansli) DN 300 PN 40 Çelik Döküm', 'Malzeme', 'R', 'TL', 'Adet', '4737.60000000', NULL, NULL, 'Yakacik Valf San.Ltd.', 'VCV.7F.84.00', 'Sozlesme no: SSHC-2002', 0),
+(120568, 7, 'P01709901.R01.01', NULL, 'P01709901', 'Aluminium Balkon Korkuluğu Yapılması', 'Malzeme + İşçilik', 'R', '$', 'm', '120.00000000', NULL, NULL, 'Met-Ak Şirketi Azerbaycan', NULL, 'BKON/2057/2011 Nolu sözleşme', 0),
+(120569, 7, 'P01709901.R01.02', NULL, 'P01709901', 'Demir Merdiven Korkuluğu Yapılması', 'Malzeme + İşçilik', 'R', '$', 'm', '58.48000000', NULL, NULL, 'Met-Ak Şirketi Azerbaycan', NULL, 'BKON/2057/2011 Nolu sözleşme', 0),
+(120570, 7, 'P01501002.R01.01', NULL, 'P01501002', 'Ahşap Görünümlü Kompakt Laminant Dış Cephe Kaplaması Yapılması', 'Malzeme + İşçilik', 'R', '$', 'm2', '137.00000000', NULL, '8mm kalınlığında ahşap lambirilerle mekanik sistem cephe kaplaması yapılması.(Fundermax Marka)\nCephe Taşıyıcı sisteme ait malzemeler (profiller, baglantı elemanları, dübeI, civata, somun vs.) ile uygulama için kullanılacak tüm sarf malzemelerin temini birim fiyata dahildir.', 'Fundermax / Kart İnşaat Dekorasyon Ltd. Şti.', NULL, 'BKON/2051/2011 Nolu sözleşme', 0),
+(120571, 7, 'P01601001.R03.01', NULL, 'P01601001', 'Ahşap Çatı Yapılması', 'Malzeme + İşçilik', 'R', '$', 'm2', '12.00000000', NULL, 'İşin tamamlanması için gerekli bütün malzeme, alet, ekipman, sarf malzemeleri\nbirim fiyatlara dahildir.\nÖlçü:\n1) Çatinin onaylanmış projesinden yatay düzlemdeki izdüşümü saçak dışından saçak dışına (oluk hariç) ölçülerek m2 olarak hesaplanır.\n2) Gizli dereli çatılarda ölçü aynıdır.\n3) Baca boşluktan düşülmez.', 'Piramida F.R. MMC', NULL, 'BKON/2049/2011 Nolu sözleşme', 0),
+(120572, 7, 'P01601001.R03.02', NULL, 'P01601001', 'Çatı alt katmanlarının montajı', 'Malzeme + İşçilik', 'R', '$', 'm2', '12.00000000', NULL, 'İşin tamamlanması için gerekli bütün malzeme, alet, ekipman, sarf malzemeleri\nbirim fiyatlara dahildir.\n*2 Kat OSB3, Z Profil, BK, BD, Taş Yünü, Cam Yünü', 'Piramida F.R. MMC', NULL, 'BKON/2049/2011 Nolu sözleşme', 0),
+(120573, 7, 'P01601001.R03.03', NULL, 'P01601001', 'Galvanizli sac oluk yapılması', 'Malzeme + İşçilik', 'R', '$', 'm', '20.00000000', NULL, 'İşin tamamlanması için gerekli bütün malzeme, alet, ekipman, sarf malzemeleri\nbirim fiyatlara dahildir.\n*Kimyasal yalıtım ve alt kapmanlar dahil', 'Piramida F.R. MMC', NULL, 'BKON/2049/2011 Nolu sözleşme', 0),
+(120574, 7, 'P01601001.R03.04', NULL, 'P01601001', 'Boyalı galvanizli sac çatı kaplaması yapılması', 'Malzeme + İşçilik', 'R', '$', 'm', '13.00000000', NULL, 'İşin tamamlanması için gerekli bütün malzeme, alet, ekipman, sarf malzemeleri\nbirim fiyatlara dahildir.', 'Piramida F.R. MMC', NULL, 'BKON/2049/2011 Nolu sözleşme', 0),
+(120575, 7, 'P01601001.R03.05', NULL, 'P01601001', 'PVC Yağmur iniş borusu yapılması', 'Malzeme + İşçilik', 'R', '$', 'm', '9.00000000', NULL, 'İşin tamamlanması için gerekli bütün malzeme, alet, ekipman, sarf malzemeleri\nbirim fiyatlara dahildir.', 'Piramida F.R. MMC', NULL, 'BKON/2049/2011 Nolu sözleşme', 0),
+(120576, 7, 'P01703001.R01.01', NULL, 'P01703001', 'Kör Kasa Yapılması', 'Malzeme + İşçilik', 'R', '$', 'm', '12.75000000', NULL, NULL, 'Pimaks Luminium PVC ve Metal San. Tic. A.Ş.', NULL, 'BKON/2044/2011 Nolu Sözleşme', 0),
+(120577, 7, 'P01703003.R01.01', NULL, 'P01703003', 'PVC Doğrama Kapı ve Pencere Doğraması Yapılması', 'Malzeme + İşçilik', 'R', '$', 'm2', '258.50000000', NULL, 'Kör Kasa imalatları dahil değildir.', 'Pimeks Luminium PVC ve Metal San. Tic. A.Ş.', NULL, 'BKON/2044/2011 Nolu Sözleşme', 0),
+(120578, 7, 'P10150100.R01.05', NULL, 'MA10150100', 'Dummy Maliyet', 'Malzeme + İşçilik', 'R', 'TL', NULL, '1.00000000', NULL, 'Set Olarak Maliyet Girişi İçin Dummy Poz', NULL, NULL, NULL, 0),
+(120581, 7, 'P10031100.R01.01', NULL, 'MA10031100', 'Betopan 12x1250x2500mm', 'Malzeme', 'R', 'TL', 'm2', '7.80160000', NULL, NULL, 'Tepe Betopan', NULL, 'HAMP/2004/2010 Nolu sözleşme', 0),
+(120583, 7, 'P10031100.R01.02', NULL, 'MA10031100', 'Betopan 18x1250x2500mm', 'Malzeme', 'R', 'TL', 'm2', '11.25120000', NULL, NULL, 'Tepe Betopan', NULL, 'HAMP/2028/2011 Nolu sözleşme', 0),
+(120584, 7, 'P10031100.R01.03', NULL, 'MA10031100', 'Betopan 24x1250x2500mm', 'Malzeme', 'R', 'TL', 'm2', '15.00160000', NULL, NULL, 'Tepe Betopan', NULL, 'HAMP/2028/2011 Nolu sözleşme', 0),
+(120585, 7, 'P10020200.R02.01', NULL, 'MA10020200', 'Lama', 'Malzeme', 'R', 'TL', 'Kg', '1.75000000', NULL, '150x14 STS2-3\n9 ve 11 metre boyundaki lamalar için yapılan sözleşme fiyatıdır.', 'Suner Demir Çelik San. Tic. Ltd. Şti.', '150x14 STS2-3', 'HAMP/2050/2011 Nolu sözleşme', 0),
+(120586, 7, 'P10100100.R01.01', NULL, 'MA10100100', 'Klozet', 'Malzeme', 'R', '€', 'Adet', '38.40000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'Vitra S50-5318', 'HAMP/2062/2011', 0),
+(120587, 7, 'P10100100.R01.02', NULL, 'MA10100100', 'Özürlü Klozeti', 'Malzeme', 'R', '€', 'Adet', '138.00000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'Vitra S50-5336', 'HAMP/2062/2011', 0),
+(120588, 7, 'P10100100.R01.03', NULL, 'MA10100100', 'Klozet Kapağı', 'Malzeme', 'R', '€', 'Adet', '48.40000000', NULL, NULL, 'Lapis / Güneyliler Yapı Malzemeleri', 'Lapis 41-003-009', 'HAMP/2062/2011', 0),
+(120589, 7, 'P10100100.R01.04', NULL, 'MA10100100', 'Özürlü Klozeti Kapağı', 'Malzeme', 'R', '€', 'Adet', '14.40000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'Vitra 61-003-001', 'HAMP/2062/2011', 0),
+(120590, 7, 'P10100100.R01.05', NULL, 'MA10100100', 'Gömme Rezervuar', 'Malzeme', 'R', '€', 'Adet', '92.00000000', NULL, NULL, 'G.Duafiz / Güneyliler Yapı Malzemeleri', 'G.Duafiz 111.300.00.5', 'HAMP/2062/2011', 0),
+(120591, 7, 'P10100100.R01.06', NULL, 'MA10100100', 'Rezervuar Kapağı', 'Malzeme', 'R', '€', 'Adet', '52.00000000', NULL, NULL, 'Geberit / Güneyliler Yapı Malzemeleri', 'Geberit S50 (Camlı Paslanmaz) 115.788.00.1', 'HAMP/2062/2011', 0),
+(120592, 7, 'P10100100.R01.07', NULL, 'MA10100100', 'Pisuar', 'Malzeme', 'R', '€', 'Adet', '241.60000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'Vitra 4106-003-5291', 'HAMP/2062/2011', 0),
+(120593, 7, 'P10100100.R01.08', NULL, 'MA10100100', 'Özürlü Lavabo Bataryası', 'Malzeme', 'R', '€', 'Adet', '20.80000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'Vitra A 45123', 'HAMP/2062/2011', 0),
+(120594, 7, 'P10100100.R01.09', NULL, 'MA10100100', 'Lavabo Sifonu', 'Malzeme', 'R', '€', 'Adet', '156.40000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'Vitra A 47029', 'HAMP/2062/2011', 0),
+(120595, 7, 'P10100100.R01.10', NULL, 'MA10100100', 'Ara Musluk', 'Malzeme', 'R', '€', 'Adet', '14.00000000', NULL, NULL, 'Güneyliler Yapı Malzemeleri', NULL, 'HAMP/2062/2011', 0),
+(120596, 7, 'P10100100.R01.11', NULL, 'MA10100100', 'Duş Başlığı', 'Malzeme', 'R', '€', 'Adet', '38.00000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'Calipso A 45515', 'HAMP/2062/2011', 0),
+(120597, 7, 'P10100100.R01.12', NULL, 'MA10100100', 'Duş Bataryası Sıva Altı', 'Malzeme', 'R', '€', 'Adet', '18.00000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'Vitra - Minimax Ank. A 40592', 'HAMP/2062/2011', 0),
+(120598, 7, 'P10100100.R01.13', NULL, 'MA10100100', 'Duş Bataryası Sıva Üstü', 'Malzeme', 'R', '€', 'Adet', '17.60000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'Vitra - Minimax Ank. A 40586', 'HAMP/2062/2011', 0),
+(120605, 7, 'P01501007.R01.01', NULL, 'P01501007', 'Aluminium sabit giydirme cephe sistemi yapılması', 'Malzeme + İşçilik', 'R', '€', 'm2', '565.00000000', NULL, 'Aluminium malzeme ile standart renklerde elektrostatik toz boyanın yapılması, eğrisel olmayan camın temini ve montajı, bağlantı çeliklerinin imalatı birim fiyata dahildir. Cephe içindeki kapı alanları düşülecektir.', 'Dekoral-Aygün Konsorsiyumu', NULL, 'HAMP/2158/2011 Nolu sözleşme', 0),
+(120606, 7, 'P01501007.R01.02', NULL, 'P01501007', 'Aluminium sabit ışıklık sistemi yapılması', 'Malzeme + İşçilik', 'R', '€', 'm2', '1090.70000000', NULL, 'Aluminium malzeme ile standart renklerde elektrostatik toz boyanın yapılması, eğrisel olmayan camın temini ve montajı, bağlantı çeliklerinin imalatı birim fiyata dahildir.', 'Dekoral-Aygün Konsorsiyumu', NULL, 'HAMP/2158/2011 Nolu sözleşme', 0),
+(120607, 7, 'P01501007.R01.03', NULL, 'P01501007', 'Bombeli cam fiyat farkı', 'Malzeme + İşçilik', 'R', '€', 'm2', '337.34400000', NULL, 'Camın bombeli olası durumunda her m2 için ödenecek olan fazladan fiyattır.', 'Dekoral-Aygün Konsorsiyumu', NULL, 'HAMP/2158/2011 Nolu sözleşme', 0),
+(120608, 7, 'P01701002.R03.01', NULL, 'P01701002', 'Cam Bölme Duvar Yapılması (Glass Lift)', 'Malzeme + İşçilik', 'R', '€', 'M2', '531.26000000', NULL, 'Aluminium sabit camlı planar sistem işi olup imalatında kullanılacak olan spider, rotil paslanmaz bağlantı elemanları, slikon, derz fitilleri, cam fitilleri imalat ve montaj işidir. Toplam cam bölme yapılan alan hesaplanacaktır.', 'Dekoral - Aygün Konsorsiyumu', NULL, 'HAMP/2158/2011 Nolu sözleşme', 0),
+(120609, 7, 'P01701002.R03.02', NULL, 'P01701002', 'Cam Bölme Duvar Yapılması (Meeting Room)', 'Malzeme + İşçilik', 'R', '€', 'M2', '358.42400000', NULL, 'Aluminium sabit giydirme cephe sistem işi olup şeffaf camlı, belirli yükseklikte projeye uygun olarak film kaplı alt ve üst kısmında çelik U profiller, sabit cam bölme işidir. Kapı alanları hesaptan düşülür.', 'Dekoral - Aygün Konsorsiyumu', NULL, 'HAMP/2158/2011 Nolu sözleşme', 0),
+(120610, 7, 'P01701002.R03.03', NULL, 'P01701002', 'Kurşun geçirmez camlı cephe yapılması', 'Malzeme + İşçilik', 'R', '€', 'M2', '1011.84000000', NULL, NULL, 'Dekoral - Aygün Konsorsiyumu', NULL, 'HAMP/2158/2011 Nolu sözleşme', 0),
+(120611, 7, 'P01701002.R03.04', NULL, 'P01701002', 'Çift Kanat Cam Kapı Yapılması', 'Malzeme + İşçilik', 'R', '€', 'Adet', '4132.46000000', NULL, '10mm Tamberli şeffaf cam, çift kanat kapı aksesuarları, Dorma marka alt üst menteşe pimi, Dorma BTS65 zemine gömme kapı kapatıcı, Dorma alt kilit, paslanmaz boru kol fiyatlara dahildir.', 'Dekoral - Aygün Konsorsiyumu', NULL, 'HAMP/2158/2011 Nolu sözleşme', 0),
+(120612, 7, 'P01701002.R03.05', NULL, 'P01701002', 'Tek Kanat Cam Kapı Yapılması', 'Malzeme + İşçilik', 'R', '€', 'Adet', '2698.74000000', NULL, '10mm Tamberli şeffaf cam, çift kanat kapı aksesuarları, Dorma marka alt üst menteşe pimi, Dorma BTS65 zemine gömme kapı kapatıcı, Dorma alt kilit, paslanmaz boru kol fiyatlara dahildir.', 'Dekoral - Aygün Konsorsiyumu', NULL, 'HAMP/2158/2011 Nolu sözleşme', 0),
+(120613, 7, 'P01501099.R01.01', NULL, 'P01501099', 'Aluminium Panjur Yapılması', 'Malzeme + İşçilik', 'R', '€', 'm2', '456.20000000', NULL, 'Sözleşme Ortalama değeri alınmıştır\nm2 Fiyatı 389€-540€ arasında değişmektedir.', 'Remak Makine İnşaat Tesisat San. Tic. A.Ş.', NULL, 'HAMP/2155/2011 Nolu sözleşme', 0),
+(120629, 7, 'P05101001.R02.01', NULL, 'P05101001', 'Çim ekimi için alan Tesviyesi yapılması', 'İşçilik', 'R', '€', 'm2', '0.20000000', NULL, NULL, 'Gardensa Çiçekçilik Danıimanlık ve Pazarlama Ltd.', NULL, 'HAMP/2141/2011 Nolu Sözleşme', 0),
+(120630, 7, 'P05103001.R01.01', NULL, 'P05102000', 'Çim ekimi yapılması (Hydroseeding yöntemi ile)', 'Malzeme + İşçilik', 'R', '€', 'm2', '1.10000000', NULL, 'Çimin ekildikten sonraki bakımı ayrıca fiyatlandırılacaktır.', 'Gardensa Çiçekçilik Danıimanlık ve Pazarlama Ltd.', NULL, 'HAMP/2141/2011 Nolu Sözleşme', 0),
+(120631, 7, 'P05103001.R01.02', NULL, 'P05103001', 'Yer Örtücü Temini ve Dikimi', 'Malzeme + İşçilik', 'R', '€', 'm2', '4.50000000', NULL, 'm2 de 20 adet dikileceği öngörülmüştür.', 'Gardensa Çiçekçilik Danıimanlık ve Pazarlama Ltd.', NULL, 'HAMP/2141/2011 Nolu Sözleşme', 0),
+(120632, 7, 'P10090200.R01.01', NULL, 'MA10090200', '100x60x1,5 mm Kablo tavası', 'Malzeme', 'R', '$', 'm', '4.19000000', NULL, 'Ağır hizmet tipi sıcak daldırma galvanizli sac kablo tavası\nL=3.00 m tava uzunluğu\nEk parçalarını dikkate alınız.', 'EAE Elektrik A.Ş.', 'CT 060 CTH 100 Kablo Kanalı (EAE 35796S)', 'HAMP/2408/2011 Nolu Sözleşme', 0),
+(120633, 7, 'P10090200.R01.02', NULL, 'MA10090200', '200x60x1,5 mm Kablo tavası', 'Malzeme', 'R', '$', 'm', '5.83000000', NULL, 'Ağır hizmet tipi sıcak daldırma galvanizli sac kablo tavası\nL=3.00 m tava uzunluğu\nEk parçalarını dikkate alınız.', 'EAE Elektrik A.Ş.', 'CT 060 CTH 200 Kablo Kanalı (EAE 35794S)', 'HAMP/2408/2011 Nolu Sözleşme', 0),
+(120634, 7, 'P10090200.R01.03', NULL, 'MA10090200', '300x60x1,5 mm Kablo tavası', 'Malzeme', 'R', '$', 'm', '7.46000000', NULL, 'Ağır hizmet tipi sıcak daldırma galvanizli sac kablo tavası\nL=3.00 m tava uzunluğu\nEk parçalarını dikkate alınız.', 'EAE Elektrik A.Ş.', 'CT 060 CTH 300 Kablo Kanalı (EAE 35792S)', 'HAMP/2408/2011 Nolu Sözleşme', 0),
+(120635, 7, 'P10090200.R01.04', NULL, 'MA10090200', 'Askı Uzatma Profili', 'Malzeme', 'R', '$', 'm', '2.54000000', NULL, 'ASU-ASU 2A-5 Askı uzatma profili\nSıcak daldırma galvanizli\nU tipi profil (30x50x30)', 'EAE Elektrik A.Ş.', 'CT 060 CTH 300 Kablo Kanalı (EAE 35792S)', 'HAMP/2408/2011 Nolu Sözleşme', 0),
+(120636, 7, 'P10080500.R01.01', NULL, 'MA10080500', 'Tuş Kapaklı Tekli Anahtar', 'Malzeme', 'R', '€', 'Adet', '3.13700000', NULL, NULL, 'Living Int / Çetinkaya Pano Sac Tablo Plastik AŞ', 'L4001/2 16A (2 Modül)', 'HAMP/2406/2011 Nolu Sözleşme', 0),
+(120637, 7, 'P10080500.R01.02', NULL, 'MA10080500', 'Tırnaklı Kaide', 'Malzeme', 'R', '€', 'Adet', '0.55800000', NULL, NULL, 'Living Int / Çetinkaya Pano Sac Tablo Plastik AŞ', 'L4702G (2 Modül)', 'HAMP/2406/2011 Nolu Sözleşme', 0),
+(120638, 7, 'P10080500.R01.03', NULL, 'MA10080500', 'Mat Çelik Çerçeve', 'Malzeme', 'R', '€', 'Adet', '5.62500000', NULL, NULL, 'Living Int / Çetinkaya Pano Sac Tablo Plastik AŞ', 'L4802ACS (2 Modül)', 'HAMP/2406/2011 Nolu Sözleşme', 0),
+(120639, 7, 'P10080500.R01.04', NULL, 'MA10080500', 'Tuş Kapaklı Komütatör Anahtar', 'Malzeme', 'R', '€', 'Adet', '3.13700000', NULL, NULL, 'Living Int / Çetinkaya Pano Sac Tablo Plastik AŞ', 'L4001 16A (2 Modül)', 'HAMP/2406/2011 Nolu Sözleşme', 0),
+(120640, 7, 'P10080500.R01.05', NULL, 'MA10080500', 'Topraklı Priz', 'Malzeme', 'R', '€', 'Adet', '3.37100000', NULL, NULL, 'Living Int / Çetinkaya Pano Sac Tablo Plastik AŞ', 'L4141 2P+T 16A (2 Modül)', 'HAMP/2406/2011 Nolu Sözleşme', 0),
+(120641, 7, 'P10080500.R01.06', NULL, 'MA10080500', 'Tuş Kapaklı Vavien Anahtar Mekanizması', 'Malzeme', 'R', '€', 'Adet', '3.69900000', NULL, NULL, 'Living Int / Çetinkaya Pano Sac Tablo Plastik AŞ', 'L4003/2 16A (2 Modül)', 'HAMP/2406/2011 Nolu Sözleşme', 0),
+(120642, 7, 'P10080500.R01.07', NULL, 'MA10080500', 'RJ45 UTP CAT6 Data Priz', 'Malzeme', 'R', '€', 'Adet', '6.07500000', NULL, NULL, 'Living Int / Çetinkaya Pano Sac Tablo Plastik AŞ', 'L4279C6', 'HAMP/2406/2011 Nolu Sözleşme', 0),
+(120643, 7, 'P10080500.R01.08', NULL, 'MA10080500', 'Boşluk Kapağı', 'Malzeme', 'R', '€', 'Adet', '0.45900000', NULL, NULL, 'Living Int / Çetinkaya Pano Sac Tablo Plastik AŞ', 'L4950', 'HAMP/2406/2011 Nolu Sözleşme', 0),
+(120644, 7, 'P10080500.R01.09', NULL, 'MA10080500', 'RJ11 2 Çift K10 Bağlantı Telefon Prizi', 'Malzeme', 'R', '€', 'Adet', '5.08500000', NULL, NULL, 'Living Int / Çetinkaya Pano Sac Tablo Plastik AŞ', 'L4258/11N', 'HAMP/2406/2011 Nolu Sözleşme', 0),
+(120645, 7, 'P10050900.R01.01', NULL, 'MA10050900', '6mm Sunergy Clear Temp - 16hb - 10mm dc Isıcam', 'Malzeme', 'R', '€', 'm2', '51.00000000', NULL, NULL, 'Okan Cam San. Tic. A.Ş.', NULL, 'HAMP/2390/2011 Nolu sözleşme', 0),
+(120646, 7, 'P10020400.R02.01', NULL, 'MA10020400', '0.7mm Paslanmaz Sac', 'Malzeme', 'R', 'TL', 'm2', '96.00000000', NULL, NULL, 'Aldemir Hırdavat', NULL, 'HAMP/2389/2011 Nolu sözleşme', 0),
+(120647, 7, 'P10051400.R01.01', NULL, 'MA10051400', 'Vinyl Kaplama', 'Malzeme', 'R', '€', 'm2', '13.50000000', NULL, NULL, 'Gerflor / Yaktaş İnş. San. Ve Tic. A.Ş.', 'ALU 6750 (Antistatik)', 'HAMP/2344/2011 Nolu Sözleşme', 0),
+(120648, 7, 'P10070201.R08.01', NULL, 'MA10070201', 'Mozaik duvar seramiği', 'Malzeme', 'R', '$', 'M2', '36.71000000', NULL, NULL, 'Vitra / Güneyliler Yapı Malzemeleri', 'K5154848 2,3x2,3 Mozaik', 'HAMP/2094/2011 Nolu sözleşme', 0),
+(120649, 7, 'P10010500.R08.01', NULL, 'MA10010500', 'Karo Seramik Yapıştırıcı', 'Malzeme', 'R', '$', 'Kg', '0.23000000', NULL, 'Portland çimentosu, uygun granülometrede dolgu ve özel katkılar içerir. Kolay uygulama ve uzun çalışma süresine sahiptir. İç mekanlarda %3''ten büyük su emme oranına sahip küçük ve orta ebatlı karoların yer ve duvar döşemelerinde kullanılır. Yüksek tiksotropik özelliği sayesinde duvar karolarının çimento esaslı yüzeylerde kaymadan uygulanmasını sağlar.\n\nAmbalaj: 25 kg''lık kraft torba - palette 1200 kg\nTüketim: 3-4 kg/m2', 'Vitra / Güneyliler Yapı Malzemeleri', 'VitrA Fix F21101025', 'HAMP/2094/2011 Nolu Sözleşme', 0),
+(120650, 7, 'P10010500.R08.02', NULL, 'MA10010500', 'Karo Seramik Derz Dolgusu (Siyah)', 'Malzeme', 'R', '$', 'Kg', '1.10000000', NULL, 'Kolay uygulana bilen ve temizlenebilen, çatlama, çökme yapmayan, çimento esaslı derz dolgusudur.\nYapıların iç mekanlarında duvar ve zemine döşenen her türlü karo seramik vb. malzemelerin 1-6 mm kadar derz genişliğinde uygulanır.\nDış mekan ve ıslak hacim uygulamalarında VitrA Fix FLEX 0-3 mm ya da VitrA Fix FLEX 3-10 mm kullanılması önerilir.\n\nİç mekanlarda, yatay ve dikey yüzeylerde seramik arası derz uygulamalarında kullanılır. VitrA Fix LATEX ile kullanıldığında ıslak hacimlerde, teraslarda ve geniş alanlarda kullanımı uygundur.\n\nAmbalaj : 10 kg''lık torba - palette 1000 kg; 20 kg''lık torba - palette 1200 kg\n5 kg''lık torba - palette 720 kg; 1 kg''lık polietilen torba - palette 504 kg', 'Vitra / Güneyliler Yapı Malzemeleri', 'VitrA Fix 1-6 mm F21106010 (Siyah)', 'HAMP/2094/2011 Nolu Sözleşme', 0),
+(120651, 7, 'P10010500.R08.03', NULL, 'MA10010500', 'Karo Seramik Derz Dolgusu (Beyaz)', 'Malzeme', 'R', '$', 'Kg', '0.52000000', NULL, 'Kolay uygulana bilen ve temizlenebilen, çatlama, çökme yapmayan, çimento esaslı derz dolgusudur.\nYapıların iç mekanlarında duvar ve zemine döşenen her türlü karo seramik vb. malzemelerin 1-6 mm kadar derz genişliğinde uygulanır.\nDış mekan ve ıslak hacim uygulamalarında VitrA Fix FLEX 0-3 mm ya da VitrA Fix FLEX 3-10 mm kullanılması önerilir.\n\nİç mekanlarda, yatay ve dikey yüzeylerde seramik arası derz uygulamalarında kullanılır. VitrA Fix LATEX ile kullanıldığında ıslak hacimlerde, teraslarda ve geniş alanlarda kullanımı uygundur.\n\nAmbalaj : 10 kg''lık torba - palette 1000 kg; 20 kg''lık torba - palette 1200 kg\n5 kg''lık torba - palette 720 kg; 1 kg''lık polietilen torba - palette 504 kg', 'Vitra / Güneyliler Yapı Malzemeleri', 'VitrA Fix 1-6 mm F21103010 (Siyah)', 'HAMP/2094/2011 Nolu Sözleşme', 0),
+(120652, 7, 'P10010600.R03.01', NULL, 'MA10010600', 'Kırma Taş 0-50', 'Malzeme', 'R', 'AZN', 'Ton', '9.00000000', NULL, NULL, 'SST', NULL, 'BHAP/2692/2011 Nolu Sözleşme', 0),
+(120653, 7, 'P10010600.R03.02', NULL, 'MA10010600', 'Kırma Taş 0-30', 'Malzeme', 'R', 'AZN', 'Ton', '9.00000000', NULL, NULL, 'SST', NULL, 'BHAP/2692/2011 Nolu Sözleşme', 0),
+(120654, 7, 'P10010600.R03.03', NULL, 'MA10010600', 'Kırma Taş 5-12', 'Malzeme', 'R', 'AZN', 'Ton', '9.00000000', NULL, NULL, 'SST', NULL, 'BHAP/2692/2011 Nolu Sözleşme', 0),
+(120655, 7, 'P10010600.R03.04', NULL, 'MA10010600', 'Kırma Taş 5-15', 'Malzeme', 'R', 'AZN', 'Ton', '9.00000000', NULL, NULL, 'SST', NULL, 'BHAP/2692/2011 Nolu Sözleşme', 0),
+(120656, 7, 'P10010600.R03.05', NULL, 'MA10010600', 'Kırma Taş 12-18', 'Malzeme', 'R', 'AZN', 'Ton', '9.00000000', NULL, NULL, 'SST', NULL, 'BHAP/2692/2011 Nolu Sözleşme', 0),
+(120657, 7, 'P10010600.R03.06', NULL, 'MA10010600', 'Kırma Taş 15-25', 'Malzeme', 'R', 'AZN', 'Ton', '9.00000000', NULL, NULL, 'SST', NULL, 'BHAP/2692/2011 Nolu Sözleşme', 0),
+(120658, 7, 'P10010600.R03.07', NULL, 'MA10010600', 'Kırma Taş 14-28', 'Malzeme', 'R', 'AZN', 'Ton', '9.00000000', NULL, NULL, 'SST', NULL, 'BHAP/2692/2011 Nolu Sözleşme', 0),
+(120659, 7, 'P10010600.R03.08', NULL, 'MA10010600', 'Kırma Kum 0-5', 'Malzeme', 'R', 'AZN', 'Ton', '10.00000000', NULL, NULL, 'SST', NULL, 'BHAP/2692/2011 Nolu Sözleşme', 0),
+(120660, 7, 'P10010600.R03.09', NULL, 'MA10010600', 'Doğal Kum 0-5', 'Malzeme', 'R', 'AZN', 'Ton', '11.00000000', NULL, NULL, 'SST', NULL, 'BHAP/2692/2011 Nolu Sözleşme', 0),
+(120661, 7, 'P10010600.R03.10', NULL, 'MA10010600', 'Doğal Kum 0-3', 'Malzeme', 'R', 'AZN', 'Ton', '11.50000000', NULL, NULL, 'SST', NULL, 'BHAP/2692/2011 Nolu Sözleşme', 0),
+(120662, 7, 'P01202001.A01.01', NULL, 'P01202001', 'Kazıdan çıkan uygun Malzeme ile Sıkıştırılarak Dolgu Yapılması (30cm)', 'Malzeme + İşçilik', 'A', '$', 'm3', '2.63420000', NULL, 'Dolguya Uygun Malzemenin (Yüklenici Talebi ile Uygun Çapı aşmayacak şekilde ) en fazla 30 cm lik Tabakalar Halinde Serilmesi ,gerekirse sulanması, Dinamik ve Statik Testleri geçecek şekilde Silindir, El kompaktörü v.b ile sıkıştırılması', NULL, NULL, NULL, 0),
+(120663, 7, 'P01202001.A01.02', NULL, 'P01202001', 'Granüler malzeme ile sıkıştırarak dolgu yapılması (Max 30cm katmanlar halinde)', 'Malzeme + İşçilik', 'A', '$', 'M3', '23.81396298', NULL, NULL, NULL, NULL, 'Bayındırlık 17.136 nolu pozdan alınan Adam Saat değerleri kullanıldı', 0),
+(120664, 7, 'P04201003.R07.01', NULL, 'P04201003', 'Ø200mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '2.30000000', NULL, 'OD: 227.2-235 Tck:13.6-17.5', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120665, 7, 'P04201003.R07.02', NULL, 'P04201003', 'Ø250mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '4.20000000', NULL, 'OD: 288-292 Tck:19-21', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120666, 7, 'P04201003.R07.03', NULL, 'P04201003', 'Ø300mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '6.80000000', NULL, 'OD: 340-353 Tck:20-26.5', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120667, 7, 'P04201003.R07.04', NULL, 'P04201003', 'Ø350mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '7.50000000', NULL, 'OD: 404 Tck:30.5', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120668, 7, 'P04201003.R07.05', NULL, 'P04201003', 'Ø400mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '7.90000000', NULL, 'OD: 454.4-468 Tck:27.2-34', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120669, 7, 'P04201003.R07.06', NULL, 'P04201003', 'Ø500mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '9.20000000', NULL, 'OD: 559.3-580 Tck:29.6-41', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120670, 7, 'P04201003.R07.07', NULL, 'P04201003', 'Ø100mm PN16 Ductile boru montaji', 'İşçilik', 'R', '€', 'm', '16.20000000', NULL, 'OD: 118 Tck:6', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120671, 7, 'P04201003.R07.08', NULL, 'P04201003', 'Ø150mm PN16 Ductile boru montaji', 'İşçilik', 'R', '€', 'm', '18.20000000', NULL, 'OD: 170 Tck:6', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120672, 7, 'P04201003.R07.09', NULL, 'P04201003', 'Ø200mm PN16 Ductile boru montaji', 'İşçilik', 'R', '€', 'm', '20.60000000', NULL, 'OD: 222 Tck:6.3', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120673, 7, 'P04201003.R07.10', NULL, 'P04201003', 'Ø100mm PN16 Ductile boru ek parcalari montaji(Dirsek, TE,Manşon, Redüksiyon)', 'İşçilik', 'R', '€', 'adet', '24.60000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120674, 7, 'P04201003.R07.11', NULL, 'P04201003', 'Ø150mm PN16 Ductile boru ek parcalari montaji(Dirsek, TE,Manşon, Redüksiyon)', 'İşçilik', 'R', '€', 'adet', '51.20000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120675, 7, 'P04201003.R07.12', NULL, 'P04201003', 'Ø200mm PN16 Ductile boru ek parcalari montaji(Dirsek, TE,Manşon, Redüksiyon)', 'İşçilik', 'R', '€', 'adet', '59.50000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120676, 7, 'P04201003.R07.13', NULL, 'P04201003', 'Ø100mm PN16 Ductile boru Flanş bağlantısı', 'İşçilik', 'R', '€', 'adet', '28.90000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120677, 7, 'P04201003.R07.14', NULL, 'P04201003', 'Ø150mm PN16 Ductile boru Flanş bağlantısı', 'İşçilik', 'R', '€', 'adet', '58.60000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120678, 7, 'P04201003.R07.15', NULL, 'P04201003', 'Ø200mm PN16 Ductile boru Flanş bağlantısı', 'İşçilik', 'R', '€', 'adet', '67.90000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120679, 7, 'P04201003.R07.16', NULL, 'P04201003', 'DN500 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '65.00000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil.Boru kendinden izolasyonlu OD: 508 Tck:6.3', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120680, 7, 'P04201003.R07.17', NULL, 'P04201003', 'DN500/710 Birleştirme seti montajı işçiliği', 'İşçilik', 'R', '€', 'adet', '51.25000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil.', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120681, 7, 'P04201003.R07.18', NULL, 'P04201003', 'DN250 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '36.25000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 273 Tck:6', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120682, 7, 'P04201003.R07.19', NULL, 'P04201003', 'DN250/450 Birleştirme seti montajı işçiliği', 'İşçilik', 'R', '€', 'adet', '36.25000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil.', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120683, 7, 'P04201003.R07.20', NULL, 'P04201003', 'DN200 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '26.25000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 219 Tck:4.5', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120684, 7, 'P04201003.R07.21', NULL, 'P04201003', 'DN220/400 Birleştirme seti montajı işçiliği', 'İşçilik', 'R', '€', 'adet', '30.25000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil.', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120685, 7, 'P04201003.R07.22', NULL, 'P04201003', 'DN150 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '23.12500000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 165 Tck:4', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120686, 7, 'P04201003.R07.23', NULL, 'P04201003', 'DN150/355 Birleştirme seti montajı işçiliği', 'İşçilik', 'R', '€', 'adet', '24.37500000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil.', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120687, 7, 'P04201003.R07.24', NULL, 'P04201003', 'DN65 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '16.87500000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 76 Tck:3.65', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120688, 7, 'P04201003.R07.25', NULL, 'P04201003', 'DN65/200 Birleştirme seti montajı işçiliği', 'İşçilik', 'R', '€', 'adet', '17.75000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil.', 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120689, 7, 'P04201003.R07.26', NULL, 'P04201003', 'DN500 Vana Montajı (Ductile/Çelik/Demir)', 'İşçilik', 'R', '€', 'adet', '157.00000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120690, 7, 'P04201003.R07.27', NULL, 'P04201003', 'DN250 Çelik Vana Montajı (Ductile/Çelik/Demir)', 'İşçilik', 'R', '€', 'adet', '86.00000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120691, 7, 'P04201003.R07.28', NULL, 'P04201003', 'DN500 Çelik Flanş Montajı (Ductile/Çelik/Demir)', 'İşçilik', 'R', '€', 'adet', '65.00000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120692, 7, 'P04201003.R07.29', NULL, 'P04201003', 'DN250 Çelik Flanş Montajı (Ductile/Çelik/Demir)', 'İşçilik', 'R', '€', 'adet', '44.00000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120693, 7, 'P04201003.R07.30', NULL, 'P04201003', 'DN200 Çelik Flanş Montajı (Ductile/Çelik/Demir)', 'İşçilik', 'R', '€', 'adet', '36.00000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120694, 7, 'P04201003.R07.31', NULL, 'P04201003', 'DN150 Çelik Flanş Montajı (Ductile/Çelik/Demir)', 'İşçilik', 'R', '€', 'adet', '32.00000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120695, 7, 'P04201003.R07.32', NULL, 'P04201003', 'DN65 Çelik Flanş Montajı (Ductile/Çelik/Demir)', 'İşçilik', 'R', '€', 'adet', '19.00000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120696, 7, 'P04201003.R07.33', NULL, 'P04201003', 'DN500 Çelik Kör Flanş Montajı (Ductile/Çelik/Demir)', 'İşçilik', 'R', '€', 'adet', '38.00000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120697, 7, 'P04201003.R07.34', NULL, 'P04201003', 'DN250 Çelik Kör Flanş Montajı PN25 WN RF (Ductile/Çelik/Demir)', 'İşçilik', 'R', '€', 'adet', '36.00000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120698, 7, 'P04201003.R07.35', NULL, 'P04201003', 'DN200 Çelik Kör Flanş Montajı PN25 WN RF (Ductile/Çelik/Demir)', 'İşçilik', 'R', '€', 'adet', '34.00000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120699, 7, 'P04201003.R07.36', NULL, 'P04201003', 'DN150 Çelik Kör Flanş Montajı PN25 WN RF (Ductile/Çelik/Demir)', 'İşçilik', 'R', '€', 'adet', '34.00000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120700, 7, 'P04201003.R07.37', NULL, 'P04201003', 'DN65 Çelik Kör Flanş Montajı PN25 WN RF (Ductile/Çelik/Demir)', 'İşçilik', 'R', '€', 'adet', '34.00000000', NULL, NULL, 'KATİBİM LTD', NULL, 'STKP-0110 nolu sözleşme', 0),
+(120701, 7, 'P04201003.R07.38', NULL, 'P04201003', 'Ø200mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '16.80000000', NULL, 'OD: 227.2-235 Tck:13.6-17.5', 'SU İSTİLİK MMC', NULL, 'TMKF/STKP-0110', 0),
+(120702, 7, 'P04201003.R07.39', NULL, 'P04201003', 'Ø250mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '24.50000000', NULL, 'OD: 288-292 Tck:19-21', 'SU İSTİLİK MMC', NULL, 'TMKF/STKP-0110', 0),
+(120703, 7, 'P04201003.R07.40', NULL, 'P04201003', 'Ø300mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '32.70000000', NULL, 'OD: 340-353 Tck:20-26.5', 'SU İSTİLİK MMC', NULL, 'TMKF/STKP-0110', 0),
+(120704, 7, 'P04201003.R07.41', NULL, 'P04201003', 'Ø350mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '39.50000000', NULL, 'OD: 404 Tck:30.5', 'SU İSTİLİK MMC', NULL, 'TMKF/STKP-0110', 0),
+(120705, 7, 'P04201003.R07.42', NULL, 'P04201003', 'Ø400mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '41.40000000', NULL, 'OD: 454.4-468 Tck:27.2-34', 'SU İSTİLİK MMC', NULL, 'TMKF/STKP-0110', 0),
+(120706, 7, 'P04201003.R07.43', NULL, 'P04201003', 'Ø500mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '52.00000000', NULL, 'OD: 559.3-580 Tck:29.6-41', 'SU İSTİLİK MMC', NULL, 'TMKF/STKP-0110', 0),
+(120707, 7, 'P04201003.R07.44', NULL, 'P04201003', 'Ø100mm PN16 Ductile boru montaji', 'İşçilik', 'R', '€', 'm', '19.20000000', NULL, 'OD: 118 Tck:6', 'SU İSTİLİK MMC', NULL, 'TMKF/STKP-0110', 0),
+(120708, 7, 'P04201003.R07.45', NULL, 'P04201003', 'Ø150mm PN16 Ductile boru montaji', 'İşçilik', 'R', '€', 'm', '25.60000000', NULL, 'OD: 170 Tck:6', 'SU İSTİLİK MMC', NULL, 'TMKF/STKP-0110', 0),
+(120709, 7, 'P04201003.R07.46', NULL, 'P04201003', 'Ø200mm PN16 Ductile boru montaji', 'İşçilik', 'R', '€', 'm', '34.50000000', NULL, 'OD: 222 Tck:6.3', 'SU İSTİLİK MMC', NULL, 'TMKF/STKP-0110', 0),
+(120710, 7, 'P04201003.R07.47', NULL, 'P04201003', 'DN500 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '58.50000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil.Boru kendinden izolasyonlu OD: 508 Tck:6.3', 'SU İSTİLİK MMC', NULL, 'TMKF/STKP-0110', 0),
+(120711, 7, 'P04201003.R07.48', NULL, 'P04201003', 'DN250 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '39.80000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 273 Tck:6', 'SU İSTİLİK MMC', NULL, 'TMKF/STKP-0110', 0),
+(120712, 7, 'P04201003.R07.49', NULL, 'P04201003', 'DN200 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '34.60000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 219 Tck:4.5', 'SU İSTİLİK MMC', NULL, 'TMKF/STKP-0110', 0),
+(120713, 7, 'P04201003.R07.50', NULL, 'P04201003', 'DN150 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '25.60000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 165 Tck:4', 'SU İSTİLİK MMC', NULL, 'TMKF/STKP-0110', 0),
+(120714, 7, 'P04201003.R07.51', NULL, 'P04201003', 'DN65 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '15.70000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 76 Tck:3.65', 'SU İSTİLİK MMC', NULL, 'TMKF/STKP-0110', 0),
+(120715, 7, 'P04201003.R07.52', NULL, 'P04201003', 'Ø200mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '28.00000000', NULL, 'OD: 227.2-235 Tck:13.6-17.5', 'ATEŞGAH', NULL, 'TMKF/STKP-0110', 0),
+(120716, 7, 'P04201003.R07.53', NULL, 'P04201003', 'Ø250mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '32.00000000', NULL, 'OD: 288-292 Tck:19-21', 'ATEŞGAH', NULL, 'TMKF/STKP-0110', 0),
+(120717, 7, 'P04201003.R07.54', NULL, 'P04201003', 'Ø300mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '36.00000000', NULL, 'OD: 340-353 Tck:20-26.5', 'ATEŞGAH', NULL, 'TMKF/STKP-0110', 0),
+(120718, 7, 'P04201003.R07.55', NULL, 'P04201003', 'Ø350mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '40.00000000', NULL, 'OD: 404 Tck:30.5', 'ATEŞGAH', NULL, 'TMKF/STKP-0110', 0),
+(120719, 7, 'P04201003.R07.56', NULL, 'P04201003', 'Ø400mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '55.00000000', NULL, 'OD: 454.4-468 Tck:27.2-34', 'ATEŞGAH', NULL, 'TMKF/STKP-0110', 0),
+(120720, 7, 'P04201003.R07.57', NULL, 'P04201003', 'Ø500mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '60.00000000', NULL, 'OD: 559.3-580 Tck:29.6-41', 'ATEŞGAH', NULL, 'TMKF/STKP-0110', 0),
+(120721, 7, 'P04201003.R07.58', NULL, 'P04201003', 'Ø100mm PN16 Ductile boru montaji', 'İşçilik', 'R', '€', 'm', '17.00000000', NULL, 'OD: 118 Tck:6', 'ATEŞGAH', NULL, 'TMKF/STKP-0110', 0),
+(120722, 7, 'P04201003.R07.59', NULL, 'P04201003', 'Ø150mm PN16 Ductile boru montaji', 'İşçilik', 'R', '€', 'm', '22.00000000', NULL, 'OD: 170 Tck:6', 'ATEŞGAH', NULL, 'TMKF/STKP-0110', 0),
+(120723, 7, 'P04201003.R07.60', NULL, 'P04201003', 'Ø200mm PN16 Ductile boru montaji', 'İşçilik', 'R', '€', 'm', '28.00000000', NULL, 'OD: 222 Tck:6.3', 'ATEŞGAH', NULL, 'TMKF/STKP-0110', 0),
+(120724, 7, 'P04201003.R07.61', NULL, 'P04201003', 'DN500 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '160.00000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil.Boru kendinden izolasyonlu OD: 508 Tck:6.3', 'ATEŞGAH', NULL, 'TMKF/STKP-0110', 0),
+(120725, 7, 'P04201003.R07.62', NULL, 'P04201003', 'DN250 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '132.00000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 273 Tck:6', 'ATEŞGAH', NULL, 'TMKF/STKP-0110', 0),
+(120726, 7, 'P04201003.R07.63', NULL, 'P04201003', 'DN200 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '110.00000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 219 Tck:4.5', 'ATEŞGAH', NULL, 'TMKF/STKP-0110', 0),
+(120727, 7, 'P04201003.R07.64', NULL, 'P04201003', 'DN150 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '95.00000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 165 Tck:4', 'ATEŞGAH', NULL, 'TMKF/STKP-0110', 0),
+(120728, 7, 'P04201003.R07.65', NULL, 'P04201003', 'DN65 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '55.00000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 76 Tck:3.65', 'ATEŞGAH', NULL, 'TMKF/STKP-0110', 0),
+(120729, 7, 'P04201003.R07.66', NULL, 'P04201003', 'Ø200mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '9.10000000', NULL, 'OD: 227.2-235 Tck:13.6-17.5', 'SADE TESİSAT', NULL, 'TMKF/STKP-0110', 0),
+(120730, 7, 'P04201003.R07.67', NULL, 'P04201003', 'Ø250mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '17.54000000', NULL, 'OD: 288-292 Tck:19-21', 'SADE TESİSAT', NULL, 'TMKF/STKP-0110', 0),
+(120731, 7, 'P04201003.R07.68', NULL, 'P04201003', 'Ø300mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '25.90000000', NULL, 'OD: 340-353 Tck:20-26.5', 'SADE TESİSAT', NULL, 'TMKF/STKP-0110', 0),
+(120732, 7, 'P04201003.R07.69', NULL, 'P04201003', 'Ø350mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '34.62000000', NULL, 'OD: 404 Tck:30.5', 'SADE TESİSAT', NULL, 'TMKF/STKP-0110', 0),
+(120733, 7, 'P04201003.R07.70', NULL, 'P04201003', 'Ø400mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '43.47000000', NULL, 'OD: 454.4-468 Tck:27.2-34', 'SADE TESİSAT', NULL, 'TMKF/STKP-0110', 0),
+(120734, 7, 'P04201003.R07.71', NULL, 'P04201003', 'Ø500mm HDPE Koruge boru montajı (Dirsek, TE, Manşon, redüksiyon dahil)', 'İşçilik', 'R', '€', 'm', '69.85000000', NULL, 'OD: 559.3-580 Tck:29.6-41', 'SADE TESİSAT', NULL, 'TMKF/STKP-0110', 0),
+(120735, 7, 'P04201003.R07.72', NULL, 'P04201003', 'Ø100mm PN16 Ductile boru montaji', 'İşçilik', 'R', '€', 'm', '9.67000000', NULL, 'OD: 118 Tck:6', 'SADE TESİSAT', NULL, 'TMKF/STKP-0110', 0),
+(120736, 7, 'P04201003.R07.73', NULL, 'P04201003', 'Ø150mm PN16 Ductile boru montaji', 'İşçilik', 'R', '€', 'm', '21.30000000', NULL, 'OD: 170 Tck:6', 'SADE TESİSAT', NULL, 'TMKF/STKP-0110', 0),
+(120737, 7, 'P04201003.R07.74', NULL, 'P04201003', 'Ø200mm PN16 Ductile boru montaji', 'İşçilik', 'R', '€', 'm', '27.69000000', NULL, 'OD: 222 Tck:6.3', 'SADE TESİSAT', NULL, 'TMKF/STKP-0110', 0),
+(120738, 7, 'P04201003.R07.75', NULL, 'P04201003', 'DN500 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '142.27000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil.Boru kendinden izolasyonlu OD: 508 Tck:6.3', 'SADE TESİSAT', NULL, 'TMKF/STKP-0110', 0),
+(120739, 7, 'P04201003.R07.76', NULL, 'P04201003', 'DN250 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '45.93000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 273 Tck:6', 'SADE TESİSAT', NULL, 'TMKF/STKP-0110', 0),
+(120740, 7, 'P04201003.R07.77', NULL, 'P04201003', 'DN200 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '43.76000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 219 Tck:4.5', 'SADE TESİSAT', NULL, 'TMKF/STKP-0110', 0),
+(120741, 7, 'P04201003.R07.78', NULL, 'P04201003', 'DN150 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '37.09000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 165 Tck:4', 'SADE TESİSAT', NULL, 'TMKF/STKP-0110', 0),
+(120742, 7, 'P04201003.R07.79', NULL, 'P04201003', 'DN65 Jeotermal çelik boru montajı işçiliği', 'İşçilik', 'R', '€', 'm', '10.87000000', NULL, 'Fittings, kaynak elemanları, mesnet elemanları, elektrot bedeli dahil. Boru kendinden izolasyonlu OD: 76 Tck:3.65', 'SADE TESİSAT', NULL, 'TMKF/STKP-0110', 0),
+(120743, 7, 'P10020500.R03.01', NULL, 'MA10020500', '6-8-10 luk Çivi', 'Malzeme', 'R', 'TL', 'Kg', '1.50000000', NULL, NULL, 'Özşirinler Makine ve Hırdavat San.', NULL, 'HAMP/2097/2011 Nolu Sözleşme', 0),
+(120744, 7, 'P10020500.R04.01', NULL, 'MA10020500', 'M10x100 Civata-Somun-Pul', 'Malzeme', 'R', 'TL', 'Adet', '0.38500000', NULL, NULL, 'Taç-Mer Otomotiv Prof. Montaj Sis. San.', NULL, 'HAMP/2109/2011 Nolu Sözleşme', 0),
+(120745, 7, 'P10020500.R04.02', NULL, 'MA10020500', 'M10x60 Civata-Somun-Pul', 'Malzeme', 'R', 'TL', 'Adet', '0.26420000', NULL, NULL, 'Taç-Mer Otomotiv Prof. Montaj Sis. San.', NULL, 'HAMP/2109/2011 Nolu Sözleşme', 0),
+(120746, 7, 'P10020500.R04.03', NULL, 'MA10020500', 'M10x40 Civata-Somun-Pul', 'Malzeme', 'R', 'TL', 'Adet', '0.22180000', NULL, NULL, 'Taç-Mer Otomotiv Prof. Montaj Sis. San.', NULL, 'HAMP/2109/2011 Nolu Sözleşme', 0),
+(120747, 7, 'P10040100.R04.01', NULL, 'MA10040100', 'Laminated Plywood 21mm', 'Malzeme', 'R', '$', 'm3', '970.00000000', NULL, 'Şantiye Teslim Fiyat\nGümrük masrafları hariç.', 'LES MMC', '(21x1250x2500)mm', 'BHAP/2053/2011-ZEY1 Nolu Zeyilname', 0),
+(120748, 7, 'P10040100.R05.01', NULL, 'MA10040100', 'Laminated Plywood 21mm', 'Malzeme', 'R', '€', 'm3', '650.00000000', NULL, 'İstanbul Teslim Fiyat', 'Balcıoğlu Grup A.Ş.', '(21x1250x2500)mm', 'BHAP/2525/2011 Nolu Sözleşme', 0),
+(120749, 7, 'P10040200.R03.01', NULL, 'MA10040200', 'H20 ahşap kiriş', 'Malzeme', 'R', '€', 'M', '5.95000000', NULL, '5kg/m', 'Rettenmeiere / Urtim Kalıp ve İskele Sistemleri', 'H20', 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120750, 7, 'P10040200.R03.02', NULL, 'MA10040200', 'R24 ahşap kiriş', 'Malzeme', 'R', '€', 'M', '15.26000000', NULL, '6kg/m', 'Steidle / Urtim Kalıp ve İskele Sistemleri', 'R24', 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120751, 7, 'P10021000.R02.01', NULL, 'MA10021000', 'WoodSystem Perde Kuşağı 75 (I=70 cm)', 'Malzeme', 'R', 'TL', 'ADET', '34.56000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', 'WS Perde Kuşağı 75', 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120752, 7, 'P10021000.R02.02', NULL, 'MA10021000', 'WoodSystem Perde Kuşağı 100 (I=95 cm)', 'Malzeme', 'R', 'TL', 'ADET', '41.60000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', 'WS Perde Kuşağı 100', 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120753, 7, 'P10021000.R02.03', NULL, 'MA10021000', 'WoodSystem Perde Kuşağı 125 (I=120 cm)', 'Malzeme', 'R', 'TL', 'ADET', '51.54000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', 'WS Perde Kuşağı 125', 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120754, 7, 'P10021000.R02.04', NULL, 'MA10021000', 'WoodSystem Perde Kuşağı 150 (I=145 cm)', 'Malzeme', 'R', 'TL', 'ADET', '60.86000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', 'WS Perde Kuşağı 150', 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120755, 7, 'P10021000.R02.05', NULL, 'MA10021000', 'WoodSystem Perde Kuşağı 200 (I=195 cm)', 'Malzeme', 'R', 'TL', 'ADET', '79.25000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', 'WS Perde Kuşağı 200', 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120756, 7, 'P10021000.R02.06', NULL, 'MA10021000', 'WoodSystem Perde Kuşağı 225 (I=220 cm)', 'Malzeme', 'R', 'TL', 'ADET', '88.28000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', 'WS Perde Kuşağı 225', 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120757, 7, 'P10021000.R02.07', NULL, 'MA10021000', 'WoodSystem Perde Kuşağı 250 (I=245 cm)', 'Malzeme', 'R', 'TL', 'ADET', '99.25000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', 'WS Perde Kuşağı 250', 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120758, 7, 'P10021000.R02.08', NULL, 'MA10021000', 'WoodSystem Köşe Perde Kuşağı 125/75 (120/71 cm)', 'Malzeme', 'R', 'TL', 'ADET', '76.72000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120759, 7, 'P10021000.R02.09', NULL, 'MA10021000', 'WoodSystem Köşe Perde Kuşağı 75/75 (70/71 cm)', 'Malzeme', 'R', 'TL', 'ADET', '59.14000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120760, 7, 'P10021000.R02.10', NULL, 'MA10021000', 'WoodSystem Kuşak Birleştirme Elemanı 100', 'Malzeme', 'R', 'TL', 'ADET', '23.39000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120761, 7, 'P10021000.R02.11', NULL, 'MA10021000', 'WoodSystem Kuşak Kaması', 'Malzeme', 'R', 'TL', 'ADET', '2.78000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120762, 7, 'P10021000.R02.12', NULL, 'MA10021000', 'WoodSystem Dış Köşe Birleştirme Elemanı', 'Malzeme', 'R', 'TL', 'ADET', '10.93000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120763, 7, 'P10021000.R02.13', NULL, 'MA10021000', 'WoodSystem Kiriş Bağlantı Takımı', 'Malzeme', 'R', 'TL', 'ADET', '3.76000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120764, 7, 'P10021000.R02.14', NULL, 'MA10021000', 'WoodSystem Kiriş Sıkıştırma Elemanı', 'Malzeme', 'R', 'TL', 'ADET', '2.35000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120765, 7, 'P10021000.R02.15', NULL, 'MA10021000', 'WoodSystem Ankraj Mili (L=100cm/17mm)', 'Malzeme', 'R', 'TL', 'ADET', '3.16000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120766, 7, 'P10021000.R02.16', NULL, 'MA10021000', 'WoodSystem Ankraj Mili (L=150cm/17mm)', 'Malzeme', 'R', 'TL', 'ADET', '4.75000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120767, 7, 'P10021000.R02.17', NULL, 'MA10021000', 'WoodSystem Ankraj Aynası', 'Malzeme', 'R', 'TL', 'ADET', '1.16000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120768, 7, 'P10021000.R02.18', NULL, 'MA10021000', 'WoodSystem Ankraj Somunu D=90;17mm', 'Malzeme', 'R', 'TL', 'ADET', '2.04000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120769, 7, 'P10021000.R02.19', NULL, 'MA10021000', 'WoodSystem Ahşap Vidası 6/60mm', 'Malzeme', 'R', 'TL', 'ADET', '0.07000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120770, 7, 'P10021000.R02.20', NULL, 'MA10021000', 'WoodSystem Vinç Kulbu Takımı', 'Malzeme', 'R', 'TL', 'ADET', '14.02000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120771, 7, 'P10021000.R02.21', NULL, 'MA10021000', 'WoodSystem Payanda Bağlantı Başlığı', 'Malzeme', 'R', 'TL', 'ADET', '9.14000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120772, 7, 'P10021000.R02.22', NULL, 'MA10021000', 'WoodSystem Aksesuar Kaması', 'Malzeme', 'R', 'TL', 'ADET', '1.86000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120773, 7, 'P10021000.R02.23', NULL, 'MA10021000', 'WoodSystem Çift Kollu Payanda (Max 495; Min 435)', 'Malzeme', 'R', 'TL', 'ADET', '123.38000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120774, 7, 'P10021000.R02.24', NULL, 'MA10021000', 'WoodSystem Şaft Platform Kirişi (L=290)', 'Malzeme', 'R', 'TL', 'ADET', '229.44000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120775, 7, 'P10021000.R02.25', NULL, 'MA10021000', 'WoodSystem Şaft Platform Kirişi (L=360)', 'Malzeme', 'R', 'TL', 'ADET', '278.81000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120776, 7, 'P10021000.R02.43', NULL, 'MA10021000', 'WoodSystem Şaft Platform Askısı', 'Malzeme', 'R', 'TL', 'ADET', '278.81000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120777, 7, 'P10021000.R02.26', NULL, 'MA10021000', 'WoodSystem Şaft Platform Askısı', 'Malzeme', 'R', 'TL', 'ADET', '34.81000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120778, 7, 'P10021000.R02.27', NULL, 'MA10021000', 'WoodSystem Şaft Rezervasyon Kalıbı', 'Malzeme', 'R', 'TL', 'ADET', '8.71000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120779, 7, 'P10021000.R02.28', NULL, 'MA10021000', 'WoodSystem Çalışma Konsolu', 'Malzeme', 'R', 'TL', 'ADET', '24.51000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120780, 7, 'P10021000.A01.01', NULL, 'MA10021000', 'WoodSystem Perde Kalıbı h=505cm L=32,5M A=328,25m2 (Çift Taraflı)', 'Malzeme', 'A', '$', 'ADET', '14792.40564000', NULL, 'Plywood Hariç Perde Malzeme Fiyatı', NULL, NULL, NULL, 0),
+(120781, 7, 'P01301002.A01.02', NULL, 'P01301002', 'Kolon ve Perde Kalıbı Yapılması', 'Malzeme + İşçilik', 'A', '$', 'm2', '23.21577343', NULL, NULL, NULL, NULL, NULL, 0);
+INSERT INTO `pozlar_try` (`PozID`, `BFKitapNo`, `PozNo`, `PozSNo`, `MkkCode`, `PozTanim`, `MaliyetGrup`, `PozTipi`, `ParaBirim`, `OlcuBirim`, `BirimFiyat`, `BfTarih`, `PozAciklama`, `PozFirma`, `PozModel`, `PozRef`, `sorumluluk`) VALUES
+(120782, 7, 'P10021000.R02.29', NULL, 'MA10021000', 'WoodSystem Perde Kuşağı 175 (I=170 cm)', 'Malzeme', 'R', 'TL', 'ADET', '70.11000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120783, 7, 'P10021000.R02.30', NULL, 'MA10021000', 'WoodSystem Köşe Perde Kuşağı 100/75 (95/71 cm)', 'Malzeme', 'R', 'TL', 'ADET', '69.82000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120784, 7, 'P10021000.R02.31', NULL, 'MA10021000', 'WoodSystem Köşe Perde Kuşağı 100/75 (49/78 cm)', 'Malzeme', 'R', 'TL', 'ADET', '56.07000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120785, 7, 'P10021000.R02.32', NULL, 'MA10021000', 'WoodSystem Köşe Perde Kuşağı 55/83 (40/50 cm)', 'Malzeme', 'R', 'TL', 'ADET', '39.63000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120786, 7, 'P10021000.R02.33', NULL, 'MA10021000', 'WoodSystem Kiriş Bağlantı Klipsi', 'Malzeme', 'R', 'TL', 'ADET', '6.43000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120787, 7, 'P10021000.R02.34', NULL, 'MA10021000', 'WoodSystem Şaft Platform Kirişi (L=470 cm)', 'Malzeme', 'R', 'TL', 'ADET', '364.02000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120788, 7, 'P10021000.A01.02', NULL, 'MA10021000', 'WoodSystem Perde Kalıbı h=505cm L=22,5m A= 227,25m2 (Çift Taraflı)', 'Malzeme', 'A', '$', 'Adet', '16560.11184000', NULL, 'Plywood Hariç Perde Malzeme Fiyatı', NULL, NULL, NULL, 0),
+(120789, 7, 'P10021000.R02.35', NULL, 'MA10021000', 'WoodSystem Perde Kuşağı 315 (I=310 cm)', 'Malzeme', 'R', 'TL', 'ADET', '129.23000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120790, 7, 'P10021000.A01.03', NULL, 'MA10021000', 'WoodSystem Perde Kalıbı h=505cm L=10m A= 101m2 (Çift Taraflı)', 'Malzeme', 'A', '$', 'Adet', '7667.42368100', NULL, 'Plywood Hariç Perde Malzeme Fiyatı', NULL, NULL, NULL, 0),
+(120791, 7, 'P10021000.R02.36', NULL, 'MA10021000', 'WoodSystem Perde Kuşağı 275 (I=270 cm)', 'Malzeme', 'R', 'TL', 'ADET', '108.08000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120792, 7, 'P10021000.R02.37', NULL, 'MA10021000', 'WoodSystem Perde Kuşağı 360 (I=355 cm)', 'Malzeme', 'R', 'TL', 'ADET', '149.21000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120793, 7, 'P10021000.R02.38', NULL, 'MA10021000', 'WoodSystem Köşe Perde Kuşağı 75/70 (61/56 cm)', 'Malzeme', 'R', 'TL', 'ADET', '51.65000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120794, 7, 'P10021000.R02.39', NULL, 'MA10021000', 'WoodSystem Köşe Perde Kuşağı 75/70 (61/61 cm)', 'Malzeme', 'R', 'TL', 'ADET', '53.87000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120795, 7, 'P10021000.R02.40', NULL, 'MA10021000', 'WoodSystem Mafsallı Kuşak Birleştirme Elemanı 65/120', 'Malzeme', 'R', 'TL', 'ADET', '31.96000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120796, 7, 'P10021000.R02.41', NULL, 'MA10021000', 'WoodSystem Çektirme Mil', 'Malzeme', 'R', 'TL', 'ADET', '5.87000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120797, 7, 'P10021000.R02.42', NULL, 'MA10021000', 'WoodSystem Çift Kollu Payanda (Max 360; Min 300)', 'Malzeme', 'R', 'TL', 'ADET', '107.59000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120798, 7, 'P10021000.A01.04', NULL, 'MA10021000', 'WoodSystem Perde Kalıbı h=360cm L=120m A= 864m2 (Çift Taraflı)', 'Malzeme', 'A', '$', 'Adet', '42108.54932000', NULL, 'Plywood Hariç Perde Malzeme Fiyatı', NULL, NULL, NULL, 0),
+(120799, 7, 'P10021000.R03.01', NULL, 'MA10021000', 'Masa Kalıp iskele ana çerçeve 150x150', 'Malzeme', 'R', 'TL', 'ADET', '55.91000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120800, 7, 'P10021000.R03.02', NULL, 'MA10021000', 'Masa Kalıp iskele Diagonal Eleman Takımı 150x175', 'Malzeme', 'R', 'TL', 'ADET', '16.55000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120801, 7, 'P10021000.R03.03', NULL, 'MA10021000', 'Masa Kalıp iskele Alt Ayar Elemanı D=48mm L=75cm', 'Malzeme', 'R', 'TL', 'ADET', '18.75000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120802, 7, 'P10021000.R03.04', NULL, 'MA10021000', 'Masa Kalıp iskele Çerçeve Birleştirme Elemanı', 'Malzeme', 'R', 'TL', 'ADET', '2.35000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120803, 7, 'P10021000.R03.05', NULL, 'MA10021000', 'Masa Kalıp iskele Pim+Kopilya', 'Malzeme', 'R', 'TL', 'ADET', '0.85000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120804, 7, 'P10021000.R03.06', NULL, 'MA10021000', 'Masa Kalıp iskele Kriko Maşası', 'Malzeme', 'R', 'TL', 'ADET', '1.61000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120805, 7, 'P10021000.R03.07', NULL, 'MA10021000', 'Masa Kalıp iskele H20 Bağlama Elemanı Takımı', 'Malzeme', 'R', 'TL', 'ADET', '6.72000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120806, 7, 'P10021000.R03.08', NULL, 'MA10021000', 'Masa Kalıp iskele Kiriş Bağlantı Elemanı ECO', 'Malzeme', 'R', 'TL', 'ADET', '0.56000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120807, 7, 'P10021000.A02.01', NULL, 'MA10021000', 'Masa Kalıp İskelesi h=(5,35-5,75m) A= (8,1m2 / 2,7mx3,0m)', 'Malzeme', 'A', '$', 'Adet', '673.70895450', NULL, NULL, NULL, NULL, NULL, 0),
+(120808, 7, 'P10021000.A02.02', NULL, 'MA10021000', 'Masa Kalıp İskelesi h=(3,85-4,25m) A= (8,1m2 / 2,7mx3,0m)', 'Malzeme', 'A', '$', 'Adet', '589.19173010', NULL, NULL, NULL, NULL, NULL, 0),
+(120809, 7, 'P10021000.R03.09', NULL, 'MA10021000', 'Masa Kalıp iskele ana çerçeve 150x110', 'Malzeme', 'R', 'TL', 'ADET', '45.34000000', NULL, 'Ağırlıkla orantılı olarak fiyat hesaplandı.', 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120810, 7, 'P10021000.A02.03', NULL, 'MA10021000', 'Masa Kalıp İskelesi h=(2,7-3,85m) A= (9,375m2 / 2,5mx3,75m)', 'Malzeme', 'A', '$', 'Adet', '408.57528410', NULL, NULL, NULL, NULL, NULL, 0),
+(120811, 7, 'P10021000.R03.10', NULL, 'MA10021000', 'Masa Kalıp iskele Diagonal Eleman Takımı 110x175', 'Malzeme', 'R', 'TL', 'ADET', '14.99000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120812, 7, 'P01301002.A01.04', NULL, 'P01301002', 'Taşıyıcı İskele ile Döşeme Kalıbı Yapılması h=3,78-4,25m', 'Malzeme + İşçilik', 'A', '$', 'M2', '24.03724187', NULL, NULL, NULL, NULL, NULL, 0),
+(120813, 7, 'P01301002.A01.03', NULL, 'P01301002', 'Taşıyıcı İskele ile Döşeme Kalıbı Yapılması h=2,70-3,85m', 'Malzeme + İşçilik', 'A', '$', 'M2', '22.58802955', NULL, NULL, NULL, NULL, NULL, 0),
+(120814, 7, 'P01201001.R03.01', NULL, 'P01201001', 'Toprak Kazısının Yapılması,Yüklenmesi,11km tasinmasi', 'İşçilik', 'R', 'AZN', 'm3', '2.50000000', NULL, 'Ekskavatör ve kırıcı ile kaya hariç her türlü zeminde kazının yapılması, yüklenmesi, çıkan malzemenin (İşveren ve Yüklenicinin onayladığı Altyüklenicinin bulacağı yere kadar taşınması ve boşaltılması, geçici drenaj işlerinin yapılması, kazı çukurundaki suyun pompalar ile kazı alanından uzaklaştırılması, kazı tabanı ve şev yüzeylerinin reglajı (zemin tesviyesi) hertürlü işçilik, makine, alet, edevat ve yakıt giderleri, müteahhit kârı ve genel giderler dahil 1 m³ kazı fiyatı.\nÖlçü: projesindendir. Kabarmalar dikkate alınmaz.', 'Zetaş-AGT', NULL, 'BHAP-4004', 0),
+(120815, 7, 'P01201001.R03.02', NULL, 'P01201001', 'Kaya Kazısının Yapılması,Yüklenmesi,11km tasinmasi', 'İşçilik', 'R', 'AZN', 'm3', '4.50000000', NULL, 'Her cins kaya zeminde kazının ekskavatör, kompresör ve kırıcı kullanılarak yapılması, kazı sahasının temizlenmesi, sökme işlerinin yapılması, taşıtlara yüklenmesi, kazıdan çıkan malzemelerin İşveren ve Yüklenicinin onayladığı Altyüklenicinin bulacağı yere kadar taşınması ve boşaltılması, geçici drenaj işlerinin yapılması, kazı çukurundaki suyun pompalar ile kazı alanından uzaklaştırılması, kazı tabanı ve şev yüzeylerinin reglajı (zemin tesviyesi) hertürlü işçilik, makine, alet, edevat ve yakıt giderleri, müteahhit kârı ve genel giderler dahil 1 m³ kazı fiyatı.\nÖLÇÜ: Yukarıda sayılan malzemelerinin kazılmadan önce yerinde ölçülen hacmidir.', 'Zetaş-AGT', NULL, 'BHAP-4004', 0),
+(120816, 7, 'P01203003.R02.01', NULL, 'P01203003', '80cm çapında fore kazık yapılması işçiliği (8-18m)+integrity test', 'İşçilik', 'R', 'AZN', 'M', '60.00000000', NULL, 'Muhafaza borusu, Foraj, betonaj, kazik basinin kirilmasi, moloz ve pasanin saha içine nakli ve boşaltılması, integrity test(ultrasonic) yapılması.\nÖlçü: foraj boyudur.', 'Zetaş AGT', NULL, 'BHAP-4004', 0),
+(120817, 7, 'P01203003.R02.02', NULL, 'P01203003', '100cm çapında fore kazık yapılması işçiliği (18m)+integrity test', 'İşçilik', 'R', 'AZN', 'M', '88.00000000', NULL, 'Muhafaza borusu, Foraj, betonaj, kazik basinin kirilmasi, moloz ve pasanin saha içine nakli ve boşaltılması, integrity test(ultrasonic) yapılması.\nÖlçü: foraj boyudur.', 'Zetaş AGT', NULL, 'BHAP-4004', 0),
+(120818, 7, 'P10021000.A02.04', NULL, 'MA10021000', 'Masa Kalıp İskelesi h=(11,80m) A= (2300m2)', 'Malzeme', 'A', '$', 'Adet', '99999.99999999', NULL, NULL, NULL, NULL, NULL, 0),
+(120819, 7, 'P10021000.R03.11', NULL, 'MA10021000', 'Masa Kalıp iskele ana çerçeve 150x180', 'Malzeme', 'R', 'TL', 'ADET', '61.53000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120820, 7, 'P10021000.R03.12', NULL, 'MA10021000', 'Masa Kalıp iskele Diagonal Eleman Takımı 180x150', 'Malzeme', 'R', 'TL', 'ADET', '19.13000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120821, 7, 'P01203003.R02.03', NULL, 'P01203003', 'Statik Yükleme Testi (2 reaksiyon kazığı ile enstrümansız)', 'İşçilik', 'R', 'AZN', 'Adet', '10000.00000000', NULL, 'deney kazık kafası üstüne uygun kalınlıkta sac plaka ve uygulanacak yüke göre yeterli sayıda hidrolik kriko konulması, reaksiyon kirişlerinin montajı ve bunların çekme kazıklara kaynaklanarak bağlanması, hidrolik kriko, elektrikli pompa ve manometreden oluşan yük uygulama sistemi ile deney kazığına belirlenen düşey deney yükünün yüklenmesi, referans kirişlerinin montajı ve deney raporunun hazırlanması için her türlü malzeme ve zayiatı, işçilik, makina, araç ve gereç giderleri, müteahhit kârı ve genel giderler dahil olmak üzere 1 adet düşey kazık yükleme testi fiyatı:\nÖLÇÜ : Yükleme yapılan test kazık sayısıdır.\nNOT : 1) Reaksiyon kazıklarının foraji, beton ve demir işçiliği fiyata dahildir.', 'Zetaş AGT', NULL, 'BHAP-4004', 0),
+(120822, 7, 'P01203003.R02.04', NULL, 'P01203003', 'Statik Yükleme Testi (4 reaksiyon kazığı ile enstrümansız)', 'İşçilik', 'R', 'AZN', 'Adet', '25000.00000000', NULL, 'deney kazık kafası üstüne uygun kalınlıkta sac plaka ve uygulanacak yüke göre yeterli sayıda hidrolik kriko konulması, reaksiyon kirişlerinin montajı ve bunların çekme kazıklara kaynaklanarak bağlanması, hidrolik kriko, elektrikli pompa ve manometreden oluşan yük uygulama sistemi ile deney kazığına belirlenen düşey deney yükünün yüklenmesi, referans kirişlerinin montajı ve deney raporunun hazırlanması için her türlü malzeme ve zayiatı, işçilik, makina, araç ve gereç giderleri, müteahhit kârı ve genel giderler dahil olmak üzere 1 adet düşey kazık yükleme testi fiyatı:\nÖLÇÜ : Yükleme yapılan test kazık sayısıdır.\nNOT : 1) Reaksiyon kazıklarının foraji, beton ve demir işçiliği fiyata dahildir.', 'Zetaş AGT', NULL, 'BHAP-4004', 0),
+(120823, 7, 'P01203003.R02.05', NULL, 'P01203003', 'Statik Yükleme Testi (4 reaksiyon kazığı ile enstrümanlı)', 'İşçilik', 'R', 'AZN', 'Adet', '40000.00000000', NULL, 'deney kazık kafası üstüne uygun kalınlıkta sac plaka ve uygulanacak yüke göre yeterli sayıda hidrolik kriko konulması, reaksiyon kirişlerinin montajı ve bunların çekme kazıklara kaynaklanarak bağlanması, hidrolik kriko, elektrikli pompa ve manometreden oluşan yük uygulama sistemi ile deney kazığına belirlenen düşey deney yükünün yüklenmesi, referans kirişlerinin montajı ve deney raporunun hazırlanması için her türlü malzeme ve zayiatı, işçilik, makina, araç ve gereç giderleri, müteahhit kârı ve genel giderler dahil olmak üzere 1 adet düşey kazık yükleme testi fiyatı:\nÖLÇÜ : Yükleme yapılan test kazık sayısıdır.\nNOT : 1) Reaksiyon kazıklarının foraji, beton ve demir işçiliği fiyata dahildir.', 'Zetaş AGT', NULL, 'BHAP-4004', 0),
+(120824, 7, 'P10021000.R03.13', NULL, 'MA10021000', 'Masa Kalıp iskele Diagonal Eleman Takımı 180x100', 'Malzeme', 'R', 'TL', 'ADET', '15.68000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120825, 7, 'P10021000.R03.14', NULL, 'MA10021000', 'Masa Kalıp iskele Diagonal Eleman Takımı 150x150', 'Malzeme', 'R', 'TL', 'ADET', '17.29000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120826, 7, 'P10021000.R03.15', NULL, 'MA10021000', 'Masa Kalıp iskele Alt Ayar Elemanı D=48mm L=120cm', 'Malzeme', 'R', 'TL', 'ADET', '25.07000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120827, 7, 'P10021000.R03.16', NULL, 'MA10021000', 'Masa Kalıp iskele Çift Yollu Ayar Elemanı D=48mm L=120cm', 'Malzeme', 'R', 'TL', 'ADET', '31.72000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120829, 7, 'P01102001.R02.01', NULL, 'P01102001', 'Saha Betonunun kırılması, yüklenmesi, taşınması', 'İşçilik', 'R', 'AZN', 'm3', '4.50000000', NULL, NULL, 'Zetaş-AGT', NULL, 'BHAP-4004', 0),
+(120830, 7, 'P01301002.A01.06', NULL, 'P01301002', 'Taşıyıcı İskele ile Döşeme Kalıbı Yapılması h=11,80m', 'Malzeme + İşçilik', 'A', '$', 'M2', '29.76755239', NULL, NULL, NULL, NULL, NULL, 0),
+(120832, 7, 'P01102001.R02.02', NULL, 'P01102001', 'Asfalt tabakasının kırılması, yüklenmesi, taşınması', 'İşçilik', 'R', 'AZN', 'm3', '4.50000000', NULL, NULL, 'Zetaş-AGT', NULL, 'BHAP-4004', 0),
+(120833, 7, 'P10021000.R04.01', NULL, 'MA10021000', 'Masa Kalıp Merdiven 180/200', 'Malzeme', 'R', 'TL', 'ADET', '83.89000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120834, 7, 'P10021000.R04.02', NULL, 'MA10021000', 'Masa Kalıp Merdiven Korkuluğu', 'Malzeme', 'R', 'TL', 'ADET', '54.57000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120835, 7, 'P10021000.R04.03', NULL, 'MA10021000', 'Masa Kalıp Yürüme Platformu', 'Malzeme', 'R', 'TL', 'ADET', '39.56000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120836, 7, 'P10021000.R04.04', NULL, 'MA10021000', 'Masa Kalıp Hareketli Boru Kelepçesi 48/48', 'Malzeme', 'R', 'TL', 'ADET', '5.62000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120837, 7, 'P10021000.R04.05', NULL, 'MA10021000', 'Masa Kalıp Düz Boru L=300cm d=48mm', 'Malzeme', 'R', 'TL', 'ADET', '15.75000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120838, 7, 'P10021000.A02.05', NULL, 'MA10021000', 'Masa Kalıp İskele Merdiveni 12m', 'Malzeme', 'A', '$', 'Adet', '1235.11363600', NULL, NULL, NULL, NULL, NULL, 0),
+(120839, 7, 'P10021000.R03.17', NULL, 'MA10021000', 'Masa Kalıp iskele Diagonal Eleman Takımı 180x200', 'Malzeme', 'R', 'TL', 'ADET', '18.95000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120840, 7, 'P01203003.R03.01', NULL, 'P01203003', '80cm çapında fore kazık yapılması işçiliği (12m)', 'İşçilik', 'R', 'AZN', 'M', '84.00000000', NULL, 'Muhafaza borusu, Foraj, betonaj, kazik basinin kirilmasi, moloz ve pasanin saha içine nakli ve boşaltılması dahil.\nÖlçü: foraj boyudur.', 'AKAT', NULL, 'TMKF/BHAP-4004', 0),
+(120842, 7, 'P10021000.A02.06', NULL, 'MA10021000', 'Masa Kalıp İskele Merdiveni 8m', 'Malzeme', 'A', '$', 'Adet', '873.85946660', NULL, NULL, NULL, NULL, NULL, 0),
+(120843, 7, 'P01203003.R03.03', NULL, 'P01203003', 'Fore kazık integrity test(ultrasonic)', 'İşçilik', 'R', 'AZN', 'Adet', '15.00000000', NULL, NULL, 'AKAT', NULL, 'TMKF/BHAP-4004', 0),
+(120844, 7, 'P01203003.R04.01', NULL, 'P01203003', '80cm çapında fore kazık yapılması işçiliği (12m)', 'İşçilik', 'R', 'AZN', 'M', '68.20000000', NULL, 'Muhafaza borusu, Foraj, betonaj, pasanin saha içine nakli ve boşaltılması, dahil.\nÖlçü: foraj boyudur.', 'BOM Makina', NULL, 'TMKF/BHAP-4004', 0),
+(120845, 7, 'P10021000.A02.07', NULL, 'MA10021000', 'Masa Kalıp İskele Merdiveni 4m', 'Malzeme', 'A', '$', 'Adet', '468.63839750', NULL, NULL, NULL, NULL, NULL, 0),
+(120846, 7, 'P01203003.R04.02', NULL, 'P01203003', 'Fore kazık başının kırılması taşınması (h=0-1m) tasima 100-200m', 'İşçilik', 'R', 'AZN', 'Adet', '50.00000000', NULL, 'molozun saha içine nakli ve boşaltılması, dahil.', 'BOM Makina', NULL, 'TMKF/BHAP-4004', 0),
+(120847, 7, 'P10021000.R03.18', NULL, 'MA10021000', 'Masa Kalıp Korkuluğu', 'Malzeme', 'R', 'TL', 'ADET', '19.58000000', NULL, NULL, 'Urtim Kalıp ve İskele Sistemleri', NULL, 'BHAP/2323/2011 Nolu Sözleşme', 0),
+(120848, 7, 'P01203003.R05.01', NULL, 'P01203003', '80cm çapında fore kazık yapılması işçiliği (12m)', 'İşçilik', 'R', 'AZN', 'M', '60.00000000', NULL, 'Muhafaza borusu, Foraj, betonaj,\nÖlçü: foraj boyudur.', 'Azerköprü', NULL, 'TMKF/BHAP-4004', 0),
+(120849, 7, 'P01203003.R05.02', NULL, 'P01203003', 'Fore kazık integrity test(ultrasonic)', 'İşçilik', 'R', 'AZN', 'Adet', '50.00000000', NULL, NULL, 'Azerköprü', NULL, 'TMKF/BHAP-4004', 0),
+(120850, 7, 'P01203003.R06.01', NULL, 'P01203003', '80cm çapında fore kazık yapılması işçiliği (12m)', 'İşçilik', 'R', 'AZN', 'Adet', '51.00000000', NULL, 'Muhafaza borusu, Foraj, betonaj, pasanin saha içine nakli ve boşaltılması dahil\nÖlçü: foraj boyudur.', 'Memar Tamir tikinti', NULL, 'TMKF/BHAP-4004', 0),
+(120851, 7, 'P01203003.R06.02', NULL, 'P01203003', 'Fore kazık başının kırılması taşınması (h=0-1m) tasima 100-200m', 'İşçilik', 'R', 'AZN', 'Adet', '110.00000000', NULL, 'molozun saha içine nakli ve boşaltılması, dahil.', 'Memar Tamir tikinti', NULL, 'TMKF/BHAP-4004', 0),
+(120852, 7, 'P01301004.A01.02', NULL, 'P01301004', 'B25 Betonarme Betonu Dökülmesi', 'Malzeme + İşçilik', 'A', '$', 'm3', '123.65532600', NULL, NULL, NULL, NULL, NULL, 0),
+(120855, 7, 'P01301004.A01.01', NULL, 'P01301004', 'B20 Betonarme Betonu Dökülmesi', 'Malzeme + İşçilik', 'A', '$', 'm3', '110.58761300', NULL, NULL, NULL, NULL, NULL, 0),
+(120856, 7, 'P01301004.A01.03', NULL, 'P01301004', 'B30 Betonarme Betonu Dökülmesi', 'Malzeme + İşçilik', 'A', '$', 'm3', '130.19150000', NULL, NULL, NULL, NULL, NULL, 0),
+(120857, 7, 'P01301004.A01.04', NULL, 'P01301004', 'B35 Betonarme Betonu Dökülmesi', 'Malzeme + İşçilik', 'A', '$', 'm3', '136.72314200', NULL, NULL, NULL, NULL, NULL, 0),
+(120858, 7, 'P01301004.A01.05', NULL, 'P01301004', 'B40 Betonarme Betonu Dökülmesi', 'Malzeme + İşçilik', 'A', '$', 'm3', '162.85856800', NULL, NULL, NULL, NULL, NULL, 0),
+(120859, 7, 'P01301004.A01.06', NULL, 'P01301004', 'B45 Betonarme Betonu Dökülmesi', 'Malzeme + İşçilik', 'A', '$', 'm3', '169.39247600', NULL, NULL, NULL, NULL, NULL, 0),
+(120860, 7, 'P01301004.A01.07', NULL, 'P01301004', 'B50 Betonarme Betonu Dökülmesi', 'Malzeme + İşçilik', 'A', '$', 'm3', '190.30085800', NULL, NULL, NULL, NULL, NULL, 0),
+(120861, 7, 'P01801002.R01.03', NULL, 'P01801002', 'Düşeyde Bitumlu Membran Altına Bitümer Astar Sürülmesi', 'Malzeme + İşçilik', 'R', '$', 'm2', '0.28000000', NULL, NULL, NULL, NULL, NULL, 0),
+(120862, 7, 'P01801002.R02.01', NULL, 'P01801000', 'Düşeyde Bitumlu Membran Altına Bitümer Astar Sürülmesi 400gr/m2', 'Malzeme + İşçilik', 'R', '$', 'm2', '0.53000000', NULL, 'Düşeyde uygulama yapılacak yüzey, toz, kir, pas ve yağdan arındırılmalı, gevşek parçalar kazınmalıdır. İç köşeler şartnameye uygun şekilde, kalitede ve malzeme ile pah yapılmalı, dış köşeler spiral taşı ile yuvarlatılmalıdır. İzolasyon Yapmak için düzgün prüzsüz yüzey oluşturulmalıdır. Sürme Esaslı Su Yalıtım Malzemesi Astar & metrekareye 400 gr olacak şekilde fırça veya tabanca ile yüzeye uygulanması, her türlü malzeme ve zayiatı, işçilik, inşaat yerindeki yatay ve düşey taşımalar, yükleme-boşaltma, alet-edevat giderleri dahil 1m2 fiyatıdır.\nÖlçü: Projesinden ölçümlemeye esas olan net yüzey alanı ölçülür. 0,10 m2''den büyük boşluklar hesaba dahil edilmeyecektir.', 'Izoser', 'BTM ASTAR', 'BHAP-2036', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `poztipi`
+--
+
+CREATE TABLE `poztipi` (
+  `ID` bigint(20) NOT NULL,
   `PozTipL` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PozTip` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `poztipi`
+--
+
+INSERT INTO `poztipi` (`ID`, `PozTipL`, `PozTip`) VALUES
+(1, 'R', 'Rayiç'),
+(2, 'F', 'Fiyat'),
+(3, 'A', 'Analiz'),
+(4, 'B', 'Başlık'),
+(5, 'S', 'Sözleşme'),
+(6, 'G', 'Rayiç Grubu');
+
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `teklifdetay`
+-- Table structure for table `teklifdetay`
 --
 
-CREATE TABLE IF NOT EXISTS `teklifdetay` (
-`TekItemID` bigint(20) NOT NULL,
+CREATE TABLE `teklifdetay` (
+  `TekItemID` bigint(20) NOT NULL,
   `TekNo` bigint(20) DEFAULT NULL,
   `TekItemType` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ItemParentID` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -209,186 +1929,247 @@ CREATE TABLE IF NOT EXISTS `teklifdetay` (
   `TekItemComment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `teklifdetay`
+--
+
+INSERT INTO `teklifdetay` (`TekItemID`, `TekNo`, `TekItemType`, `ItemParentID`, `TekPozNo`, `TekPozMiktar`, `TekItemAciklama`, `TeklifBirimFiyat`, `PrimaProj`, `PrimaAct`, `TekItemComment`) VALUES
+(1, 1, 'TYPE', 'PARENTID', 119453, 3, 'TEKLIF ACIKLAMA', 5, NULL, NULL, 'ACIKLAMA ALANI');
+
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `teklifler`
+-- Table structure for table `teklifler`
 --
 
-CREATE TABLE IF NOT EXISTS `teklifler` (
-`TeklifID` bigint(20) NOT NULL,
+CREATE TABLE `teklifler` (
+  `TeklifID` bigint(20) NOT NULL,
   `TeklifAdi` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ParaBirim` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PrimaProj` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dökümü yapılmış tablolar için indeksler
+-- Dumping data for table `teklifler`
+--
+
+INSERT INTO `teklifler` (`TeklifID`, `TeklifAdi`, `ParaBirim`, `PrimaProj`) VALUES
+(1, 'Ortak Başlıklar', 'TL', NULL),
+(12, 'KSA', '$', 759),
+(22, 'deneme', '£', NULL),
+(23, 'Sözleşmeler', '$', 770),
+(24, 'Çevre ve Şehircilik Bakanlığı Hizmet Binası', 'TL', NULL),
+(25, 'iskele', '$', NULL),
+(26, 'Sulo', '$', 770),
+(27, 'iso', 'TL', NULL),
+(28, 'sukru deneme', 'TL', NULL),
+(29, '10KM Kazı Dolgu İşi', 'TL', 376);
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Tablo için indeksler `analiz`
+-- Indexes for table `analiz`
 --
 ALTER TABLE `analiz`
- ADD PRIMARY KEY (`AnalizID`), ADD KEY `MainPozID` (`MainPozID`), ADD KEY `SubPozID` (`SubPozID`), ADD KEY `MainPozID_2` (`MainPozID`), ADD KEY `MainPozID_3` (`MainPozID`), ADD KEY `SubPozID_2` (`SubPozID`);
+  ADD PRIMARY KEY (`AnalizID`),
+  ADD KEY `MainPozID` (`MainPozID`),
+  ADD KEY `SubPozID` (`SubPozID`),
+  ADD KEY `MainPozID_2` (`MainPozID`),
+  ADD KEY `MainPozID_3` (`MainPozID`),
+  ADD KEY `SubPozID_2` (`SubPozID`);
 
 --
--- Tablo için indeksler `bfiyatkitap`
+-- Indexes for table `bfiyatkitap`
 --
 ALTER TABLE `bfiyatkitap`
- ADD PRIMARY KEY (`KitapID`), ADD UNIQUE KEY `KitapAdi_3` (`KitapAdi`), ADD KEY `KitapAdi` (`KitapAdi`), ADD KEY `KitapAdi_2` (`KitapAdi`);
+  ADD PRIMARY KEY (`KitapID`),
+  ADD UNIQUE KEY `KitapAdi_3` (`KitapAdi`),
+  ADD KEY `KitapAdi` (`KitapAdi`),
+  ADD KEY `KitapAdi_2` (`KitapAdi`);
 
 --
--- Tablo için indeksler `kullanici`
+-- Indexes for table `kullanici`
 --
 ALTER TABLE `kullanici`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `mail` (`mail`);
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `mail` (`mail`);
 
 --
--- Tablo için indeksler `maliyetgrup`
+-- Indexes for table `maliyetgrup`
 --
 ALTER TABLE `maliyetgrup`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `MaliyetAdi` (`MaliyetAdi`);
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `MaliyetAdi` (`MaliyetAdi`);
 
 --
--- Tablo için indeksler `maliyettemp`
+-- Indexes for table `maliyettemp`
 --
 ALTER TABLE `maliyettemp`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `MaliyetAdi` (`MaliyetAdi`), ADD KEY `MaliyetAdi_2` (`MaliyetAdi`), ADD KEY `MaliyetAdi_3` (`MaliyetAdi`), ADD KEY `KitapAdi` (`KitapAdi`), ADD KEY `PozID` (`PozID`), ADD KEY `PozNo` (`PozNo`), ADD KEY `ParaBirim` (`ParaBirim`), ADD KEY `Birim` (`Birim`);
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `MaliyetAdi` (`MaliyetAdi`),
+  ADD KEY `MaliyetAdi_2` (`MaliyetAdi`),
+  ADD KEY `MaliyetAdi_3` (`MaliyetAdi`),
+  ADD KEY `KitapAdi` (`KitapAdi`),
+  ADD KEY `PozID` (`PozID`),
+  ADD KEY `PozNo` (`PozNo`),
+  ADD KEY `ParaBirim` (`ParaBirim`),
+  ADD KEY `Birim` (`Birim`);
 
 --
--- Tablo için indeksler `mkk`
+-- Indexes for table `mkk`
 --
 ALTER TABLE `mkk`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `MKKCode` (`MKKCode`), ADD KEY `MKKParentCode` (`MKKParentCode`);
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `MKKCode` (`MKKCode`),
+  ADD KEY `MKKParentCode` (`MKKParentCode`);
 
 --
--- Tablo için indeksler `olcubirim`
+-- Indexes for table `olcubirim`
 --
 ALTER TABLE `olcubirim`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `BirimKisaAd` (`BirimKisaAd`), ADD KEY `BirimKisaAd_2` (`BirimKisaAd`);
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `BirimKisaAd` (`BirimKisaAd`),
+  ADD KEY `BirimKisaAd_2` (`BirimKisaAd`);
 
 --
--- Tablo için indeksler `parabirim`
+-- Indexes for table `parabirim`
 --
 ALTER TABLE `parabirim`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `PBirimKisaAd` (`PBirimKisaAd`), ADD KEY `PBirimKisaAd_2` (`PBirimKisaAd`);
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `PBirimKisaAd` (`PBirimKisaAd`),
+  ADD KEY `PBirimKisaAd_2` (`PBirimKisaAd`);
 
 --
--- Tablo için indeksler `pozlar`
+-- Indexes for table `pozlar`
 --
 ALTER TABLE `pozlar`
- ADD PRIMARY KEY (`PozID`), ADD UNIQUE KEY `PozNo` (`PozNo`), ADD UNIQUE KEY `MkkCode` (`MkkCode`), ADD KEY `PozID` (`PozID`), ADD KEY `MaliyetGrup` (`MaliyetGrup`), ADD KEY `PozTipi` (`PozTipi`), ADD KEY `PozTipi_2` (`PozTipi`), ADD KEY `ParaBirim` (`ParaBirim`), ADD KEY `OlcuBirim` (`OlcuBirim`), ADD KEY `MkkCode_2` (`MkkCode`);
+  ADD PRIMARY KEY (`PozID`),
+  ADD UNIQUE KEY `PozNo` (`PozNo`),
+  ADD UNIQUE KEY `MkkCode` (`MkkCode`),
+  ADD KEY `PozID` (`PozID`),
+  ADD KEY `MaliyetGrup` (`MaliyetGrup`),
+  ADD KEY `PozTipi` (`PozTipi`),
+  ADD KEY `PozTipi_2` (`PozTipi`),
+  ADD KEY `ParaBirim` (`ParaBirim`),
+  ADD KEY `OlcuBirim` (`OlcuBirim`),
+  ADD KEY `MkkCode_2` (`MkkCode`);
 
 --
--- Tablo için indeksler `poztipi`
+-- Indexes for table `poztipi`
 --
 ALTER TABLE `poztipi`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `PozTipL` (`PozTipL`);
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `PozTipL` (`PozTipL`);
 
 --
--- Tablo için indeksler `teklifdetay`
+-- Indexes for table `teklifdetay`
 --
 ALTER TABLE `teklifdetay`
- ADD PRIMARY KEY (`TekItemID`);
+  ADD PRIMARY KEY (`TekItemID`),
+  ADD KEY `TekNo` (`TekNo`),
+  ADD KEY `TekPozNo` (`TekPozNo`);
 
 --
--- Tablo için indeksler `teklifler`
+-- Indexes for table `teklifler`
 --
 ALTER TABLE `teklifler`
- ADD PRIMARY KEY (`TeklifID`), ADD UNIQUE KEY `TeklifAdi` (`TeklifAdi`);
+  ADD PRIMARY KEY (`TeklifID`),
+  ADD UNIQUE KEY `TeklifAdi` (`TeklifAdi`);
 
 --
--- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Tablo için AUTO_INCREMENT değeri `analiz`
+-- AUTO_INCREMENT for table `analiz`
 --
 ALTER TABLE `analiz`
-MODIFY `AnalizID` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=149432;
+  MODIFY `AnalizID` bigint(20) NOT NULL AUTO_INCREMENT;
 --
--- Tablo için AUTO_INCREMENT değeri `bfiyatkitap`
+-- AUTO_INCREMENT for table `bfiyatkitap`
 --
 ALTER TABLE `bfiyatkitap`
-MODIFY `KitapID` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `KitapID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 --
--- Tablo için AUTO_INCREMENT değeri `kullanici`
+-- AUTO_INCREMENT for table `kullanici`
 --
 ALTER TABLE `kullanici`
-MODIFY `ID` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` smallint(6) NOT NULL AUTO_INCREMENT;
 --
--- Tablo için AUTO_INCREMENT değeri `maliyetgrup`
+-- AUTO_INCREMENT for table `maliyetgrup`
 --
 ALTER TABLE `maliyetgrup`
-MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- Tablo için AUTO_INCREMENT değeri `olcubirim`
+-- AUTO_INCREMENT for table `olcubirim`
 --
 ALTER TABLE `olcubirim`
-MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- Tablo için AUTO_INCREMENT değeri `parabirim`
+-- AUTO_INCREMENT for table `parabirim`
 --
 ALTER TABLE `parabirim`
-MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- Tablo için AUTO_INCREMENT değeri `pozlar`
+-- AUTO_INCREMENT for table `pozlar`
 --
 ALTER TABLE `pozlar`
-MODIFY `PozID` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=119454;
+  MODIFY `PozID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119457;
 --
--- Tablo için AUTO_INCREMENT değeri `poztipi`
+-- AUTO_INCREMENT for table `poztipi`
 --
 ALTER TABLE `poztipi`
-MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- Tablo için AUTO_INCREMENT değeri `teklifdetay`
+-- AUTO_INCREMENT for table `teklifdetay`
 --
 ALTER TABLE `teklifdetay`
-MODIFY `TekItemID` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `TekItemID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- Tablo için AUTO_INCREMENT değeri `teklifler`
+-- AUTO_INCREMENT for table `teklifler`
 --
 ALTER TABLE `teklifler`
-MODIFY `TeklifID` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `TeklifID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
--- Dökümü yapılmış tablolar için kısıtlamalar
+-- Constraints for dumped tables
 --
 
 --
--- Tablo kısıtlamaları `analiz`
+-- Constraints for table `analiz`
 --
 ALTER TABLE `analiz`
-ADD CONSTRAINT `analiz_ibfk_1` FOREIGN KEY (`MainPozID`) REFERENCES `pozlar` (`PozID`),
-ADD CONSTRAINT `analiz_ibfk_2` FOREIGN KEY (`SubPozID`) REFERENCES `pozlar` (`PozID`);
+  ADD CONSTRAINT `analiz_ibfk_1` FOREIGN KEY (`MainPozID`) REFERENCES `pozlar` (`PozID`),
+  ADD CONSTRAINT `analiz_ibfk_2` FOREIGN KEY (`SubPozID`) REFERENCES `pozlar` (`PozID`);
 
 --
--- Tablo kısıtlamaları `maliyettemp`
+-- Constraints for table `maliyettemp`
 --
 ALTER TABLE `maliyettemp`
-ADD CONSTRAINT `maliyettemp_ibfk_1` FOREIGN KEY (`MaliyetAdi`) REFERENCES `maliyetgrup` (`MaliyetAdi`),
-ADD CONSTRAINT `maliyettemp_ibfk_2` FOREIGN KEY (`KitapAdi`) REFERENCES `bfiyatkitap` (`KitapAdi`),
-ADD CONSTRAINT `maliyettemp_ibfk_3` FOREIGN KEY (`PozID`) REFERENCES `pozlar` (`PozID`),
-ADD CONSTRAINT `maliyettemp_ibfk_4` FOREIGN KEY (`PozNo`) REFERENCES `pozlar` (`PozNo`),
-ADD CONSTRAINT `maliyettemp_ibfk_5` FOREIGN KEY (`ParaBirim`) REFERENCES `parabirim` (`PBirimKisaAd`),
-ADD CONSTRAINT `maliyettemp_ibfk_7` FOREIGN KEY (`Birim`) REFERENCES `olcubirim` (`BirimKisaAd`);
+  ADD CONSTRAINT `maliyettemp_ibfk_1` FOREIGN KEY (`MaliyetAdi`) REFERENCES `maliyetgrup` (`MaliyetAdi`),
+  ADD CONSTRAINT `maliyettemp_ibfk_2` FOREIGN KEY (`KitapAdi`) REFERENCES `bfiyatkitap` (`KitapAdi`),
+  ADD CONSTRAINT `maliyettemp_ibfk_3` FOREIGN KEY (`PozID`) REFERENCES `pozlar` (`PozID`),
+  ADD CONSTRAINT `maliyettemp_ibfk_4` FOREIGN KEY (`PozNo`) REFERENCES `pozlar` (`PozNo`),
+  ADD CONSTRAINT `maliyettemp_ibfk_5` FOREIGN KEY (`ParaBirim`) REFERENCES `parabirim` (`PBirimKisaAd`),
+  ADD CONSTRAINT `maliyettemp_ibfk_7` FOREIGN KEY (`Birim`) REFERENCES `olcubirim` (`BirimKisaAd`);
 
 --
--- Tablo kısıtlamaları `mkk`
---
-ALTER TABLE `mkk`
-ADD CONSTRAINT `mkk_ibfk_1` FOREIGN KEY (`MKKParentCode`) REFERENCES `mkk` (`MKKCode`);
-
---
--- Tablo kısıtlamaları `pozlar`
+-- Constraints for table `pozlar`
 --
 ALTER TABLE `pozlar`
-ADD CONSTRAINT `pozlar_ibfk_1` FOREIGN KEY (`MaliyetGrup`) REFERENCES `maliyetgrup` (`MaliyetAdi`),
-ADD CONSTRAINT `pozlar_ibfk_2` FOREIGN KEY (`PozTipi`) REFERENCES `poztipi` (`PozTipL`),
-ADD CONSTRAINT `pozlar_ibfk_3` FOREIGN KEY (`ParaBirim`) REFERENCES `parabirim` (`PBirimKisaAd`),
-ADD CONSTRAINT `pozlar_ibfk_4` FOREIGN KEY (`OlcuBirim`) REFERENCES `olcubirim` (`BirimKisaAd`),
-ADD CONSTRAINT `pozlar_ibfk_5` FOREIGN KEY (`MkkCode`) REFERENCES `mkk` (`MKKCode`);
+  ADD CONSTRAINT `pozlar_ibfk_1` FOREIGN KEY (`MaliyetGrup`) REFERENCES `maliyetgrup` (`MaliyetAdi`),
+  ADD CONSTRAINT `pozlar_ibfk_2` FOREIGN KEY (`PozTipi`) REFERENCES `poztipi` (`PozTipL`),
+  ADD CONSTRAINT `pozlar_ibfk_3` FOREIGN KEY (`ParaBirim`) REFERENCES `parabirim` (`PBirimKisaAd`),
+  ADD CONSTRAINT `pozlar_ibfk_4` FOREIGN KEY (`OlcuBirim`) REFERENCES `olcubirim` (`BirimKisaAd`),
+  ADD CONSTRAINT `pozlar_ibfk_5` FOREIGN KEY (`MkkCode`) REFERENCES `mkk` (`MKKCode`);
+
+--
+-- Constraints for table `teklifdetay`
+--
+ALTER TABLE `teklifdetay`
+  ADD CONSTRAINT `teklifdetay_ibfk_1` FOREIGN KEY (`TekNo`) REFERENCES `teklifler` (`TeklifID`),
+  ADD CONSTRAINT `teklifdetay_ibfk_2` FOREIGN KEY (`TekPozNo`) REFERENCES `pozlar` (`PozID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
