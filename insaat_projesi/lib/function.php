@@ -1,6 +1,14 @@
 <?php 
-function mesaj($mesaj="Mesaj"){
-    echo "<div class=\"mesaj\">{$mesaj}</div>";
+function mesaj($hata=0,$onay=0,$mesaj=0){
+
+    if (empty($hata)==false) {
+        echo "<div class=\"alert red\">{$hata}</div>";        
+    }elseif (empty($onay)==false) {
+        echo "<div class=\"alert blue\">{$onay}</div>";
+    }elseif (empty($mesaj)==false) {
+        echo "<div class=\"alert\">{$mesaj}</div>";
+    }
+    
 }
 
 function yonlendir($url=""){/*yonlendirme icin kullandik.*/
