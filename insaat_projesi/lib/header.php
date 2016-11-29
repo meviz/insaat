@@ -23,7 +23,7 @@
 	}
 /////// sorgu sonu//
 ////////Teklif sorgusu////
-	$sorgu_cumlesi="SELECT TekPozNo,MkkCode,PozTanim,PozTip,MaliyetGrup,PBirimUzunAd,PBirimFiyat,BfTarih,TeklifBirimFiyat,PozFirma,OlcuBirim,TekPozMiktar,TekItemAciklama
+	$sorgu_cumlesi="SELECT TekItemID,TekPozNo,MkkCode,PozTanim,PozTip,MaliyetGrup,PBirimUzunAd,PBirimFiyat,BfTarih,TeklifBirimFiyat,PozFirma,OlcuBirim,TekPozMiktar,TekItemAciklama
 			FROM teklifdetay
 			INNER JOIN pozlar ON pozlar.PozID=teklifdetay.TekPozNo
 			INNER JOIN poztipi ON pozlar.PozTipi = poztipi.PozTipL

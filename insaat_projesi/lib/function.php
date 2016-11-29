@@ -1,4 +1,12 @@
 <?php 
+function mesaj($mesaj="Mesaj"){
+    echo "<div class=\"mesaj\">{$mesaj}</div>";
+}
+
+function yonlendir($url=""){/*yonlendirme icin kullandik.*/
+    header("Location: {$url}");
+}
+
 
 function varm($parentID,$array){
      
