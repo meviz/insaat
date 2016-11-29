@@ -2,26 +2,43 @@
 <?php 
 	
 ////////Maliyet Grubu sorgusu////
-	$sorgu_cumlesi="SELECT *
-					FROM maliyettemp";
+	$sorgu_cumlesi="SELECT * FROM `pozlar` 
+	INNER JOIN poztipi ON pozlar.PozTipi = poztipi.PozTipL
+	INNER JOIN parabirim ON pozlar.ParaBirim = parabirim.PBirimKisaAd
+	LIMIT 10";
 	$sorgu = mysql_query($sorgu_cumlesi);
 	while($satir=mysql_fetch_array($sorgu)) {
 	    $sepetler[$satir['PozID']]=$satir;
 	}
 ////////Maliyet Grubu sorgusu////
 	$sorgu_cumlesi="SELECT *
-					FROM pozlar";
+					FROM pozlar
+					INNER JOIN poztipi ON pozlar.PozTipi = poztipi.PozTipL
+					INNER JOIN olcubirim ON pozlar.OlcuBirim = olcubirim.BirimKisaAd
+					INNER JOIN analiz ON pozlar.PozID = analiz.MainPozID
+					";
 	$sorgu = mysql_query($sorgu_cumlesi);
 	while($satir=mysql_fetch_array($sorgu)) {
 	    $pozanaliz[$satir['PozID']]=$satir;
 	}
 /////// sorgu sonu//
 ////////Teklif sorgusu////
-	$sorgu_cumlesi="SELECT *
-					FROM pozlar";
+	$sorgu_cumlesi="SELECT TekPozNo,MkkCode,PozTanim,PozTip,MaliyetGrup,PBirimUzunAd,PBirimFiyat,BfTarih,TeklifBirimFiyat,PozFirma,OlcuBirim,TekPozMiktar,TekItemAciklama
+			FROM teklifdetay
+			INNER JOIN pozlar ON pozlar.PozID=teklifdetay.TekPozNo
+			INNER JOIN poztipi ON pozlar.PozTipi = poztipi.PozTipL
+			INNER JOIN parabirim ON pozlar.ParaBirim = parabirim.PBirimKisaAd";
 	$sorgu = mysql_query($sorgu_cumlesi);
 	while($satir=mysql_fetch_array($sorgu)) {
-	    $teklifler[$satir['PozID']]=$satir;
+	    $teklifler[$satir['TekItemID']]=$satir;
+	}
+/////// sorgu sonu//
+////////Teklif Tablo sorgusu////
+	$sorgu_cumlesi="SELECT *
+					FROM teklifler";
+	$sorgu = mysql_query($sorgu_cumlesi);
+	while($satir=mysql_fetch_array($sorgu)) {
+	    $teklifs[$satir['TeklifID']]=$satir;
 	}
 /////// sorgu sonu//
 	
@@ -99,6 +116,17 @@
 	}
 */
 	
+
+/////// MKK AGAC ICIN VERI ///////
+	$sql = "SELECT * FROM mkk";
+	$sorgu = mysql_query($sql);
+	while($sonuc = mysql_fetch_array($sorgu)){
+	    $array[$sonuc['ID']]=$sonuc;
+	    $max = max($array[$sonuc['ID']]['MKKCode'],@$max);
+	    $last = $sonuc['ID'];
+	}
+	define("last", $last);
+/////////////
 				
 				
 ?>
