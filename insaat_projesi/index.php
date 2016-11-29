@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Muhammed EVIZ">
+    <meta name="author" content="Mehmet AFSIN">
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.css" rel="stylesheet">
@@ -19,8 +21,41 @@
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.js" type="text/javascript"></script>
     <script src="js/custom.js" type="text/javascript"></script>
+<?php 
+
+
+//echo last."-LAST"."</br>";
+//echo $max."-MAX</br>";
+
+//echo "</br></br>*******////************</br>";
+//echo "<div class=\"BirimFiyatAgaci\">";
+//echo "<div class=\"BirimFiyatAgaciIcerik\">";
+/*
+
+ echo '<ul>';  
+foreach ($array as $key => $value) {
+
+    if ($array[$key]['MKKParentCode'] == "MKK") {
+        echo "<li class=\"acilirList\"><a href=\"#\"><div class=\"listSimge anim\">+</div>".$array[$key]['MKKCode']." MKK / ".$array[$key]['MKKParentCode']." Parent./".$array[$key]['MKKTanim']."</a>";
+        
+        //echo $value['ID']."BUNUN PARENTI YOK(".$value['MKKCode'].")</br>";
+        //child kontrol et.varm($parentID,$array);
+        varm($array[$key]['MKKCode'],$array);
+        echo '</li>';
+     }else{
+        //parent var.
+     }  
+}
+echo '</ul>'; 
+echo "</div>";
+echo "</div>";
+
+*/
+//$onay = "MERHABA";
+?>
 </head>
 <body>
+    <?php mesaj(@$hata,@$onay,@$mesaj); ?>
     <div class="container">
         <div class="projeBaslik">
             <h3>İnşaat Projelerinde Maliyet Hesabı ve Teklif Sistemi</h3>
@@ -31,57 +66,27 @@
         <div class="BirimFiyatAgaci">
             <h5>TÜM POZLAR</h5>
             <div class="BirimFiyatAgaciIcerik">
-                <ul>
-                    <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a>
-                        <ul>
-                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a>
-                                <ul>
-                                    <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a>
-                                        <ul>
-                                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                        </ul>
-                    </li>
+                <?php  //AGAC OLUSTURMA /
+                     echo '<ul>';  
+                    foreach ($array as $key => $value) {
 
-                    <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a>
-                        <ul>
-                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a>
-                                <ul>
-                                    <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a>
-                                        <ul>
-                                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                            <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                        </ul>
-                    </li>
-                    <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                    <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                    <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                    <li class="acilirList"><a href="#"><div class="listSimge anim">+</div>MKK / DiA MKK Kırılımı</a></li>
-                </ul>
+                        if ($array[$key]['MKKParentCode'] == "MKK") {
+                            //echo "<li class=\"acilirList\"><a href=\"#\"><div class=\"listSimge anim\">+</div>".$array[$key]['MKKCode']." MKK / ".$array[$key]['MKKParentCode']." Parent./".$array[$key]['MKKTanim']."</a>";
+                            echo "<li class=\"acilirList\"><a href=\"#\"><div class=\"listSimge anim\">+</div>".$array[$key]['MKKTanim']."</a>";
+                            
+                            //echo $value['ID']."BUNUN PARENTI YOK(".$value['MKKCode'].")</br>";
+                            //child kontrol et.varm($parentID,$array);
+                            varm($array[$key]['MKKCode'],$array);
+                            echo '</li>';
+                         }else{
+                            //parent var.
+                         }  
+                    }
+                    echo '</ul>'; 
+                    echo "</div>";
+                    echo "</div>";
+                    /// ///
+                ?>
             </div>
         </div>
     </div>
@@ -95,12 +100,18 @@
                         <th></th>
                         <th>No</th>
                         <th>Tanim</th>
-                        <th>Maliyet Grubu</th>
+                        <th>Model</th>
+                        <th>Firma</th>
+                        <th>Maliyet Grup</th>
                         <th>Tip</th>
                         <th>Birim</th>
                         <th>Birim Fiyat</th>
-                        <th>Döviz Kuru</th>
-                        <th>Referans</th>
+                        <th>Doviz</th>
+                        <!-- <th>Ref</th> -->
+                        <th>Tarih</th>
+                        <th>MKK Kodu</th>
+
+
                     </tr>
                         <!-- TABLO DOLDURMA BASLANGIC -->
                     <?php  foreach ($sepetler as $sepe) : ?>
@@ -108,13 +119,18 @@
                             <td></td>
                             <td><?php echo $sepe['PozNo'] ?></td>
                             <td><?php echo $sepe['PozTanim'] ?></td>
+                            <td><?php echo $sepe['PozModel'] ?></td>
+                            <td><?php echo $sepe['PozFirma'] ?></td>
                             <td><?php echo $sepe['MaliyetGrup'] ?></td>
-                            <td><?php echo $sepe['TekAciklama'] ?></td>
-                            <td><?php echo $sepe['Birim'] ?></td>
-                            <td><?php echo $sepe['BFiyat'] ?></td>
+                            <td><?php echo $sepe['PozTip'] ?></td>
+                            <td><?php echo $sepe['OlcuBirim'] ?></td>
+                            <td><?php echo $sepe['BirimFiyat'] ?></td>
                             <td><?php echo $sepe['ParaBirim'] ?></td>
-                            <td><?php echo $sepe['PozRef'] ?></td>
-                            <td></td>
+                            <!-- <td><?php echo $sepe['PozRef'] ?></td> -->
+                            <td><?php echo $sepe['BfTarih'] ?></td>
+                            <td><?php echo $sepe['MkkCode'] ?></td>
+
+
                         </tr>
                         <?php endforeach; ?>
                             <!-- TABLO DOLDURMA BITIS -->
@@ -238,6 +254,7 @@
             <div class="detaylar">
                 <div class="pozunAnalizi">
                     <h4>10 CM HAFİF GAZBETON TEÇHİZATSIZ HARÇLI BLOKLARA DUVAR YAPILMASI(TUTKAL İLE)</h4>
+                <form>
                     <table>
                         <tr>
                             <th></th>
@@ -252,22 +269,8 @@
                             <th>Miktar</th>
                             <th>Maliyet</th>
                             <th>Sıra No</th>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <th>Açıklama</th>
-                            <th></th>
-                            <th>Malzeme</th>
-                            <th>Rayiç</th>
-                            <th>TL</th>
-                            <th></th>
-                            <th>0,00</th>
-                            <th>01.01.2050</th>
-                            <th></th>
-                            <th></th>
-                            <th>1</th>
-                        </tr>
-                        
+                        </tr>       
+
                              <!-- TABLO DOLDURMA BASLANGIC -->
                     <?php  foreach ($pozanaliz as $analiz) : ?>
                         <tr>
@@ -275,22 +278,22 @@
                             <td><?php echo $analiz['PozNo'] ?></td>
                             <td><?php echo $analiz['MkkCode'] ?></td>
                             <td><?php echo $analiz['PozTanim'] ?></td>
-                            <td><?php echo $analiz['PozTipi'] ?></td>
+                            <td><?php echo $analiz['PozTip'] ?></td>
                             <td><?php echo $analiz['ParaBirim'] ?></td>
-                            <td></td>
+                            <td><?php echo $analiz['BirimKisaAd'] ?></td>
                             <td><?php echo $analiz['BirimFiyat'] ?></td>
                             <td><?php echo date("d-m-Y",strtotime($analiz['BfTarih'])) ?></td>
-                            <td></td>
-                            <td><?php echo $analiz['BirimFiyat']*1/*$analiz['Miktar']*/ ?></td>
+                            <td><?php echo $analiz['SubPozMiktar'] ?></td>
+                            
+                            <td><?php echo $analiz['BirimFiyat']*$analiz['SubPozMiktar'];?></td>
                             <td><?php echo $analiz['PozSNo'] ?></td>
                         </tr>
                         <?php endforeach; ?>
                             <!-- TABLO DOLDURMA BITIS -->
-                        
-                       
                     </table>
+                        <input class="duzenlemGonderBtn anim" type="submit" value="Degisiklikleri Kaydet">
+                </form>
                     <div class="fiyatAnalizForm">
-                        <input type="checkbox" name="analizDuzenle"><span>Analizi düzenle</span>
                         <button class="anim" type="submit">Seçili Pozu Sil</button>
                         <button class="anim" type="submit">Yeni Poz Ekle</button>
                         <button class="anim" type="submit">Açıklama Ekle</button>
@@ -305,9 +308,9 @@
                         <form>
                             <i>Teklif Seçiniz</i>
                             <select name="teklifSecenek" class="anim">
-                                <option value="0">Kitaplık seçin</option>
-                                <?php  foreach ($kitapliklar as $kitap) : ?>
-                                    <option value="<?php echo $kitap['KitapID'] ?>"><?php echo $kitap['KitapAdi'] ?></option>
+                                <option value="0">Teklif Seçiniz</option>
+                                <?php  foreach ($teklifs as $tek) : ?>
+                                    <option value="<?php echo $tek['TeklifID'] ?>"><?php echo $tek['TeklifAdi'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <button class="anim" type="submit">Teklifleri Düzenle</button>
@@ -334,9 +337,11 @@
                             <th>Maliyet Grubu</th>
                             <th>Döviz</th>
                             <th>Kur</th>
+
                             <th>Birim</th>
                             <th>Birim Fiyat</th>
                             <th>Tarih</th>
+
                             <th>Miktar</th>
                             <th>Poz Grubu</th>
                             <th>Poz Maliyeti</th>
@@ -346,20 +351,24 @@
                     <?php  foreach ($teklifler as $teklif) : ?>
                         <tr>
                             <td></td>
-                            <td><?php echo $teklif['PozNo'] ?></td>
+                            <td><?php echo $teklif['TekPozNo'] ?></td>
                             <td><?php echo $teklif['MkkCode'] ?></td>
                             <td><?php echo $teklif['PozTanim'] ?></td>
+                            <td><?php echo $teklif['PozTip'] ?></td>
                             <td><?php echo $teklif['MaliyetGrup'] ?></td>
-                            <td><?php echo $teklif['ParaBirim'] ?></td>
-                            <td></td>
-                            <td></td>
-                            <td><?php echo $teklif['BirimFiyat'] ?></td>
+                            <td><?php echo $teklif['PBirimUzunAd'] ?></td>
+                            <td><?php echo $teklif['PBirimFiyat'] ?></td>
+
+                            <td><?php echo $teklif['OlcuBirim'] ?></td>
+                            <td><?php echo $teklif['TeklifBirimFiyat'] ?></td>
                             <td><?php echo date("d-m-Y",strtotime($analiz['BfTarih'])) ?></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            
+                            <td><?php echo $teklif['TekPozMiktar'] ?></td>
+                            <td><?php echo $teklif['PozFirma'] ?></td>
+                            
+                            <td>MALIYET HESAPLA YAZ...</td>
+                            <td><?php echo $teklif['TekItemAciklama'] ?></td>
+                            
                         </tr>
                         <?php endforeach; ?>
                             <!-- TABLO DOLDURMA BITIS -->
