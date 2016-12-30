@@ -1,3 +1,14 @@
+     xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("pozDetaylari").innerHTML = this.responseText;
+            }
+        };
+        
+        xmlhttp.open("GET","pozDetay.php?pozId="+str,true);
+        xmlhttp.send();
+    }
+}
+
 .duzenle table{width:100%; font-family:roboto_light; margin-top:15px; margin-bottom:70px;}
 .duzenle tr:first-child th{background:#eee; text-align:center; font-family:roboto_bold;}
 .duzenle th{border:1px solid #ccc; padding:5px 10px;}
