@@ -26,3 +26,8 @@
 .duzenle tr:last-child td{text-align:center;}
 .duzenle tr button{color:#fff; width:15%; height:100%; border:1px solid #aaa; background:#008080;}
 .duzenle tr button:hover{background:#c94c4c; color:#fff;}
+
+
+
+
+mehmete koyim hahahahah
